@@ -1,0 +1,35 @@
+FROM:    IT Service Desk (Kevin)
+TO:      All Staff
+RE:      Annual password hygiene memo (unchanged since 2021)
+
+The annual credential audit has exported everyone's password
+integrity hashes to the shared drive. This is normal. Do not think
+about it too hard.
+
+A reminder of the approved password formats:
+
+  1. STANDARD STAFF  - any word from the attached corporate wordlist.
+     Yes, just the word. Adding a number is optional and, frankly,
+     showing off. We rotate the wordlist every few years and the
+     2021 list is still current because the rotation ticket keeps
+     getting deprioritized.
+
+  2. EXECUTIVE STAFF - the January incident means exec accounts now
+     follow the rotation calendar:
+
+         <BaseWord><Season><YY><symbol>
+
+     BaseWord comes from the approved wordlist, Season is the full
+     season name at time of change (Spring, Summer, Autumn, Winter),
+     YY is the two-digit year of the last_changed date, and symbol is
+     one of ! @ #.
+
+     Example: AnchorAutumn22#  (this example was revoked immediately
+     after this memo was first sent; the replacement took a while).
+
+  3. VAULT NOTES    - per policy EX-3, off-site vault notes are
+     "sealed" by XOR-ing the note with the owner's personal password.
+     Kevin would like to state for the record that he suggested an
+     actual cipher and was overruled for licensing reasons.
+
+No further action is required. Please stop replying-all.

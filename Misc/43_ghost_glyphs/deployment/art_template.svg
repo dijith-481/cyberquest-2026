@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <!--@STYLE@-->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050814"/>
+      <stop offset="0.55" stop-color="#101a31"/>
+      <stop offset="1" stop-color="#231a35"/>
+    </linearGradient>
+    <radialGradient id="moonGlow">
+      <stop offset="0" stop-color="#f5f2d7" stop-opacity="0.95"/>
+      <stop offset="0.18" stop-color="#c9e4ff" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#6ea6ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#57e3bf" stop-opacity="0"/>
+      <stop offset="0.28" stop-color="#57e3bf" stop-opacity="0.38"/>
+      <stop offset="0.62" stop-color="#8b7cff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#8b7cff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#596778"/>
+      <stop offset="0.45" stop-color="#263240"/>
+      <stop offset="1" stop-color="#111821"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="tinyGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <mask id="horizonMask">
+      <rect width="1200" height="800" fill="white"/>
+      <rect y="586" width="1200" height="214" fill="black"/>
+    </mask>
+    <clipPath id="lensClip"><circle cx="874" cy="376" r="46"/></clipPath>
+    <!--@DEFS@-->
+</defs>
+
+  <rect width="1200" height="800" fill="url(#sky)"/>
+
+  <!-- aurora bands -->
+  <path d="M-40,210 C190,95 330,310 545,184 C750,65 887,225 1240,112" fill="none" stroke="url(#aurora)" stroke-width="78" opacity="0.72"/>
+  <path d="M-20,250 C180,145 380,335 590,214 C815,84 935,245 1230,160" fill="none" stroke="url(#aurora)" stroke-width="32" opacity="0.45"/>
+
+  <!-- moon + spectral rings -->
+  <circle cx="875" cy="192" r="150" fill="url(#moonGlow)"/>
+  <circle cx="875" cy="192" r="56" fill="#eef3f6" opacity="0.9"/>
+  <circle cx="858" cy="180" r="8" fill="#c6ccd4" opacity="0.35"/>
+  <circle cx="890" cy="205" r="12" fill="#c6ccd4" opacity="0.24"/>
+  <circle cx="875" cy="192" r="92" fill="none" stroke="#7fc8ff" stroke-opacity="0.18"/>
+  <circle cx="875" cy="192" r="118" fill="none" stroke="#8f85ff" stroke-opacity="0.13" stroke-dasharray="2 10"/>
+
+  <!-- stars -->
+  <g fill="#dbe9ff" opacity="0.9">
+    <circle cx="104" cy="110" r="2"/><circle cx="166" cy="250" r="1.5"/><circle cx="239" cy="88" r="1.3"/>
+    <circle cx="313" cy="165" r="2.3"/><circle cx="389" cy="94" r="1.3"/><circle cx="453" cy="278" r="1.6"/>
+    <circle cx="529" cy="120" r="1.4"/><circle cx="598" cy="68" r="2"/><circle cx="655" cy="224" r="1.2"/>
+    <circle cx="724" cy="136" r="1.8"/><circle cx="1004" cy="112" r="1.4"/><circle cx="1083" cy="205" r="2"/>
+    <circle cx="1128" cy="76" r="1.5"/><circle cx="964" cy="276" r="1.4"/><circle cx="75" cy="326" r="1.2"/>
+  </g>
+  <g fill="#ffffff" filter="url(#tinyGlow)">
+    <circle cx="344" cy="237" r="2.3"/><circle cx="694" cy="91" r="2.1"/><circle cx="1030" cy="332" r="2.2"/>
+  </g>
+
+  <!-- constellation / ghost-glyph hint -->
+  <g stroke="#88cfff" stroke-opacity="0.24" fill="none">
+    <path d="M130,166 L182,128 L226,178 L279,143 L330,194"/>
+    <path d="M973,104 L1012,145 L1070,126 L1117,171"/>
+  </g>
+
+  <!--@SIGNAL@-->
+  <!-- distant mountains -->
+  <path d="M0,590 L110,500 L176,548 L250,462 L337,550 L416,486 L498,563 L588,497 L682,570 L778,488 L852,558 L941,476 L1028,545 L1110,492 L1200,570 L1200,800 L0,800 Z" fill="#101623"/>
+  <path d="M0,621 L130,563 L218,607 L315,539 L409,610 L525,548 L630,615 L744,557 L860,622 L972,547 L1087,602 L1200,562 L1200,800 L0,800 Z" fill="#0a0f17"/>
+
+  <!-- observatory base -->
+  <g transform="translate(0,10)">
+    <rect x="505" y="540" width="285" height="165" rx="14" fill="#131d27" stroke="#526477" stroke-opacity="0.35"/>
+    <rect x="532" y="589" width="64" height="116" fill="#0c1118"/>
+    <rect x="684" y="585" width="72" height="48" rx="5" fill="#1a2b37" stroke="#5e8da8" stroke-opacity="0.45"/>
+    <rect x="700" y="598" width="40" height="22" fill="#75ccff" opacity="0.18"/>
+
+    <!-- dome -->
+    <path d="M541,540 A106,106 0 0 1 753,540 Z" fill="url(#metal)" stroke="#718296" stroke-opacity="0.5"/>
+    <path d="M646,434 L668,540" stroke="#0b1118" stroke-width="20"/>
+    <path d="M647,435 L656,540" stroke="#8495a7" stroke-opacity="0.32" stroke-width="2"/>
+  </g>
+
+  <!--@PLAQUE@-->
+  <!-- telescope -->
+  <g transform="rotate(-18 750 430)">
+    <rect x="673" y="398" width="214" height="60" rx="26" fill="url(#metal)" stroke="#7d8b99" stroke-opacity="0.55"/>
+    <rect x="852" y="392" width="48" height="72" rx="20" fill="#0b121a" stroke="#65788a" stroke-opacity="0.45"/>
+    <circle cx="875" cy="428" r="28" fill="#071018" stroke="#70d5ff" stroke-opacity="0.6"/>
+    <g clip-path="url(#lensClip)"><circle cx="875" cy="428" r="32" fill="#163957"/><circle cx="862" cy="416" r="11" fill="#8ee9ff" opacity="0.45"/></g>
+    <rect x="642" y="414" width="48" height="28" rx="8" fill="#141d28"/>
+  </g>
+  <path d="M738,479 L695,623 M756,480 L808,623" stroke="#384554" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- foreground ridge -->
+  <path d="M0,675 C172,644 270,700 425,674 C600,643 724,704 906,670 C1042,645 1122,660 1200,652 L1200,800 L0,800 Z" fill="#06090e"/>
+
+  <!-- spectral scanner overlay -->
+  <g opacity="0.52" mask="url(#horizonMask)">
+    <circle cx="875" cy="192" r="160" fill="none" stroke="#70d5ff" stroke-width="1" stroke-dasharray="3 11"/>
+    <path d="M875,24 V360 M707,192 H1043" stroke="#70d5ff" stroke-opacity="0.22"/>
+  </g>
+
+  <!-- challenge title -->
+  <g transform="translate(58,682)">
+    <text x="0" y="0" font-family="monospace" font-size="15" letter-spacing="5" fill="#7fc8ff" opacity="0.72">SPECTRAL OBSERVATORY // ARCHIVE 07</text>
+    <text x="0" y="38" font-family="sans-serif" font-size="32" font-weight="600" fill="#e7eef8">Some signals are visible only to the right observer.</text>
+  </g>
+
+  <!--@LABELS@-->
+  <!-- decorative pseudo-glyphs: used as the visual motif for the eventual hidden font -->
+  <g transform="translate(945,680)" stroke="#83d7ff" stroke-width="2" fill="none" opacity="0.52">
+    <path d="M0,0 h18 v18 h-18 z M5,5 h8 v8 h-8 z"/>
+    <path d="M30,0 l9,18 l9,-18 M33,11 h12"/>
+    <path d="M60,0 h18 l-18,18 h18"/>
+    <path d="M90,0 v18 M90,9 h18 M108,0 v18"/>
+  </g>
+  <!--@DECOY@-->
+</svg>

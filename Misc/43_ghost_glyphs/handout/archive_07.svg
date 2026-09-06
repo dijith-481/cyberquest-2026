@@ -1,0 +1,497 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" style="--gainbnx4:0.42;--toneq4q7:#8fd4ff;--mutez8we:0.12">
+    <style>
+    .signb2a { opacity: var(--gainbnx4, 0.85); color: var(--toneq4q7, #9fe8ff); }
+    .resczuz { opacity: var(--mutez8we, 0.12); }
+  </style>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050814"/>
+      <stop offset="0.55" stop-color="#101a31"/>
+      <stop offset="1" stop-color="#231a35"/>
+    </linearGradient>
+    <radialGradient id="moonGlow">
+      <stop offset="0" stop-color="#f5f2d7" stop-opacity="0.95"/>
+      <stop offset="0.18" stop-color="#c9e4ff" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#6ea6ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#57e3bf" stop-opacity="0"/>
+      <stop offset="0.28" stop-color="#57e3bf" stop-opacity="0.38"/>
+      <stop offset="0.62" stop-color="#8b7cff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#8b7cff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#596778"/>
+      <stop offset="0.45" stop-color="#263240"/>
+      <stop offset="1" stop-color="#111821"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="tinyGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <mask id="horizonMask">
+      <rect width="1200" height="800" fill="white"/>
+      <rect y="586" width="1200" height="214" fill="black"/>
+    </mask>
+    <clipPath id="lensClip"><circle cx="874" cy="376" r="46"/></clipPath>
+        <symbol id="t9f1" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2,5 H5.2"/>
+      <path d="M3.6,1.4 V8.6 A1.9,1.9 0 0 0 5.4,10"/>
+      </g>
+    </symbol>
+    <symbol id="cxof" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+
+      </g>
+    </symbol>
+    <symbol id="g1ad" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 V8.3 Q1.2,10 3.7,10 Q6.2,10 6.2,8.3 V5"/>
+      </g>
+    </symbol>
+    <symbol id="z67d" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.7,5 V11 Q5.7,12.6 4.1,12.6 Q2.6,12.6 2.2,11.4"/>
+      <path d="M5.7,2.3 V2.6"/>
+      </g>
+    </symbol>
+    <symbol id="pa3k" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.7,10 V1 L1.2,7 H6.2"/>
+      </g>
+    </symbol>
+    <symbol id="x0az" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 L3.7,10 L6.2,5"/>
+      </g>
+    </symbol>
+    <symbol id="mdiy" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0.9,0.7 A2.6,2.6 0 0 1 3.5,3.3 V4.4 A2.6,2.6 0 0 0 6.1,6.5 A2.6,2.6 0 0 0 3.5,8.6 V9.7 A2.6,2.6 0 0 1 0.9,12.3"/>
+      </g>
+    </symbol>
+    <symbol id="c0ps" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.9,0.7 A2.6,2.6 0 0 0 3.3,3.3 V4.4 A2.6,2.6 0 0 1 0.7,6.5 A2.6,2.6 0 0 1 3.3,8.6 V9.7 A2.6,2.6 0 0 0 5.9,12.3"/>
+      </g>
+    </symbol>
+    <symbol id="jrga" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 L3.7,10.2 L6.2,5"/>
+      <path d="M3.7,10.2 Q3.5,12.6 1.3,12.6"/>
+      </g>
+    </symbol>
+    <symbol id="r5pm" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.8,1 V10"/>
+      <path d="M6.8,7.6 A2.4,2.4 0 0 0 2,7.6 A2.4,2.4 0 0 0 6.8,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="du1h" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,11.7 H6.2"/>
+      </g>
+    </symbol>
+    <symbol id="c84y" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 L6.2,10"/>
+      <path d="M6.2,5 L1.2,10"/>
+      </g>
+    </symbol>
+    <symbol id="wueo" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.2,5 V10"/>
+      <path d="M6.2,6.4 A2.5,2.5 0 1 0 6.2,8.6"/>
+      </g>
+    </symbol>
+    <symbol id="y385" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 V10"/>
+      <path d="M1.2,6.3 Q1.2,5 3.7,5 Q6.2,5 6.2,6.3 V10"/>
+      </g>
+    </symbol>
+    <symbol id="r9bd" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.2,6 A2.6,2.6 0 1 0 6.2,9"/>
+      </g>
+    </symbol>
+    <symbol id="nuzg" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,1 V10"/>
+      <path d="M6,5 L1.2,8.4"/>
+      <path d="M2.8,6.9 L6.2,10"/>
+      </g>
+    </symbol>
+    <symbol id="gjm0" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.8,6.1 A2.05,2.05 0 1 0 3.5,7.7 A2.05,2.05 0 1 1 1.2,9.3"/>
+      </g>
+    </symbol>
+    <symbol id="z06z" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 H6.2 L1.2,10 H6.2"/>
+      </g>
+    </symbol>
+    <symbol id="wqkp" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.2,5 V12.6"/>
+      <path d="M6.2,7.6 A2.4,2.4 0 0 0 1.4,7.6 A2.4,2.4 0 0 0 6.2,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="lgwr" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.1,7.6 A2.5,2.5 0 0 1 6.1,7.6 A2.5,2.5 0 0 1 1.1,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="hn7z" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.8,1.8 A1.8,1.8 0 0 0 3,3.6 V12.6"/>
+      <path d="M1.5,5 H5"/>
+      </g>
+    </symbol>
+    <symbol id="wgtl" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6,1 H1.6 L1.3,5.4 H3.9 A2.5,2.4 0 1 1 3.9,10 H1.5"/>
+      </g>
+    </symbol>
+    <symbol id="bmwb" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.3,3.2 A2.4,2.3 0 1 1 6,4.4 L1.3,10 H6.2"/>
+      </g>
+    </symbol>
+    <symbol id="ut0y" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.7,5 V10"/>
+      <path d="M3.7,2.3 V2.6"/>
+      </g>
+    </symbol>
+    <symbol id="tt1e" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,1 H6.2 L2.6,10"/>
+      </g>
+    </symbol>
+    <symbol id="t1hi" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.6,3.4 L3.7,1 V10"/>
+      <path d="M1.6,10 H5.8"/>
+      </g>
+    </symbol>
+    <symbol id="v2ys" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.6,3.3 A2.1,2.2 0 0 1 5.8,3.3 A2.1,2.2 0 0 1 1.6,3.3"/>
+      <path d="M1.2,7.7 A2.5,2.3 0 0 1 6.2,7.7 A2.5,2.3 0 0 1 1.2,7.7"/>
+      </g>
+    </symbol>
+    <symbol id="u3r0" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6.1,3.4 C6.1,5.8 4.8,7.9 1.5,9.5"/>
+      <path d="M1.3,3.4 A2.4,2.4 0 0 1 6.1,3.4 A2.4,2.4 0 0 1 1.3,3.4"/>
+      </g>
+    </symbol>
+    <symbol id="u63m" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.3,7.8 H6.2"/>
+      <path d="M6.2,7.6 A2.5,2.5 0 1 0 5.4,9.6"/>
+      </g>
+    </symbol>
+    <symbol id="b2rk" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.5,2.6 A2.3,1.9 0 1 1 3.7,5.4 A2.3,2.2 0 1 1 1.4,9.4"/>
+      </g>
+    </symbol>
+    <symbol id="q2gd" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5.5 A2.5,4.5 0 0 1 6.2,5.5 A2.5,4.5 0 0 1 1.2,5.5"/>
+      <path d="M2.2,9 L5.2,2"/>
+      </g>
+    </symbol>
+    <symbol id="n8ix" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0.8,5 V10"/>
+      <path d="M0.8,6.2 Q0.8,5 2.4,5 Q4,5 4,6.2 V10"/>
+      <path d="M4,6.2 Q4,5 5.6,5 Q7.2,5 7.2,6.2 V10"/>
+      </g>
+    </symbol>
+    <symbol id="hmuo" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,1 V10"/>
+      <path d="M1.2,7.6 A2.4,2.4 0 0 1 6,7.6 A2.4,2.4 0 0 1 1.2,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="in68" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 V10"/>
+      <path d="M1.2,7 Q1.6,5 4.6,5"/>
+      </g>
+    </symbol>
+    <symbol id="tvby" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.9,1.5 C2.6,3.1 1.3,5.2 1.3,7.6"/>
+      <path d="M1.3,7.6 A2.4,2.4 0 0 1 6.1,7.6 A2.4,2.4 0 0 1 1.3,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="eimv" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0.8,5 L1.9,10 L3.7,6 L5.5,10 L6.6,5"/>
+      </g>
+    </symbol>
+    <symbol id="nxin" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,1 V10"/>
+      <path d="M1.2,6.4 Q1.2,5 3.7,5 Q6.2,5 6.2,6.4 V10"/>
+      </g>
+    </symbol>
+    <symbol id="h10p" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1.2,5 V12.6"/>
+      <path d="M1.2,7.6 A2.4,2.4 0 0 1 6,7.6 A2.4,2.4 0 0 1 1.2,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="up6c" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6,5 V10.2"/>
+      <path d="M6,10.2 Q6,12.6 3.5,12.6 Q2,12.6 1.5,11.8"/>
+      <path d="M1.2,7.6 A2.4,2.4 0 0 1 6,7.6 A2.4,2.4 0 0 1 1.2,7.6"/>
+      </g>
+    </symbol>
+    <symbol id="yjc1" viewBox="0 0 8 13">
+      <g fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.7,1 V10"/>
+      </g>
+    </symbol>
+</defs>
+
+  <rect width="1200" height="800" fill="url(#sky)"/>
+
+  <!-- aurora bands -->
+  <path d="M-40,210 C190,95 330,310 545,184 C750,65 887,225 1240,112" fill="none" stroke="url(#aurora)" stroke-width="78" opacity="0.72"/>
+  <path d="M-20,250 C180,145 380,335 590,214 C815,84 935,245 1230,160" fill="none" stroke="url(#aurora)" stroke-width="32" opacity="0.45"/>
+
+  <!-- moon + spectral rings -->
+  <circle cx="875" cy="192" r="150" fill="url(#moonGlow)"/>
+  <circle cx="875" cy="192" r="56" fill="#eef3f6" opacity="0.9"/>
+  <circle cx="858" cy="180" r="8" fill="#c6ccd4" opacity="0.35"/>
+  <circle cx="890" cy="205" r="12" fill="#c6ccd4" opacity="0.24"/>
+  <circle cx="875" cy="192" r="92" fill="none" stroke="#7fc8ff" stroke-opacity="0.18"/>
+  <circle cx="875" cy="192" r="118" fill="none" stroke="#8f85ff" stroke-opacity="0.13" stroke-dasharray="2 10"/>
+
+  <!-- stars -->
+  <g fill="#dbe9ff" opacity="0.9">
+    <circle cx="104" cy="110" r="2"/><circle cx="166" cy="250" r="1.5"/><circle cx="239" cy="88" r="1.3"/>
+    <circle cx="313" cy="165" r="2.3"/><circle cx="389" cy="94" r="1.3"/><circle cx="453" cy="278" r="1.6"/>
+    <circle cx="529" cy="120" r="1.4"/><circle cx="598" cy="68" r="2"/><circle cx="655" cy="224" r="1.2"/>
+    <circle cx="724" cy="136" r="1.8"/><circle cx="1004" cy="112" r="1.4"/><circle cx="1083" cy="205" r="2"/>
+    <circle cx="1128" cy="76" r="1.5"/><circle cx="964" cy="276" r="1.4"/><circle cx="75" cy="326" r="1.2"/>
+  </g>
+  <g fill="#ffffff" filter="url(#tinyGlow)">
+    <circle cx="344" cy="237" r="2.3"/><circle cx="694" cy="91" r="2.1"/><circle cx="1030" cy="332" r="2.2"/>
+  </g>
+
+  <!-- constellation / ghost-glyph hint -->
+  <g stroke="#88cfff" stroke-opacity="0.24" fill="none">
+    <path d="M130,166 L182,128 L226,178 L279,143 L330,194"/>
+    <path d="M973,104 L1012,145 L1070,126 L1117,171"/>
+  </g>
+
+    <g class="signb2a" mask="url(#mkdx9o)" opacity="0.42" color="#8fd4ff">
+    <g transform="translate(120 307) scale(1)">
+      <g transform="matrix(-0.594004 0.30266 0.30266 0.594004 -13.6675 -1.44525)">
+        <g transform="rotate(-19)">
+          <g transform="translate(-20 5)">
+            <g transform="scale(-1.5 1.5)">
+              <g transform="rotate(8)">
+                <use href="#t9f1" transform="translate(100 0)" width="8" height="13"/>
+<use href="#nxin" transform="translate(180 0)" width="8" height="13"/>
+<use href="#jrga" transform="translate(150 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(80 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(50 0)" width="8" height="13"/>
+<use href="#q2gd" transform="translate(120 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(160 0)" width="8" height="13"/>
+<use href="#wqkp" transform="translate(60 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(30 0)" width="8" height="13"/>
+<use href="#yjc1" transform="translate(140 0)" width="8" height="13"/>
+<use href="#jrga" transform="translate(10 0)" width="8" height="13"/>
+<use href="#in68" transform="translate(40 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(90 0)" width="8" height="13"/>
+<use href="#y385" transform="translate(130 0)" width="8" height="13"/>
+<use href="#r9bd" transform="translate(0 0)" width="8" height="13"/>
+<use href="#g1ad" transform="translate(70 0)" width="8" height="13"/>
+<use href="#hmuo" transform="translate(20 0)" width="8" height="13"/>
+<use href="#c0ps" transform="translate(110 0)" width="8" height="13"/>
+<use href="#t9f1" transform="translate(170 0)" width="8" height="13"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <mask id="mkdx9o" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+      <rect x="98" y="283" width="326" height="60" fill="#ffffff"/>
+      <ellipse cx="255" cy="314" rx="43" ry="12" fill="#04070d"/>
+      <ellipse cx="246" cy="314" rx="50" ry="14" fill="#04070d"/>
+      <ellipse cx="356" cy="322" rx="33" ry="14" fill="#04070d"/>
+      <ellipse cx="196" cy="318" rx="42" ry="16" fill="#04070d"/>
+      <ellipse cx="384" cy="316" rx="34" ry="17" fill="#04070d"/>
+  </mask>
+  <g class="signb2a" mask="url(#mkjyas)" opacity="0.42" color="#8fd4ff">
+    <g transform="translate(417 356) scale(1)">
+      <g transform="matrix(-0.665043 0.0465043 0.0465043 0.665043 24.5472 -4.67773)">
+        <g transform="rotate(16)">
+          <g transform="translate(37 -6)">
+            <g transform="scale(-1.5 1.5)">
+              <g transform="rotate(20)">
+                <use href="#r5pm" transform="translate(340 0)" width="8" height="13"/>
+<use href="#t9f1" transform="translate(60 0)" width="8" height="13"/>
+<use href="#up6c" transform="translate(280 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(70 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(360 0)" width="8" height="13"/>
+<use href="#nxin" transform="translate(230 0)" width="8" height="13"/>
+<use href="#b2rk" transform="translate(180 0)" width="8" height="13"/>
+<use href="#mdiy" transform="translate(390 0)" width="8" height="13"/>
+<use href="#pa3k" transform="translate(350 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(160 0)" width="8" height="13"/>
+<use href="#u3r0" transform="translate(330 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(250 0)" width="8" height="13"/>
+<use href="#pa3k" transform="translate(300 0)" width="8" height="13"/>
+<use href="#in68" transform="translate(150 0)" width="8" height="13"/>
+<use href="#t1hi" transform="translate(30 0)" width="8" height="13"/>
+<use href="#in68" transform="translate(20 0)" width="8" height="13"/>
+<use href="#x0az" transform="translate(130 0)" width="8" height="13"/>
+<use href="#t9f1" transform="translate(220 0)" width="8" height="13"/>
+<use href="#b2rk" transform="translate(0 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(200 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(110 0)" width="8" height="13"/>
+<use href="#yjc1" transform="translate(310 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(320 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(100 0)" width="8" height="13"/>
+<use href="#q2gd" transform="translate(80 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(260 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(10 0)" width="8" height="13"/>
+<use href="#t1hi" transform="translate(270 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(170 0)" width="8" height="13"/>
+<use href="#b2rk" transform="translate(240 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(140 0)" width="8" height="13"/>
+<use href="#up6c" transform="translate(40 0)" width="8" height="13"/>
+<use href="#bmwb" transform="translate(370 0)" width="8" height="13"/>
+<use href="#du1h" transform="translate(210 0)" width="8" height="13"/>
+<use href="#hn7z" transform="translate(380 0)" width="8" height="13"/>
+<use href="#y385" transform="translate(290 0)" width="8" height="13"/>
+<use href="#b2rk" transform="translate(190 0)" width="8" height="13"/>
+<use href="#in68" transform="translate(120 0)" width="8" height="13"/>
+<use href="#hmuo" transform="translate(90 0)" width="8" height="13"/>
+<use href="#nxin" transform="translate(50 0)" width="8" height="13"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <mask id="mkjyas" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+      <rect x="395" y="332" width="641" height="60" fill="#ffffff"/>
+      <ellipse cx="873" cy="360" rx="36" ry="12" fill="#04070d"/>
+      <ellipse cx="750" cy="377" rx="48" ry="12" fill="#04070d"/>
+      <ellipse cx="913" cy="376" rx="33" ry="15" fill="#04070d"/>
+      <ellipse cx="593" cy="360" rx="42" ry="16" fill="#04070d"/>
+      <ellipse cx="682" cy="377" rx="34" ry="11" fill="#04070d"/>
+      <ellipse cx="648" cy="371" rx="40" ry="11" fill="#04070d"/>
+      <ellipse cx="996" cy="365" rx="34" ry="17" fill="#04070d"/>
+  </mask>
+  <!-- distant mountains -->
+  <path d="M0,590 L110,500 L176,548 L250,462 L337,550 L416,486 L498,563 L588,497 L682,570 L778,488 L852,558 L941,476 L1028,545 L1110,492 L1200,570 L1200,800 L0,800 Z" fill="#101623"/>
+  <path d="M0,621 L130,563 L218,607 L315,539 L409,610 L525,548 L630,615 L744,557 L860,622 L972,547 L1087,602 L1200,562 L1200,800 L0,800 Z" fill="#0a0f17"/>
+
+  <!-- observatory base -->
+  <g transform="translate(0,10)">
+    <rect x="505" y="540" width="285" height="165" rx="14" fill="#131d27" stroke="#526477" stroke-opacity="0.35"/>
+    <rect x="532" y="589" width="64" height="116" fill="#0c1118"/>
+    <rect x="684" y="585" width="72" height="48" rx="5" fill="#1a2b37" stroke="#5e8da8" stroke-opacity="0.45"/>
+    <rect x="700" y="598" width="40" height="22" fill="#75ccff" opacity="0.18"/>
+
+    <!-- dome -->
+    <path d="M541,540 A106,106 0 0 1 753,540 Z" fill="url(#metal)" stroke="#718296" stroke-opacity="0.5"/>
+    <path d="M646,434 L668,540" stroke="#0b1118" stroke-width="20"/>
+    <path d="M647,435 L656,540" stroke="#8495a7" stroke-opacity="0.32" stroke-width="2"/>
+  </g>
+
+    <!-- calibration plate -->
+  <g>
+    <rect x="599" y="603" width="82" height="36" rx="2" fill="#0a121c" stroke="#2c4a5e" stroke-opacity="0.7"/>
+    <image x="602" y="606" width="76" height="30" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMTQ2IiB2aWV3Qm94PSIwIDAgMjQwIDE0NiI+CiAgPHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIxNDYiIGZpbGw9IiMwYTEyMWMiLz4KICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iMjMyIiBoZWlnaHQ9IjEzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmM0YTVlIi8+CiAgPHRleHQgeD0iMTQiIHk9IjIwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM3ZmM4ZmYiIGxldHRlci1zcGFjaW5nPSIyIj5QTEFURSAwNyAvLyBTSUdOQUwgT1JERVI8L3RleHQ+CiAgPGNpcmNsZSBjeD0iMTUuMCIgY3k9IjMwLjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iMzAuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSIzMC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSIzMC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSIzMC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSIzMC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjQxLjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iNDEuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI0MS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI0MS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI0MS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI0MS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjUyLjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iNTIuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI1Mi41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI1Mi41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI1Mi41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI1Mi41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjYzLjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iNjMuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI2My41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI2My41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI2My41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI2My41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9Ijc0LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iNzQuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI3NC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI3NC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI3NC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI3NC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9Ijg1LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iODUuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI4NS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI4NS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI4NS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI4NS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9Ijk2LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSI1My4wIiBjeT0iOTYuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjkxLjAiIGN5PSI5Ni41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSI5Ni41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTY3LjAiIGN5PSI5Ni41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMjA1LjAiIGN5PSI5Ni41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjEwNy41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iNTMuMCIgY3k9IjEwNy41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iOTEuMCIgY3k9IjEwNy41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSIxMDcuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjE2Ny4wIiBjeT0iMTA3LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSIyMDUuMCIgY3k9IjEwNy41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjExOC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iNTMuMCIgY3k9IjExOC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iOTEuMCIgY3k9IjExOC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSIxMTguNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjE2Ny4wIiBjeT0iMTE4LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz48Y2lyY2xlIGN4PSIyMDUuMCIgY3k9IjExOC41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTUuMCIgY3k9IjEyOS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iNTMuMCIgY3k9IjEyOS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iOTEuMCIgY3k9IjEyOS41IiByPSIxIiBmaWxsPSIjM2Q2ZjhjIi8+PGNpcmNsZSBjeD0iMTI5LjAiIGN5PSIxMjkuNSIgcj0iMSIgZmlsbD0iIzNkNmY4YyIvPjxjaXJjbGUgY3g9IjE2Ny4wIiBjeT0iMTI5LjUiIHI9IjEiIGZpbGw9IiMzZDZmOGMiLz4KICA8dGV4dCB4PSIyNiIgeT0iMzQiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzlmZThmZiIgbGV0dGVyLXNwYWNpbmc9IjEuNSI+MDEgcjliZCAgIDAyIGpyZ2EgICAwMyBobXVvICAgMDQgdTYzbSAgIDA1IGluNjggICAwNiBkdTFoPC90ZXh0PgogIDx0ZXh0IHg9IjI2IiB5PSI0NSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjOWZlOGZmIiBsZXR0ZXItc3BhY2luZz0iMS41Ij4wNyB3cWtwICAgMDggZzFhZCAgIDA5IHU2M20gICAxMCBnam0wICAgMTEgdDlmMSAgIDEyIGMwcHM8L3RleHQ+CiAgPHRleHQgeD0iMjYiIHk9IjU2IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjEzIHEyZ2QgICAxNCB5Mzg1ICAgMTUgeWpjMSAgIDE2IGpyZ2EgICAxNyBkdTFoICAgMTggdDlmMTwvdGV4dD4KICA8dGV4dCB4PSIyNiIgeT0iNjciIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzlmZThmZiIgbGV0dGVyLXNwYWNpbmc9IjEuNSI+MTkgbnhpbiAgIDIwIGIycmsgICAyMSBkdTFoICAgMjIgaW42OCAgIDIzIHQxaGkgICAyNCB1cDZjPC90ZXh0PgogIDx0ZXh0IHg9IjI2IiB5PSI3OCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSI5IiBmaWxsPSIjOWZlOGZmIiBsZXR0ZXItc3BhY2luZz0iMS41Ij4yNSBueGluICAgMjYgdDlmMSAgIDI3IGR1MWggICAyOCBxMmdkICAgMjkgaG11byAgIDMwIGdqbTA8L3RleHQ+CiAgPHRleHQgeD0iMjYiIHk9Ijg5IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjMxIHU2M20gICAzMiBpbjY4ICAgMzMgeDBheiAgIDM0IHU2M20gICAzNSBpbjY4ICAgMzYgZHUxaDwvdGV4dD4KICA8dGV4dCB4PSIyNiIgeT0iMTAwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjM3IGdqbTAgICAzOCBiMnJrICAgMzkgYjJyayAgIDQwIGdqbTAgICA0MSBkdTFoICAgNDIgdDlmMTwvdGV4dD4KICA8dGV4dCB4PSIyNiIgeT0iMTExIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjQzIG54aW4gICA0NCBiMnJrICAgNDUgZHUxaCAgIDQ2IGdqbTAgICA0NyB0MWhpICAgNDggdXA2YzwvdGV4dD4KICA8dGV4dCB4PSIyNiIgeT0iMTIyIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjQ5IHkzODUgICA1MCBwYTNrICAgNTEgeWpjMSAgIDUyIGR1MWggICA1MyB1M3IwICAgNTQgcjVwbTwvdGV4dD4KICA8dGV4dCB4PSIyNiIgeT0iMTMzIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjkiIGZpbGw9IiM5ZmU4ZmYiIGxldHRlci1zcGFjaW5nPSIxLjUiPjU1IHBhM2sgICA1NiB1NjNtICAgNTcgYm13YiAgIDU4IGhuN3ogICA1OSBtZGl5PC90ZXh0Pgo8L3N2Zz4="/>
+  </g>
+  <!-- telescope -->
+  <g transform="rotate(-18 750 430)">
+    <rect x="673" y="398" width="214" height="60" rx="26" fill="url(#metal)" stroke="#7d8b99" stroke-opacity="0.55"/>
+    <rect x="852" y="392" width="48" height="72" rx="20" fill="#0b121a" stroke="#65788a" stroke-opacity="0.45"/>
+    <circle cx="875" cy="428" r="28" fill="#071018" stroke="#70d5ff" stroke-opacity="0.6"/>
+    <g clip-path="url(#lensClip)"><circle cx="875" cy="428" r="32" fill="#163957"/><circle cx="862" cy="416" r="11" fill="#8ee9ff" opacity="0.45"/></g>
+    <rect x="642" y="414" width="48" height="28" rx="8" fill="#141d28"/>
+  </g>
+  <path d="M738,479 L695,623 M756,480 L808,623" stroke="#384554" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- foreground ridge -->
+  <path d="M0,675 C172,644 270,700 425,674 C600,643 724,704 906,670 C1042,645 1122,660 1200,652 L1200,800 L0,800 Z" fill="#06090e"/>
+
+  <!-- spectral scanner overlay -->
+  <g opacity="0.52" mask="url(#horizonMask)">
+    <circle cx="875" cy="192" r="160" fill="none" stroke="#70d5ff" stroke-width="1" stroke-dasharray="3 11"/>
+    <path d="M875,24 V360 M707,192 H1043" stroke="#70d5ff" stroke-opacity="0.22"/>
+  </g>
+
+  <!-- challenge title -->
+  <g transform="translate(58,682)">
+    <text x="0" y="0" font-family="monospace" font-size="15" letter-spacing="5" fill="#7fc8ff" opacity="0.72">SPECTRAL OBSERVATORY // ARCHIVE 07</text>
+    <text x="0" y="38" font-family="sans-serif" font-size="32" font-weight="600" fill="#e7eef8">Some signals are visible only to the right observer.</text>
+  </g>
+
+    <text x="58" y="756" font-family="monospace" font-size="11" letter-spacing="2" fill="#7fc8ff" opacity="0.55">OBSERVER COMPATIBILITY: 2/5 · CALIBRATION: OK · GAIN NOMINAL</text>
+  <text x="1176" y="470" font-family="monospace" font-size="9" fill="#7fc8ff" opacity="0.3" transform="rotate(-90 1176 470)">archived note: every instrument agreed that nothing was there. they only disagreed about what nothing looked like.</text>
+  <text x="843" y="554" font-family="monospace" font-size="12" fill="#9fe8ff" opacity="0.13" transform="rotate(-8 843 554)">cyber_quest{n0_s1gn4l_d3t3ct3d}</text>
+  <!-- decorative pseudo-glyphs: used as the visual motif for the eventual hidden font -->
+  <g transform="translate(945,680)" stroke="#83d7ff" stroke-width="2" fill="none" opacity="0.52">
+    <path d="M0,0 h18 v18 h-18 z M5,5 h8 v8 h-8 z"/>
+    <path d="M30,0 l9,18 l9,-18 M33,11 h12"/>
+    <path d="M60,0 h18 l-18,18 h18"/>
+    <path d="M90,0 v18 M90,9 h18 M108,0 v18"/>
+  </g>
+    <g class="resczuz" mask="url(#mkknq0)" opacity="0.9" color="#83d7ff">
+    <g transform="translate(799 612) scale(1)">
+      <g transform="matrix(-0.714306 -0.429198 -0.429198 0.714306 -29.4028 2.77397)">
+        <g transform="rotate(20)">
+          <g transform="translate(-34 -10)">
+            <g transform="scale(-1.2 1.2)">
+              <g transform="rotate(-11)">
+                <use href="#nxin" transform="translate(33 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(165 0)" width="8" height="13"/>
+<use href="#u63m" transform="translate(143 0)" width="8" height="13"/>
+<use href="#y385" transform="translate(0 0)" width="8" height="13"/>
+<use href="#eimv" transform="translate(88 0)" width="8" height="13"/>
+<use href="#cxof" transform="translate(77 0)" width="8" height="13"/>
+<use href="#t9f1" transform="translate(22 0)" width="8" height="13"/>
+<use href="#cxof" transform="translate(121 0)" width="8" height="13"/>
+<use href="#in68" transform="translate(154 0)" width="8" height="13"/>
+<use href="#lgwr" transform="translate(11 0)" width="8" height="13"/>
+<use href="#gjm0" transform="translate(110 0)" width="8" height="13"/>
+<use href="#y385" transform="translate(55 0)" width="8" height="13"/>
+<use href="#ut0y" transform="translate(44 0)" width="8" height="13"/>
+<use href="#up6c" transform="translate(66 0)" width="8" height="13"/>
+<use href="#nxin" transform="translate(132 0)" width="8" height="13"/>
+<use href="#wueo" transform="translate(99 0)" width="8" height="13"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <mask id="mkknq0" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+    <rect width="1200" height="800" fill="#04070d"/>
+    <circle cx="245" cy="266" r="1.1" fill="#ffffff"/>
+  </mask>
+</svg>

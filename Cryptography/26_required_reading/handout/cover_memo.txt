@@ -1,0 +1,16 @@
+PEOPLE OPERATIONS - ORIENTATION - MEMO 2026-31
+
+Subject: your sealed orientation note.
+
+Your orientation note is sealed against the current employee
+handbook (revision 7, attached) so that it cannot be read by anyone
+who has not done the required reading. Each number in the sealed
+file is a position in the handbook: count bytes from the start of
+handbook.txt, starting at zero, and take the byte you land on. One
+number, one byte, in order. The handbook is plain ASCII and uses
+line feeds like everything else in this company except the vending
+machine, which uses nothing.
+
+Do the reading. The note will follow.
+
+- people operations

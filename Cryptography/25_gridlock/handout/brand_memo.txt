@@ -1,0 +1,20 @@
+ORDINARY ENGINEERING - BRAND - INTERNAL MEMO 2026-11
+
+Subject: the logo is encrypted now.
+
+Following the incident in which the company logo appeared on a
+third-party slide deck, all brand assets at rest are encrypted. The
+pipeline takes the finished logo, keeps the file header intact so the
+thumbnailers and the asset index keep working, and encrypts the rest
+with AES-128 in ECB mode under the brand key, which lives in the
+vault. The vault is locked. The vault is always locked.
+
+Attached: the current logo (logo.enc.bmp), and the pipeline script
+for the auditors. The auditors asked for the pipeline script. The
+script is attached.
+
+If the logo looks strange, do not adjust your monitor. Open it with
+an image viewer. It opens fine. That is the entire point of keeping
+the header intact.
+
+- brand

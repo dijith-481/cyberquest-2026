@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+"""required_reading — deterministic handout generator (stdlib only).
+
+Writes:
+
+  handout/handbook.txt           the employee handbook, revision 7 (the key)
+  handout/cover_memo.txt         HR memo describing the sealing method
+  handout/orientation_note.enc   the sealed note: byte offsets into the book
+
+Method: each integer in orientation_note.enc is a zero-based byte offset
+into handbook.txt. Decoding is `bytes[int]` concatenated. Every byte of
+the secret note is encoded as a uniformly random occurrence of that byte
+in the handbook (seeded RNG, so the handout is deterministic).
+
+    python3 make_handout.py
+
+The zip handed to players is built with:  zip -j 26_required_reading.zip handout/*
+"""
+
+import os
+import random
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+HANDOUT = os.path.join(HERE, "..", "handout")
+
+FLAG = "cyber_quest{r34d_th3_h4ndb00k_c0v3r_t0_c0v3r_2b8d0e}"
+RNG_SEED = 20260906
+
+NOTE = """ORIENTATION NOTE - SEALED AGAINST HANDBOOK REV 7
+
+Welcome to ordinary engineering. If you are reading this, you held
+the handbook the right way up, which is more than orientation can
+say for the last cohort.
+
+Your starter gift is below. Do not expense it.
+
+Flag: %s
+
+P.S. The vending machine on level two is out of order. It has been
+out of order since the move. The move is finished. The machine is
+still out of order.
+""" % FLAG
+
+HANDBOOK = """ORDINARY ENGINEERING - EMPLOYEE HANDBOOK - REVISION 7
+Effective immediately. Supersedes revision 6, which superseded
+revision 5, which nobody read either. This copy is yours. Do not
+lose it. Losing it requires form 12-B, and form 12-B is out of
+stock until further notice.
+
+1. WELCOME
+
+Welcome to ordinary engineering. We import technology, staff, and
+entirely normal products from parallel universes and sell them like
+nothing is unusual about it, because nothing is unusual about it.
+Your badge works on every door except the ones it does not work on.
+Those doors are marked. The marks are small. Look closely.
+
+2. YOUR FIRST DAY
+
+Collect your laptop from provisioning (level one, second door with
+the sticky hinge). Your login is your surname followed by the year
+you joined, with no space. If your surname contains a hyphen, keep
+the hyphen and accept our sympathy. Read the security memo before
+lunch. Lunch is at noon. Noon is observed, not enforced.
+
+3. HOW WE NAME THINGS
+
+Engineers name things the way tired engineers name things: short,
+lowercase, and joined with underscores. The storefront is refund_svc.
+The poster tool is poster_gen. The door controller is door_ctrl. The
+early access list is early_access. If you catch yourself proposing a
+name with more than two underscores, stop, drink water, and propose
+a shorter name. The record is held by audit_svc_nightly_recon_final,
+whose author has been spoken to twice.
+
+4. TICKET DISCIPLINE
+
+Every anomaly gets a ticket. Tickets are numbered OE-YYYY-NNNN and
+never reused, not even the embarrassing ones. Recent examples from
+the facilities queue: OE-2026-0481 (stairwell clock, still wrong),
+OE-2026-1137 (vending machine, level two, out of order), OE-2025-9920
+(ghost write on the lobby whiteboard), OE-2026-3564 (logo on a
+third-party slide deck, see the brand memo). When the queue crosses
+OE-2026-5000, we buy cake. The cake budget is ticket OE-2026-5001.
+
+5. DOOR CODES
+
+Doors accept a six-digit rotating code. The code changes every thirty
+seconds. Do not write the code down. Everybody writes the code down.
+Write it on paper, not on the door. The incident with the code
+written on the door is ticket OE-2026-0773 and it is still open.
+Maintenance keeps an observation log whenever a clock drifts. The
+east stairwell clock drifts. It has always drifted. The ticket for
+the drift was renumbered three times and is now OE-2026-6182.
+
+6. INTERNAL TOKENS AND FLAG FORMATS
+
+Some internal tools issue tokens that look like cyber_quest{some_words
+_here_with_numbers_like_42}. Runbook placeholders use the same shape,
+usually cyber_quest{fix_me_before_friday}. If you find one, it belongs
+to a drill,
+a game, or an audit. In all three cases, log it with security and do
+not post it in the general channel. The general channel is for cake
+announcements and outage apologies. Last quarter the channel carried
+9 cake announcements and 14 outage apologies, which management called
+a balanced diet. The extension for security is x4710. The extension
+for facilities is x3658. The extension for the vending machine
+contractor is disconnected.
+
+7. MEETINGS
+
+Standup is at 09:15 and lasts fifteen minutes. It lasts twenty-five
+minutes. Bring your update in the form of three sentences. The third
+sentence is optional but everybody can tell when you skip it. The
+quarterly all-hands is mandatory and catered. The catering is fine.
+
+8. EXPENSES
+
+File expenses by Friday. Receipts over 25.00 require a note. Notes
+over three lines require a receipt for the extra lines. This is a
+joke. The joke was approved in revision 4 and has survived two
+audits. Per diem is 60 per day, 85 in the capital, 0 on the moon.
+Nobody has been to the moon on company business. Yet.
+
+9. THE VENDING MACHINE (LEVEL TWO)
+
+The vending machine on level two is out of order. It has been out of
+order since the move. The move finished in March. The machine accepts
+coins, notes, and excuses. It returns none of them. Do not shake it.
+The shaking incident is ticket OE-2026-2097.
+
+10. REVISION HISTORY
+
+Rev 1: first handbook. Rev 2: fixed the map (there is no map). Rev 3:
+added ticket discipline. Rev 4: approved the expenses joke. Rev 5:
+removed the map again. Rev 6: clarified noon. Rev 7: this revision.
+Future orientation notes may be sealed against the text of this
+handbook, position by position, byte by byte, cover to cover. Read
+it that way and it opens like a door. Last year's drill key was
+cyber_quest{we_read_the_manual} and the cohort that found it finished
+orientation a day early. Nobody has finished early since.
+
+- people operations
+"""
+
+MEMO = """PEOPLE OPERATIONS - ORIENTATION - MEMO 2026-31
+
+Subject: your sealed orientation note.
+
+Your orientation note is sealed against the current employee
+handbook (revision 7, attached) so that it cannot be read by anyone
+who has not done the required reading. Each number in the sealed
+file is a position in the handbook: count bytes from the start of
+handbook.txt, starting at zero, and take the byte you land on. One
+number, one byte, in order. The handbook is plain ASCII and uses
+line feeds like everything else in this company except the vending
+machine, which uses nothing.
+
+Do the reading. The note will follow.
+
+- people operations
+"""
+
+
+def main():
+    os.makedirs(HANDOUT, exist_ok=True)
+    book = HANDBOOK.encode("ascii")
+    note = NOTE.encode("ascii")
+
+    # every byte of the note must occur in the book, with room to spare
+    positions = {}
+    for i, b in enumerate(book):
+        positions.setdefault(b, []).append(i)
+    missing = sorted(set(note) - set(positions))
+    if missing:
+        raise SystemExit("handbook lacks bytes: %r" % bytes(missing))
+    thin = [(bytes([b]), len(v)) for b, v in positions.items()
+            if b in set(note) and len(v) < 3]
+    if thin:
+        raise SystemExit("too few occurrences for: %r" % thin)
+
+    rng = random.Random(RNG_SEED)
+    cipher = [str(rng.choice(positions[b])) for b in note]
+
+    with open(os.path.join(HANDOUT, "handbook.txt"), "w", newline="\n") as f:
+        f.write(HANDBOOK)
+    with open(os.path.join(HANDOUT, "cover_memo.txt"), "w", newline="\n") as f:
+        f.write(MEMO)
+    with open(os.path.join(HANDOUT, "orientation_note.enc"), "w", newline="\n") as f:
+        for i in range(0, len(cipher), 12):
+            f.write(" ".join(cipher[i:i + 12]) + "\n")
+
+    print("handout written:", os.path.normpath(HANDOUT))
+    print("handbook bytes:", len(book), "| note bytes:", len(note),
+          "| offsets:", len(cipher))
+    print("flag:", FLAG)
+
+
+if __name__ == "__main__":
+    main()

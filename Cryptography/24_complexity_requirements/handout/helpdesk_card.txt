@@ -1,0 +1,19 @@
+HELPDESK CARD 12 - CHOOSING A COMPLIANT PASSWORD
+
+Fourteen characters is a lot, so the helpdesk made it not a lot:
+
+    <BaseWord><Season><YY><symbol>
+
+  - BaseWord: your favorite word from the approved wordlist,
+    capitalized. The wordlist is attached to this card, laminated.
+  - Season: Spring, Summer, Autumn, or Winter. Pick the one you are
+    like. Seasons are aesthetic. Quarters are policy.
+  - YY: the current two-digit year.
+  - symbol: !, @, or #. Pick whichever one your keyboard still has.
+
+Example: StaplerAutumn26!  (16 characters, four classes, and it means
+something.)
+
+The card satisfies the policy. The policy is satisfied. Everybody is
+compliant, nobody can remember anything, and the helpdesk can verify
+your identity without ever storing anything random.

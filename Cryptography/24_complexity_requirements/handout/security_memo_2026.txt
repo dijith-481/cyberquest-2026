@@ -1,0 +1,20 @@
+ORDINARY ENGINEERING - SECURITY
+MEMO 2026-04: THE COMPLEXITY POLICY (EFFECTIVE NOW)
+
+1. Every password is at least 14 characters and contains upper case,
+   lower case, a digit, and a symbol. No exceptions. Not for the CEO.
+   The CEO asked. The answer is still no.
+
+2. Passwords rotate quarterly. The rotation is not optional either.
+
+3. Stored credentials are SHA-256 over "salt:password", hex encoded.
+
+4. Salts are derived, not random: <DEPT>-<EMPID>-Q<QUARTER>-<YY>, where
+   DEPT is the department code, EMPID is the employee number, and
+   QUARTER and YY come from the rotation date (Jan-Mar Q1, Apr-Jun Q2,
+   Jul-Sep Q3, Oct-Dec Q4). Derived salts stay unique per user per
+   rotation and cost nothing to remember, which is the whole point of
+   deriving.
+
+5. Vault and break-glass notes remain sealed under policy EX-3: XOR
+   with the owner's password. Policy EX-3 has survived three audits.

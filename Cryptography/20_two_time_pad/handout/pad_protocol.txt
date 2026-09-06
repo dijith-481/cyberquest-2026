@@ -1,0 +1,19 @@
+ORDINARY ENGINEERING - RECORDS DIVISION
+SEALING PROTOCOL, PAD VERSION 3 (CURRENT)
+
+1. A memo to be sealed is written on the standard form: the two header
+   lines, a SUBJECT line, the body, and the standard footer line.
+   The form is not optional. The form has never been optional.
+
+2. Sealing is XOR, byte by byte, with the division pad. The sealed memo
+   is filed as hexadecimal. The pad is strictly single-use: one pad per
+   filing cabinet, regenerated every fiscal quarter without exception.
+
+3. The pad lives at //records/pads/oe_pad_v3 and is not, itself, sealed.
+   It is protected by the cabinet, the shelf, and the honor system. Two
+   of these three have never failed.
+
+4. Draft copies live on the draft shelf beside the copier. The draft
+   shelf is a convenience, not an archive. Do not cite the draft shelf.
+
+5. Do not ask about version two.

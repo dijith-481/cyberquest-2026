@@ -1,0 +1,22 @@
+ORDINARY ENGINEERING - RECORDS DIVISION
+INTEROFFICE MEMO 0049 - SEALED COPY
+SUBJECT: Q1 ALL-HANDS, MINUTES AS FILED
+
+Attendees: all hands, minus the hands that were at the vendor fair.
+The CEO opened with the roadmap. The roadmap has four pillars, and the
+pillars will be named once Legal finishes reserving them as trademarks.
+
+Facilities reported that the east stairwell door works. Security asked
+whether the door code rotates. Facilities said it rotates. Nobody wrote
+down what it rotates from, and the minutes reflect the topic as
+"discussed."
+
+Engineering demoed the poster pipeline. It renders. It renders the same
+poster every time, which QA has flagged as either a feature or a loyalty
+test. The vote to decide was tabled.
+
+Records reminded the floor that sealed memos stay sealed, and that the
+draft shelf beside the copier is not an archive, is not indexed, and is
+not, despite the sign, access-controlled.
+
+END OF MEMO - ORDINARY ENGINEERING RECORDS

@@ -1,0 +1,13 @@
+# east stairwell door - maintenance observation log
+# observer: facilities (rotating), seated, patient
+# timestamps are the door's own clock, unix seconds, as displayed
+# resync attempted three times; the clock remains on brand
+door-clock 1785447821  code 105482  event CODE ACCEPTED
+door-clock 1785448153  code 997221  event CODE ACCEPTED
+door-clock 1785448424  code 544015  event CODE ACCEPTED (door held for the trolley)
+door-clock 1785448809  code 021515  event CODE ACCEPTED
+door-clock 1785449130  code 075115  event CODE REJECTED (someone tried 000000)
+door-clock 1785449471  code 063778  event CODE ACCEPTED
+door-clock 1785449760  code 478807  event CODE ACCEPTED
+door-clock 1785450102  code 949065  event CODE ACCEPTED
+# observation ended; the clipboard was reassigned

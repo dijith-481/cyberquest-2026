@@ -1,0 +1,17 @@
+FACILITIES — LOBBY WALLBOARD INCIDENT
+
+The universe 7-B locale exporter converted wallboard.py to wallboard.emoji.
+Every character is now an emoji. Line breaks survived. Nothing else did.
+
+What we know:
+- the file was a normal Python script that draws the status line
+  on the lobby display
+- its first line was:
+
+    import tkinter as tk
+
+- the sticky note on the monitor says the SPACE character became:
+
+    🐈
+
+The wallboard team would like their script back.

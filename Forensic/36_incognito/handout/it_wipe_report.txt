@@ -1,0 +1,20 @@
+IT-ASSET WIPE REPORT — LT-OE-0442 (returning contractor laptop)
+operator: k.okafor            ticket: OE-2208            date: 2026-03-18
+
+tool: browser "clear browsing data" (time range: all time)
+cleared per the tool: browsing history, cookies, downloads
+result reported by the tool: SUCCESS
+
+notes:
+  the browser was closed with the window X during step 3. the browser's
+  own status page called this "ungraceful" and said the write-ahead log
+  "was not checkpointed." checkpointing is best effort. best effort was
+  achieved. we are moving on.
+
+  the tool also notes it "does not manage the disk cache folder", which
+  lives outside the profile folder the tool watches. this is documented
+  vendor behavior and definitely not the reason we are attaching these
+  files to the ticket.
+
+spot check: history rows remaining = 0. wipe is clean. as clean as a
+wipe gets, which is a phrase legal asked me to stop using.

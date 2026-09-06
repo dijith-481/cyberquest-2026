@@ -1,0 +1,25 @@
+{
+  "roots": {
+    "bookmark_bar": {
+      "children": [
+        {
+          "name": "wiki",
+          "url": "https://wiki.oe.internal/"
+        },
+        {
+          "name": "printer-dock-4 status",
+          "url": "https://wiki.oe.internal/printer-dock-4"
+        },
+        {
+          "name": "kevin's reading list",
+          "url": "https://notes.oe.internal/u/k.okafor/reading-list"
+        }
+      ],
+      "name": "Bookmarks bar",
+      "type": "folder"
+    },
+    "name": "Bookmarks bar",
+    "type": "folder"
+  },
+  "version": 1
+}

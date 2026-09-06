@@ -12,14 +12,16 @@ The quarterly deck still needs its missing slide.
 
 ### Difficulty
 
-medium-hard
+medium
 
 ### Flag
 
 cyber_quest{v4lu3s_4rr1v3_0ut_0f_0rd3r_k33p_th3_s3q_b3f19}
 
 ### Points
+
 #### Base Points
+
 ```
 
 250
@@ -27,6 +29,7 @@ cyber_quest{v4lu3s_4rr1v3_0ut_0f_0rd3r_k33p_th3_s3q_b3f19}
 ```
 
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

@@ -12,14 +12,16 @@ The attached artifacts are what IT attached to the ticket without opening any of
 
 ### Difficulty
 
-medium
+easy
 
 ### Flag
 
 cyber_quest{1nc0gn1t0_l34v3s_th3_w4l_b3h1nd_9f4c2e}
 
 ### Points
+
 #### Base Points
+
 ```
 
 200
@@ -27,6 +29,7 @@ cyber_quest{1nc0gn1t0_l34v3s_th3_w4l_b3h1nd_9f4c2e}
 ```
 
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

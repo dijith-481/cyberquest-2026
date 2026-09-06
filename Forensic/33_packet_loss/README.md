@@ -12,21 +12,24 @@ Everything in the capture is ordinary, depending on your definition of ordinary.
 
 ### Difficulty
 
-medium
+easy
 
 ### Flag
 
 cyber_quest{dn5_3xf1l_r34ds_l1k3_h4rm0n_l3tt3rs_2c9a71}
 
 ### Points
+
 #### Base Points
+
 ```
 
-200
+150
 
 ```
 
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

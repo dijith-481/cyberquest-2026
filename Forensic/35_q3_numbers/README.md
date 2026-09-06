@@ -12,21 +12,24 @@ The workbook is attached exactly as finance left it.
 
 ### Difficulty
 
-easy-medium
+easy
 
 ### Flag
 
 cyber_quest{h1dd3n_r0ws_c4nt_h1d3_f0r3v3r_b7f2e9}
 
 ### Points
+
 #### Base Points
+
 ```
 
-150
+100
 
 ```
 
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

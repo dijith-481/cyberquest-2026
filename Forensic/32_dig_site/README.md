@@ -12,14 +12,16 @@ The archive was then exported in pieces and reassembled by hand, on a machine th
 
 ### Difficulty
 
-hard
+medium
 
 ### Flag
 
 cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}
 
 ### Points
+
 #### Base Points
+
 ```
 
 350
@@ -27,6 +29,7 @@ cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}
 ```
 
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

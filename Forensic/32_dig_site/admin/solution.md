@@ -1,63 +1,84 @@
 # dig_site — solution
 
 **Flag:** `cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}`
-**Difficulty:** medium-hard
+**Difficulty:** hard
 
 ## The setup
 
 `skills_archive/` is a real git repository. The visible history is 26 commits,
-every one of them dated 1984–1989 — the broken import backdated everything, so
-**date sorting is useless**: `git log --since`/`--until` windows, "oldest
-commit" heuristics, and timeline tools all return the entire repo at once.
-That is the trap. The interesting objects are not on any branch.
+every one dated 1984–1989 — the broken import backdated everything, so date
+sorting is useless. The reflogs were lost in the export. `git log --all` shows
+nothing interesting, and **no dangling commit contains the flag**. That is the
+trap: the easy `git fsck` win is a decoy layer.
 
-## Step 1 — notice what is missing
-
-`git branch -a` shows `main` and a stale `archive-import`. `git reflog` is
-empty — the export lost the reflogs (the README hints housekeeping never ran).
-An empty reflog on a repo with this much history means the export is not
-everything that was on the disk.
-
-## Step 2 — ask fsck what the branches forgot
+## Step 1 — fsck, and read past the decoys
 
 ```bash
-cd skills_archive
-git fsck --lost-found
+git fsck
 ```
 
+Two dangling candidate imports are decoys: one dangles a "recovery phrase
+that was retired by legal," one contains an ASCII drawing of an actual flag.
+The third one matters — it commits `cold_storage_receipt.txt`:
+
 ```
-dangling commit 06cc2b70...
-dangling commit 609e6997...
-dangling commit 8929d9fc...
+cold storage receipt — export 1989-47
+
+shipped:        .git/objects/pack/pack-c0c4…ca.pack
+not shipped:    .git/objects/pack/pack-c0c4…ca.idx
+contents:       skills/spreadsheet_divination.md, calibration included …
 ```
 
-Three candidate imports never reached a branch. (If a player's copy *does*
-have reflogs, `git fsck --no-reflogs` gives the same answer; `git log --all`
-does not — the dangling commits are invisible there.)
-
-## Step 3 — separate the real one from the decoys
-
-Two of the three are decoys, engineered for people who grep first and read
-later: one dangles a "recovery phrase that was retired by legal" and one
-contains an ASCII drawing of an actual flag. The real one has the most boring
-possible shape:
+## Step 2 — git is ignoring an entire pack
 
 ```bash
-git show 609e6997 --stat      # "rebase cleanup"
-git show 609e6997:skills/spreadsheet_divination.md
+ls .git/objects/pack/
+# pack-c0c4….pack        <- and NO pack-c0c4….idx
 ```
 
-> Reads future revenue in the cell borders of the Q3 workbook. Calibration
-> phrase: **cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}**
+A pack without its index is invisible to git: not in `git log --all`, not in
+`git fsck`'s object list, not in `git cat-file`. Revive it yourself:
 
-The commit message says nothing, the file sits among twenty-five identical
-skill files, and the flag is mid-prose — which is why the decoys scream
-"pick me."
+```bash
+git index-pack .git/objects/pack/pack-c0c4….pack
+```
 
-Alternate route: `git cat-file --batch-all-objects --batch-check` lists every
-object in the repo regardless of reachability; walk the commits from there.
+Now `git fsck --unreachable` lists a previously invisible import history:
+`cold: import spreadsheet divination (stub)` → `cold: calibrate`.
 
-## Step 4 — submit
+## Step 3 — the pack forgot a blob
 
-The vendor has been notified. The vendor has sent a survey about the support
-experience.
+```bash
+git ls-tree -r <cold-tip> -- skills/spreadsheet_divination.md
+# 100644 blob 782ec89… spreadsheet_divination.md
+
+git cat-file -p 782ec89…
+# error: unable to unpack 782ec89… header
+```
+
+The tree references the file; the pack does not contain it (the calibration
+blob was never packed — the receipt even warns it was "handled firmly").
+
+## Step 4 — the damaged loose object
+
+The blob does exist as a loose object at `.git/objects/78/2ec89…`, but its
+zlib stream is missing the 2-byte header, so git refuses it. The deflated
+payload is intact — inflate it as a **raw** deflate stream:
+
+```python
+import zlib
+raw = open(".git/objects/78/2ec894777307fe3f66836f6c53b4d20f8b7b83", "rb").read()
+print(zlib.decompressobj(-15).decompress(raw).decode())
+```
+
+(The equally valid hack: prepend `78 9c` and `zlib.decompress` normally, or
+`openssl zlib -d`.)
+
+```
+…calibration phrase: cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}
+```
+
+## Step 5 — submit
+
+The archive is whole again, in the sense that the flag is out. Housekeeping
+remains on the backlog.

@@ -4,15 +4,15 @@ Scheme of Things
 
 ### Challenge Description
 
-Performance calibration season is here, and the evaluation tool that arrived with the Q3 import batch is rejecting every passphrase IT Support has on file. It runs, it prompts, it declines, and your review file is blocked until an evaluation passes. The vendor documentation is one page and mostly warranty disclaimers.
+Performance calibration season is here, and the evaluation tool that arrived with the Q3 import batch is rejecting every passphrase IT Support has on file. It runs, it prompts, it declines, and your review file is blocked until an evaluation passes. The vendor's entire guidance, per the one-page documentation (the other page is warranty disclaimers): the tool expects "a statement in the approved grammar." No sample statements were approved.
 
 ### Difficulty
 
-medium
+hard
 
 ### Flag
 
-cyber_quest{struktur3_n0t_str1ngs_9c4e7a}
+cyber_quest{ch41n3d_b4cktr4ck1ng_9d41f3}
 
 ### Points
 
@@ -20,7 +20,7 @@ cyber_quest{struktur3_n0t_str1ngs_9c4e7a}
 
 ```
 
-300
+400
 
 ```
 

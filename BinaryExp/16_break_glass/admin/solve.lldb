@@ -1,0 +1,19 @@
+# Break Glass — LLDB equivalent of solve.gdb for Linux hosts.
+target create ./handout/vault
+breakpoint set --name __libc_start_main
+process launch --stop-at-entry
+continue
+
+breakpoint set --address 0x401614
+continue
+breakpoint set --address $rax+0x73
+continue
+register write rdx 0x442cb715d93c702d
+
+breakpoint set --address 0x40166f
+continue
+breakpoint set --address $rax+0x6a
+continue
+memory write --size 8 --format x $rbp-8 0x7d
+continue
+quit

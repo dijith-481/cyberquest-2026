@@ -1,0 +1,3 @@
+/deployment/.build/
+/deployment/generated/*.h
+/deployment/tools/__pycache__/

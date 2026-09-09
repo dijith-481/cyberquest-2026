@@ -1,0 +1,8 @@
+oe-warranty // claim validator
+
+Warranty claims moved to the self-service validator. Run it locally:
+
+  node bundle.js <receipt-key>
+
+One receipt is still honored. The bundle is minified, which is not the
+same as secure, according to the one engineer who read the invoice.

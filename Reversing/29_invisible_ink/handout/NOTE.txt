@@ -1,0 +1,7 @@
+oe-format // vendored dependency
+
+Facilities vendored oe-format at 2.4.1 into the badge-printing pipeline.
+Pinned, dependency-free, passed audit. Installed with --no-audit, as usual.
+
+package.json — the pin.
+index.js — the helper. It exports fourteen string functions and nothing else.

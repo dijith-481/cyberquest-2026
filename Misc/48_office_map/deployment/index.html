@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>office_map — ordinary engineering</title>
+<style>
+  :root{
+    --paper:#f6f1e7; --paper-2:#efe9db; --card:#fffdf7;
+    --ink:#26211b; --ink-soft:#6e675f;
+    --accent:#8f5a24; --accent-wash:#ece0cb;
+    --danger:#b3442f;
+    --line:rgba(38,33,27,.16);
+    --shadow:3px 3px 0 rgba(38,33,27,.12);
+    --drawably-stroke:#8f5a24;
+    --drawably-fill:#8f5a24;
+    --drawably-paper:#f6f1e7;
+    --drawably-width:2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;background:radial-gradient(circle at 12% 8%,var(--accent-wash) 0,transparent 32%),var(--paper)}
+  .shell{max-width:1120px;margin:0 auto;padding:32px 20px 60px}
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+  .brand{font:600 15px/1 ui-monospace,Menlo,monospace;letter-spacing:.04em}
+  .brand span{color:var(--accent)}
+  .badge{font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:var(--ink-soft)}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:4px;
+    padding:20px 22px;box-shadow:var(--shadow)}
+  .hud{display:flex;align-items:baseline;gap:16px;font-family:ui-monospace,Menlo,monospace;
+    font-size:14px;margin-bottom:12px}
+  .hud .chip{margin-left:auto;font-size:10.5px;letter-spacing:.05em;color:var(--ink-soft);
+    border:1px dashed rgba(38,33,27,.35);border-radius:3px;padding:3px 7px;white-space:nowrap}
+  .track{flex:1;min-width:120px;height:10px;border:1px solid var(--line);border-radius:6px;
+    background:var(--card);overflow:hidden}
+  #progressFill{height:100%;width:8%;background:var(--ink);opacity:.75}
+  .stagewrap{display:grid;position:relative;border:1px solid var(--line);border-radius:4px;
+    background:var(--paper-2);overflow:hidden}
+  canvas#cv{grid-area:1/1;display:block;width:100%;height:auto;cursor:default}
+  .controls{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .btn{font:inherit;font-size:14px;cursor:pointer;color:var(--accent);background:none;
+    border:1.5px solid var(--accent);
+    border-radius:255px 15px 225px 15px/15px 225px 15px 255px;padding:6px 16px}
+  .btn:hover{background:var(--accent-wash)}
+  .btn:active{transform:translateY(1px)}
+  .btn.solid{background:var(--accent);color:var(--paper)}
+  .btn.solid:hover{filter:brightness(.94)}
+  .hint{font-size:12.5px;color:var(--ink-soft);margin:12px 2px 0}
+  kbd{font-family:ui-monospace,Menlo,monospace;font-size:11px;border:1px solid var(--line);
+    border-radius:3px;padding:0 5px;background:var(--card)}
+  .foot{margin-top:26px;font-size:12px;color:var(--ink-soft);text-align:center}
+</style>
+<style>
+/* drawably vendor style.css (inlined; zero-dependency, MIT) */
+.drawably-host {
+  --drawably-ease: cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+  isolation: isolate;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.drawably-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.drawably-svg path {
+  fill: none;
+  stroke: var(--drawably-ink, var(--drawably-stroke, #2724d1));
+  stroke-width: var(--drawably-width, 2);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* one animation on the svg steps a frame counter; every path derives its
+   opacity from the inherited value in the same style pass, so frames can never
+   sample out of step with each other (three per-path animations flashed blank
+   on tab refocus when their clocks re-aligned separately) */
+@property --drawably-frame {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.drawably-svg {
+  --drawably-frame: 0;
+  animation: drawably-boil 1200ms step-end infinite;
+}
+
+@keyframes drawably-boil {
+  0% { --drawably-frame: 0; }
+  33.33% { --drawably-frame: 1; }
+  66.67% { --drawably-frame: 2; }
+}
+
+/* 1 when the counter equals this frame's index, 0 for the other two */
+.drawably-boil {
+  --drawably-i: 0;
+  opacity: clamp(0, 1 - (var(--drawably-frame) - var(--drawably-i)) * (var(--drawably-frame) - var(--drawably-i)), 1);
+}
+
+.drawably-boil[data-i="1"] {
+  --drawably-i: 1;
+}
+
+.drawably-boil[data-i="2"] {
+  --drawably-i: 2;
+}
+
+.drawably-svg .drawably-blob {
+  fill: var(--drawably-ink, var(--drawably-fill, #2724d1));
+  stroke: var(--drawably-ink, var(--drawably-fill, #2724d1));
+  stroke-width: 4;
+}
+
+.drawably-svg .drawably-scribble {
+  stroke-width: 1.5;
+}
+
+.drawably-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--drawably-ink, var(--drawably-stroke, #2724d1));
+  cursor: pointer;
+  outline: none;
+  transition: transform 120ms ease;
+}
+
+/* press: the pen pushes into the paper — the sketch sinks and the outline
+   thickens; hover lifts it and tints the inside with the stroke at 10%, the
+   same wash the picker uses for its hovered option */
+.drawably-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.drawably-button .drawably-outline {
+  transition: stroke-width 120ms ease, fill 120ms ease;
+}
+
+.drawably-button:active .drawably-outline {
+  stroke-width: calc(var(--drawably-width, 2) * 1.4);
+}
+
+@media (hover: hover) {
+  .drawably-button:hover:not(:disabled, [data-state="loading"]) {
+    transform: translateY(-1px);
+  }
+
+  .drawably-button:not(.drawably-button--solid):hover:not(:disabled) .drawably-outline {
+    fill: color-mix(in srgb, var(--drawably-ink, var(--drawably-stroke, #2724d1)) 10%, transparent);
+  }
+
+  .drawably-button:hover:active {
+    transform: translateY(1px) scale(0.98);
+  }
+}
+
+.drawably-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+.drawably-button--neutral {
+  --drawably-stroke: #6e675f;
+  --drawably-fill: #6e675f;
+}
+
+.drawably-button--danger {
+  --drawably-stroke: var(--drawably-error, #d12724);
+  --drawably-fill: var(--drawably-error, #d12724);
+}
+
+.drawably-button[data-state="error"] {
+  --drawably-ink: var(--drawably-error, #d12724);
+}
+
+.drawably-button[data-state="success"] {
+  --drawably-ink: var(--drawably-success, #188a42);
+}
+
+.drawably-button[data-state="loading"] {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.drawably-button[data-state="loading"] .drawably-svg {
+  animation-duration: 450ms;
+}
+
+.drawably-button--solid {
+  color: var(--drawably-paper, #fff);
+}
+
+.drawably-svg .drawably-focus {
+  visibility: hidden;
+  stroke-width: 1.5;
+}
+
+.drawably-host:is(:focus-visible, :has(:focus-visible)) .drawably-focus {
+  visibility: visible;
+}
+
+.drawably-checkbox,
+.drawably-radio {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+}
+
+.drawably-toggle {
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+:is(.drawably-checkbox, .drawably-radio, .drawably-toggle) input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.drawably-svg .drawably-dot {
+  fill: var(--drawably-ink, var(--drawably-fill, #2724d1));
+  stroke: var(--drawably-ink, var(--drawably-fill, #2724d1));
+  visibility: hidden;
+  transform: scale(0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 160ms var(--drawably-ease);
+}
+
+.drawably-radio[data-checked] .drawably-dot {
+  visibility: visible;
+  transform: scale(1);
+}
+
+.drawably-svg .drawably-knob {
+  transition: transform 160ms var(--drawably-ease);
+}
+
+/* travel = toggle width 44px minus height 24px; resizing the toggle in CSS
+   means overriding this too */
+.drawably-toggle[data-checked] .drawably-knob {
+  transform: translateX(20px);
+}
+
+.drawably-divider {
+  display: block;
+  height: 10px;
+  border: 0;
+}
+
+.drawably-svg .drawably-check {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 240ms var(--drawably-ease);
+}
+
+.drawably-checkbox[data-checked] .drawably-check {
+  stroke-dashoffset: 0;
+}
+
+.drawably-inputbox,
+.drawably-textarea,
+.drawably-select {
+  display: inline-block;
+}
+
+:is(.drawably-inputbox, .drawably-textarea, .drawably-select) :is(input, textarea, select) {
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.drawably-textarea textarea {
+  display: block;
+  resize: vertical;
+}
+
+/* right padding reserves the gutter the sketched chevron sits in */
+.drawably-select select {
+  appearance: none;
+  padding-right: 34px;
+  cursor: pointer;
+}
+
+/* Chromium's customisable select lets the options list be styled and renders
+   the select's children inside it, which is where the .drawably-picker frame
+   lives; elsewhere the OS draws the popup and this block is ignored */
+@supports (appearance: base-select) {
+  .drawably-select select,
+  .drawably-select select::picker(select) {
+    appearance: base-select;
+  }
+
+  .drawably-select select::picker-icon {
+    display: none;
+  }
+
+  /* the picker is a fixed-position popover, so the absolute frame fills it.
+     ponytail: it scrolls with a long option list; clip the frame if that shows */
+  .drawably-select select::picker(select) {
+    margin-top: 4px;
+    padding: 6px;
+    border: 0;
+    background: var(--drawably-paper, #fff);
+    color: inherit;
+    font: inherit;
+  }
+
+  .drawably-select option {
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  .drawably-select option:is(:hover, :focus-visible) {
+    background: color-mix(in srgb, var(--drawably-stroke, #2724d1) 10%, transparent);
+  }
+
+  /* every option gets the same empty box so text lines up whether or not it
+     is chosen; the chosen one paints the attacher's sketched check through it.
+     Chromium lays the option out as flex with a 0.5em gap, so no margin here */
+  .drawably-select option::checkmark {
+    content: "";
+    display: inline-block;
+    width: 0.875em;
+    height: 0.875em;
+  }
+
+  .drawably-select option:checked::checkmark {
+    background: var(--drawably-ink, var(--drawably-stroke, #2724d1));
+    mask: var(--drawably-check) center / contain no-repeat;
+  }
+}
+
+.drawably-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  font:
+    500 12px/1.4 Geist Mono,
+    ui-monospace,
+    monospace;
+  color: var(--drawably-ink, var(--drawably-stroke, #2724d1));
+}
+
+/* padding is the gutter the marker is drawn into (see MARKER_LEFT) */
+.drawably-list {
+  list-style: none;
+  padding-left: 24px;
+}
+
+.drawably-card {
+  padding: 16px;
+}
+
+/* marker wash: stroke as wide as the scribble gap so the hatching reads as
+   one swipe, multiplied so the text stays legible over it. stroke-opacity,
+   not opacity — the boil keyframes animate opacity and would override it */
+.drawably-svg .drawably-wash {
+  stroke: var(--drawably-ink, var(--drawably-fill, #2724d1));
+  stroke-width: 6;
+  stroke-opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
+/* text decorations sit on body copy, where the 2px control stroke reads heavy */
+:is(.drawably-underline, .drawably-circle) .drawably-svg path {
+  stroke-width: var(--drawably-width, 1.5);
+}
+
+/* body-level overlay positioned in document coordinates by the attacher;
+   sits above content since it annotates it */
+.drawably-arrow {
+  inset: auto;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawably-svg {
+    animation: none;
+  }
+  .drawably-svg .drawably-check,
+  .drawably-svg .drawably-dot,
+  .drawably-svg .drawably-knob {
+    transition: none;
+  }
+}
+
+</style>
+<style>
+
+  /* hand-drawn chrome is painted by drawably; buttons stay plain underneath */
+  .btn{border:0;color:var(--accent)}
+  .btn.solid{color:var(--paper)}
+  .rule{border:0;height:10px;margin:14px 0}
+
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="top">
+    <div class="brand">oe<span>/</span>office_map</div>
+    <span class="badge">facilities · work-order #04821</span>
+  </header>
+  <section class="card">
+    <div class="hud">
+      <span><b id="roomCount">01 / 13</b> <span class="muted">rooms audited</span></span>
+      <div class="track"><div id="progressFill"></div></div>
+      <span class="chip">energy-saving locks active</span>
+    </div>
+    <div class="stagewrap" id="stage">
+      <canvas id="cv" width="1600" height="900"></canvas>
+      <div id="toast"></div>
+      <div id="tip"></div>
+      <div id="minimap"><canvas id="mm" width="220" height="124"></canvas></div>
+      <div id="fade"></div>
+      <div class="modal" id="mProp"><div class="sheet">
+        <h2 id="propTitle">—</h2>
+        <pre id="propBody">—</pre>
+        <div class="row"><button class="btn solid" id="propOk">OK</button></div>
+      </div></div>
+      <div class="modal" id="mDead"><div class="sheet">
+        <h2>The new hire seems concerned.</h2>
+        <p class="muted">No unvisited rooms are reachable from here. Every door behind him has gone <i>clunk</i>.</p>
+        <div class="row">
+          <button class="btn solid" id="deadUndo">Undo</button>
+          <button class="btn" id="deadFate">Accept your fate</button>
+        </div>
+      </div></div>
+      <div class="modal" id="mHelp"><div class="sheet">
+        <h2>Facilities handbook (abridged)</h2>
+        <pre id="helpText"></pre>
+        <div class="row"><button class="btn solid" id="helpOk">Back to work</button></div>
+      </div></div>
+      <div class="modal" id="mWin"><div class="sheet">
+        <h2>Badge recovery terminal</h2>
+        <p class="muted" id="chatText">…</p>
+        <div id="receipt"></div>
+        <div class="big-letters" id="letters"></div>
+        <p class="muted" id="wrapHint"></p>
+        <div class="row"><button class="btn solid" id="winOk">Admire route</button></div>
+      </div></div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="bUndo">Undo</button>
+      <button class="btn" id="bReset">Reset</button>
+      <button class="btn" id="bMap">Map</button>
+      <button class="btn" id="bHelp">Help</button>
+    </div>
+    <p class="hint"><kbd>U</kbd> undo · <kbd>R</kbd> reset · <kbd>H</kbd> help · <kbd>M</kbd> minimap — facilities regrets everything.</p>
+  </section>
+  <div class="foot">ordinary engineering · facilities division · please stop losing the master key</div>
+</main>
+<style>
+  .muted{color:var(--ink-soft)}
+  #toast{position:absolute;left:50%;top:12px;transform:translateX(-50%);
+    background:var(--card);border:1px solid var(--line);border-radius:4px;
+    box-shadow:var(--shadow);padding:8px 14px;font-size:13.5px;max-width:84%;
+    text-align:center;display:none;z-index:30}
+  #tip{position:absolute;display:none;z-index:25;pointer-events:none;background:var(--card);
+    border:1px solid var(--line);border-radius:4px;padding:6px 10px;font-size:12.5px;
+    max-width:230px;box-shadow:var(--shadow)}
+  .modal{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+    background:rgba(38,33,27,.45);z-index:40;padding:18px}
+  .modal.open{display:flex}
+  .sheet{background:var(--paper);border:1px solid var(--line);border-radius:4px;
+    max-width:560px;width:100%;padding:20px 22px;box-shadow:var(--shadow);
+    max-height:88%;overflow:auto}
+  .sheet h2{margin:0 0 6px;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .sheet pre{white-space:pre-wrap;font-size:13.5px;background:var(--card);
+    border:1px dashed rgba(38,33,27,.35);border-radius:3px;padding:10px 12px;margin:10px 0;
+    font-family:ui-monospace,Menlo,monospace}
+  .sheet .row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  #receipt{font-family:ui-monospace,Menlo,monospace;background:var(--card);
+    border:1px dashed rgba(38,33,27,.35);border-radius:3px;padding:12px 14px;
+    min-height:150px;white-space:pre-wrap;font-size:12.5px}
+  .big-letters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+  .big-letters span{display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:44px;border:1px solid var(--line);border-radius:3px;
+    background:var(--card);font-weight:600;font-size:20px}
+  .big-letters span.hl{background:var(--accent-wash);border-color:var(--accent)}
+  #minimap{position:absolute;right:12px;bottom:12px;width:220px;border:1px solid var(--line);
+    border-radius:4px;background:var(--card);display:none;z-index:20;padding:6px;
+    box-shadow:var(--shadow)}
+  #fade{position:absolute;inset:0;background:#26211b;opacity:0;pointer-events:none;
+    transition:opacity .5s;z-index:35}
+  @media (prefers-reduced-motion:reduce){.btn{transition:none}#fade{transition:none}}
+</style>
+<script>
+/* drawably vendor (prng+rough+controls, inlined; MIT) */
+function mulberry32(seed) {
+    let a = seed >>> 0;
+    return () => {
+        a = (a + 0x6d2b79f5) >>> 0;
+        let t = a;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+function randomSeed() {
+    return Math.floor(Math.random() * 0x100000000);
+}
+function sampleLine(x1, y1, x2, y2, step = 8) {
+    const n = Math.max(2, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / step));
+    return Array.from({ length: n + 1 }, (_, i) => [
+        x1 + ((x2 - x1) * i) / n,
+        y1 + ((y2 - y1) * i) / n,
+    ]);
+}
+function arcPoints(cx, cy, r, a0, a1, n = 4) {
+    return ellipsePoints(cx, cy, r, r, a0, a1, n);
+}
+function ellipsePoints(cx, cy, rx, ry, a0, a1, n) {
+    return Array.from({ length: n + 1 }, (_, i) => {
+        const a = a0 + ((a1 - a0) * i) / n;
+        return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)];
+    });
+}
+function roundedRectPoints(x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    return [
+        ...sampleLine(x + r, y, x + w - r, y),
+        ...arcPoints(x + w - r, y + r, r, -Math.PI / 2, 0),
+        ...sampleLine(x + w, y + r, x + w, y + h - r),
+        ...arcPoints(x + w - r, y + h - r, r, 0, Math.PI / 2),
+        ...sampleLine(x + w - r, y + h, x + r, y + h),
+        ...arcPoints(x + r, y + h - r, r, Math.PI / 2, Math.PI),
+        ...sampleLine(x, y + h - r, x, y + r),
+        ...arcPoints(x + r, y + r, r, Math.PI, Math.PI * 1.5),
+    ];
+}
+function jitter(points, rand, amp) {
+    return points.map(([x, y]) => [x + (rand() * 2 - 1) * amp, y + (rand() * 2 - 1) * amp]);
+}
+function toPath(points, close) {
+    let d = `M${points[0][0].toFixed(2)} ${points[0][1].toFixed(2)}`;
+    for (let i = 1; i < points.length - 1; i++) {
+        const [cx, cy] = points[i];
+        const mx = (cx + points[i + 1][0]) / 2;
+        const my = (cy + points[i + 1][1]) / 2;
+        d += `Q${cx.toFixed(2)} ${cy.toFixed(2)} ${mx.toFixed(2)} ${my.toFixed(2)}`;
+    }
+    const [lx, ly] = points[points.length - 1];
+    d += `L${lx.toFixed(2)} ${ly.toFixed(2)}`;
+    return close ? d + "Z" : d;
+}
+function boilPass(points, o) {
+    if (!o.boil || o.boilSeed === undefined)
+        return points;
+    return jitter(points, mulberry32(o.boilSeed), o.boil);
+}
+function doubleStroke(points, o, close) {
+    const rand = mulberry32(o.seed);
+    const amp = 1.5 * o.roughness;
+    return (toPath(boilPass(jitter(points, rand, amp), o), close) +
+        toPath(boilPass(jitter(points, rand, amp * 1.4), o), close));
+}
+function roughLine(x1, y1, x2, y2, o) {
+    return doubleStroke(sampleLine(x1, y1, x2, y2), o, false);
+}
+function roughCircle(cx, cy, r, o) {
+    return roughEllipse(cx, cy, r, r, o);
+}
+function roughEllipse(cx, cy, rx, ry, o) {
+    // Ramanujan's perimeter approximation, sampled every 8px like the lines
+    const h = ((rx - ry) / (rx + ry)) ** 2;
+    const perimeter = Math.PI * (rx + ry) * (1 + (3 * h) / (10 + Math.sqrt(4 - 3 * h)));
+    const n = Math.max(8, Math.ceil(perimeter / 8));
+    return doubleStroke(ellipsePoints(cx, cy, rx, ry, 0, Math.PI * 2, n).slice(0, -1), o, true);
+}
+const ARROW_HEAD = 12;
+const ARROW_HEAD_ANGLE = Math.PI / 6;
+function roughArrow(x1, y1, x2, y2, o) {
+    const a = Math.atan2(y2 - y1, x2 - x1);
+    const wing = (da) => [
+        x2 - ARROW_HEAD * Math.cos(a + da),
+        y2 - ARROW_HEAD * Math.sin(a + da),
+    ];
+    const [lx, ly] = wing(ARROW_HEAD_ANGLE);
+    const [rx, ry] = wing(-ARROW_HEAD_ANGLE);
+    const rand = mulberry32(o.seed);
+    const amp = 1.2 * o.roughness;
+    const head = (px, py) => toPath(boilPass(jitter(sampleLine(x2, y2, px, py, 4), rand, amp), o), false);
+    return roughLine(x1, y1, x2, y2, o) + head(lx, ly) + head(rx, ry);
+}
+function roughRoundedRect(x, y, w, h, r, o) {
+    return doubleStroke(roundedRectPoints(x, y, w, h, r), o, true);
+}
+function roughCheckmark(x, y, w, h, o) {
+    const rand = mulberry32(o.seed);
+    const pts = [
+        ...sampleLine(x, y + h * 0.6, x + w * 0.35, y + h, 4),
+        // ponytail: duplicate vertex keeps the corner sharp under midpoint smoothing
+        ...sampleLine(x + w * 0.35, y + h, x + w, y, 4),
+    ];
+    return toPath(boilPass(jitter(pts, rand, 1.2 * o.roughness), o), false);
+}
+function scribbleFill(x, y, w, h, o) {
+    const rand = mulberry32(o.seed);
+    const gap = 6;
+    const pts = [];
+    let flip = false;
+    for (let t = gap; t < w + h; t += gap) {
+        const a = [x + Math.max(0, t - h), y + Math.min(t, h)];
+        const b = [x + Math.min(t, w), y + Math.max(0, t - w)];
+        pts.push(...(flip ? [b, a] : [a, b]));
+        flip = !flip;
+    }
+    if (pts.length < 2)
+        return "";
+    return toPath(boilPass(jitter(pts, rand, 1.2 * o.roughness), o), false);
+}
+function variants(gen, o, n = 3) {
+    return Array.from({ length: n }, (_, i) => gen({ ...o, boilSeed: o.seed + (i + 1) * 7919 }));
+}
+const SVG_NS = "http://www.w3.org/2000/svg";
+const INSET = 3;
+function applyTheme(el, opts) {
+    if (opts.stroke)
+        el.style.setProperty("--drawably-stroke", opts.stroke);
+    if (opts.fill)
+        el.style.setProperty("--drawably-fill", opts.fill);
+    if (opts.paper)
+        el.style.setProperty("--drawably-paper", opts.paper);
+    if (opts.width !== undefined)
+        el.style.setProperty("--drawably-width", String(opts.width));
+}
+function createSvg() {
+    const svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("class", "drawably-svg");
+    svg.setAttribute("aria-hidden", "true");
+    return svg;
+}
+// each layer is drawn once per box; a control has one, an inline decoration
+// has one per line it wraps onto
+function paint(svg, layers, boxes, o) {
+    const w = Math.max(...boxes.map((b) => b.x + b.w));
+    const h = Math.max(...boxes.map((b) => b.y + b.h));
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.textContent = "";
+    for (const layer of layers) {
+        boxes.forEach((box, k) => {
+            const ds = variants((lo) => layer.gen(box.w, box.h, lo), { ...o, seed: o.seed + k }, o.boil ? 3 : 1);
+            ds.forEach((d, i) => {
+                const p = document.createElementNS(SVG_NS, "path");
+                p.setAttribute("d", d);
+                p.setAttribute("class", ds.length > 1 ? `drawably-boil ${layer.className}` : layer.className);
+                p.dataset.i = String(i);
+                if (layer.pathLength)
+                    p.setAttribute("pathLength", "1");
+                if (box.x || box.y)
+                    p.setAttribute("transform", `translate(${box.x} ${box.y})`);
+                svg.append(p);
+            });
+        });
+    }
+}
+function elementBox(el) {
+    return [{ x: 0, y: 0, w: el.offsetWidth || 120, h: el.offsetHeight || 36 }];
+}
+// an inline element that wraps is several boxes; its absolutely positioned
+// svg lands on the first one's corner, so the svg is offset and sized to
+// cover them all and each line gets its own drawing
+function lineBoxes(el, svg) {
+    const rects = [...el.getClientRects()];
+    if (rects.length < 2) {
+        svg.style.cssText = "";
+        return elementBox(el);
+    }
+    const [first] = rects;
+    const left = Math.min(...rects.map((r) => r.left));
+    const top = Math.min(...rects.map((r) => r.top));
+    const right = Math.max(...rects.map((r) => r.right));
+    const bottom = Math.max(...rects.map((r) => r.bottom));
+    svg.style.cssText = `left:${left - first.left}px;top:${top - first.top}px;width:${right - left}px;height:${bottom - top}px`;
+    return rects.map((r) => ({ x: r.left - left, y: r.top - top, w: r.width, h: r.height }));
+}
+// ResizeObserver ignores inline boxes, so a wrapping decoration watches the
+// block that lays it out
+function blockAncestor(el) {
+    let p = el.parentElement;
+    while (p && getComputedStyle(p).display === "inline")
+        p = p.parentElement;
+    return p;
+}
+function reducedMotion() {
+    return typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+function attachChrome(el, layers, opts, interactive, inline = false) {
+    if (!(el instanceof HTMLElement))
+        throw new Error("drawably: expected an HTMLElement");
+    el.classList.add("drawably-host");
+    applyTheme(el, opts);
+    const svg = createSvg();
+    el.prepend(svg);
+    const roughness = opts.roughness ?? 1;
+    const boil = opts.boil ?? 0.3;
+    let seed = opts.seed ?? randomSeed();
+    const draw = () => paint(svg, layers, inline ? lineBoxes(el, svg) : elementBox(el), { seed, roughness, boil });
+    draw();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => draw()) : null;
+    ro?.observe(el);
+    if (inline) {
+        const block = blockAncestor(el);
+        if (block)
+            ro?.observe(block);
+    }
+    const resketch = (s) => {
+        seed = s ?? randomSeed();
+        draw();
+    };
+    const onPointer = () => resketch();
+    if (interactive && !reducedMotion()) {
+        el.addEventListener("pointerenter", onPointer);
+        el.addEventListener("pointerdown", onPointer);
+    }
+    return {
+        resketch,
+        destroy() {
+            ro?.disconnect();
+            el.removeEventListener("pointerenter", onPointer);
+            el.removeEventListener("pointerdown", onPointer);
+            svg.remove();
+            el.classList.remove("drawably-host");
+        },
+    };
+}
+const outlineRect = (r) => (w, h, o) => roughRoundedRect(INSET, INSET, w - 2 * INSET, h - 2 * INSET, r, o);
+const focusRect = (r) => (w, h, o) => roughRoundedRect(-1, -1, w + 2, h + 2, r, o);
+function drawablyButton(el, opts = {}) {
+    const variant = opts.variant ?? "outline";
+    const layers = [];
+    if (variant === "solid")
+        layers.push({ className: "drawably-blob", gen: outlineRect(8) });
+    if (variant === "scribble")
+        layers.push({
+            className: "drawably-scribble",
+            gen: (w, h, o) => scribbleFill(INSET + 2, INSET + 2, w - 2 * INSET - 4, h - 2 * INSET - 4, o),
+        });
+    layers.push({ className: "drawably-outline", gen: outlineRect(8) });
+    layers.push({ className: "drawably-focus", gen: focusRect(10) });
+    const sketch = attachChrome(el, layers, opts, true);
+    el.classList.add("drawably-button", `drawably-button--${variant}`);
+    if (opts.tone)
+        el.classList.add(`drawably-button--${opts.tone}`);
+    const setState = (state) => {
+        if (state === "idle")
+            delete el.dataset.state;
+        else
+            el.dataset.state = state;
+    };
+    if (opts.state)
+        setState(opts.state);
+    return {
+        resketch: sketch.resketch,
+        setState,
+        destroy() {
+            sketch.destroy();
+            delete el.dataset.state;
+        },
+    };
+}
+function drawablyCard(el, opts = {}) {
+    const sketch = attachChrome(el, [{ className: "drawably-outline", gen: outlineRect(10) }], opts, false);
+    el.classList.add("drawably-card");
+    return sketch;
+}
+function syncedControl(el, type, layers, opts, cls) {
+    const input = el?.querySelector?.(`input[type="${type}"]`);
+    if (!input)
+        throw new Error(`drawably: ${cls} wrapper needs an <input type="${type}">`);
+    const sync = () => {
+        if (input.checked)
+            el.dataset.checked = "";
+        else
+            delete el.dataset.checked;
+    };
+    sync();
+    // ponytail: a radio unchecks silently when a sibling is picked — one document
+    // listener re-reads state on any change instead of tracking the group
+    const target = type === "radio" ? document : input;
+    target.addEventListener("change", sync);
+    const sketch = attachChrome(el, layers, opts, true);
+    el.classList.add(cls);
+    return {
+        resketch: sketch.resketch,
+        destroy() {
+            target.removeEventListener("change", sync);
+            sketch.destroy();
+            el.classList.remove(cls);
+            delete el.dataset.checked;
+        },
+    };
+}
+function drawablyCheckbox(el, opts = {}) {
+    return syncedControl(el, "checkbox", [
+        { className: "drawably-outline", gen: outlineRect(5) },
+        {
+            className: "drawably-check",
+            pathLength: true,
+            gen: (w, h, o) => roughCheckmark(w * 0.24, h * 0.2, w * 0.52, h * 0.5, o),
+        },
+        { className: "drawably-focus", gen: focusRect(7) },
+    ], opts, "drawably-checkbox");
+}
+function drawablyRadio(el, opts = {}) {
+    return syncedControl(el, "radio", [
+        {
+            className: "drawably-outline",
+            gen: (w, h, o) => roughCircle(w / 2, h / 2, Math.min(w, h) / 2 - INSET, o),
+        },
+        {
+            className: "drawably-dot",
+            gen: (w, h, o) => roughCircle(w / 2, h / 2, Math.min(w, h) * 0.18, o),
+        },
+        {
+            className: "drawably-focus",
+            gen: (w, h, o) => roughCircle(w / 2, h / 2, Math.min(w, h) / 2 + 1, o),
+        },
+    ], opts, "drawably-radio");
+}
+function drawablyToggle(el, opts = {}) {
+    return syncedControl(el, "checkbox", [
+        { className: "drawably-outline", gen: (w, h, o) => outlineRect((h - 2 * INSET) / 2)(w, h, o) },
+        {
+            className: "drawably-blob drawably-knob",
+            gen: (_w, h, o) => roughCircle(h / 2, h / 2, h / 2 - INSET - 3, o),
+        },
+        { className: "drawably-focus", gen: focusRect(12) },
+    ], opts, "drawably-toggle");
+}
+function drawablyDivider(el, opts = {}) {
+    const sketch = attachChrome(el, [{ className: "drawably-outline", gen: (w, h, o) => roughLine(INSET, h / 2, w - INSET, h / 2, o) }], opts, false);
+    el.classList.add("drawably-divider");
+    return sketch;
+}
+function fieldBox(el, field, cls, extra, opts) {
+    if (!el?.querySelector?.(field))
+        throw new Error(`drawably: ${cls} wrapper needs a <${field}>`);
+    return decoration(el, cls, [{ className: "drawably-outline", gen: outlineRect(6) }, ...extra, { className: "drawably-focus", gen: focusRect(8) }], opts, false);
+}
+function drawablyInput(el, opts = {}) {
+    return fieldBox(el, "input", "drawably-inputbox", [], opts);
+}
+function drawablyTextarea(el, opts = {}) {
+    return fieldBox(el, "textarea", "drawably-textarea", [], opts);
+}
+// chevron sits in the right-hand gutter the select's CSS padding reserves;
+// at this size full roughness turns the V into noise, so it takes a fraction
+const CHEVRON_W = 12;
+const CHEVRON_H = 6;
+const CHEVRON_RIGHT = 12;
+const CHEVRON_ROUGHNESS = 0.4;
+// ponytail: options are measured once at attach; re-attach if they change
+function reserveWidestOption(select) {
+    const ctx = document.createElement("canvas").getContext("2d");
+    if (!ctx)
+        return;
+    const cs = getComputedStyle(select);
+    ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const widest = Math.max(0, ...[...select.options].map((o) => ctx.measureText(o.text).width));
+    const pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+    select.style.minWidth = `${Math.ceil(widest + pad)}px`;
+}
+const PICKER_RADIUS = 6;
+// Chromium's base-select renders the select's children inside the picker, so
+// a real SVG can sit in there like any other chrome. It has no size until the
+// picker opens; the observer draws it at the size it gets. Other engines keep
+// the OS popup and ignore the element.
+function pickerFrame(select, o) {
+    const frame = createSvg();
+    frame.classList.add("drawably-picker");
+    select.append(frame);
+    const draw = () => {
+        const w = frame.clientWidth;
+        const h = frame.clientHeight;
+        if (w && h)
+            paint(frame, [{ className: "drawably-outline", gen: outlineRect(PICKER_RADIUS) }], [{ x: 0, y: 0, w, h }], o());
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(draw) : null;
+    ro?.observe(frame);
+    return {
+        draw,
+        destroy() {
+            ro?.disconnect();
+            frame.remove();
+        },
+    };
+}
+// the picker's check fills its 0.875em (14px) box bar a 2px inset for the
+// stroke and jitter, landing at the checkbox's ~11px check size. A data URI
+// can't read custom properties, so it is a mask and the CSS supplies the colour
+const CHECK_BOX = 14;
+const CHECK_INSET = 2;
+function checkMask(o) {
+    const side = CHECK_BOX - CHECK_INSET * 2;
+    const d = roughCheckmark(CHECK_INSET, CHECK_INSET, side, side, o);
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${CHECK_BOX} ${CHECK_BOX}'><path d='${d}' fill='none' stroke='#000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>`;
+    return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+}
+function drawablySelect(el, opts = {}) {
+    const chevron = {
+        className: "drawably-chevron",
+        gen: (w, h, o) => {
+            const x = w - CHEVRON_RIGHT - CHEVRON_W;
+            const y = h / 2 - CHEVRON_H / 2;
+            const co = { ...o, roughness: o.roughness * CHEVRON_ROUGHNESS };
+            return (roughLine(x, y, x + CHEVRON_W / 2, y + CHEVRON_H, co) +
+                roughLine(x + CHEVRON_W / 2, y + CHEVRON_H, x + CHEVRON_W, y, { ...co, seed: o.seed + 1 }));
+        },
+    };
+    let seed = opts.seed ?? randomSeed();
+    const sketch = fieldBox(el, "select", "drawably-select", [chevron], { ...opts, seed });
+    const select = el.querySelector("select");
+    const roughness = opts.roughness ?? 1;
+    const boil = opts.boil ?? 0.3;
+    reserveWidestOption(select);
+    const frame = pickerFrame(select, () => ({ seed, roughness, boil }));
+    const mark = () => select.style.setProperty("--drawably-check", checkMask({ seed, roughness }));
+    mark();
+    return {
+        resketch(s) {
+            seed = s ?? randomSeed();
+            sketch.resketch(seed);
+            frame.draw();
+            mark();
+        },
+        destroy() {
+            sketch.destroy();
+            frame.destroy();
+            select.style.removeProperty("min-width");
+            select.style.removeProperty("--drawably-check");
+        },
+    };
+}
+function drawablyBadge(el, opts = {}) {
+    const variant = opts.variant ?? "outline";
+    const layers = [];
+    if (variant === "scribble")
+        layers.push({
+            className: "drawably-scribble",
+            gen: (w, h, o) => scribbleFill(INSET + 1, INSET + 1, w - 2 * INSET - 2, h - 2 * INSET - 2, o),
+        });
+    layers.push({ className: "drawably-outline", gen: outlineRect(2) });
+    const sketch = decoration(el, "drawably-badge", layers, opts, false);
+    el.classList.add(`drawably-badge--${variant}`);
+    return {
+        resketch: sketch.resketch,
+        destroy() {
+            sketch.destroy();
+            el.classList.remove(`drawably-badge--${variant}`);
+        },
+    };
+}
+// marker geometry in the list's left padding (see .drawably-list); y follows
+// the li's line-height so it sits on the first line
+const MARKER_LEFT = -18;
+const MARKER_W = 10;
+const MARKER_LINE = 22;
+// ponytail: only the <li> present at attach time are sketched — a
+// MutationObserver would cover dynamic lists if anyone needs it
+function drawablyList(el, opts = {}) {
+    if (!(el instanceof HTMLElement))
+        throw new Error("drawably: expected an HTMLElement");
+    const marker = opts.marker ?? "dash";
+    const seed = opts.seed ?? randomSeed();
+    const items = [...el.querySelectorAll(":scope > li")];
+    const sketches = items.map((li, i) => {
+        const line = () => parseFloat(getComputedStyle(li).lineHeight) || MARKER_LINE;
+        const layer = marker === "check"
+            ? {
+                className: "drawably-marker",
+                gen: (_w, _h, o) => roughCheckmark(MARKER_LEFT, line() / 2 - MARKER_W / 2, MARKER_W, MARKER_W, o),
+            }
+            : {
+                className: "drawably-marker",
+                gen: (_w, _h, o) => roughLine(MARKER_LEFT, line() / 2, MARKER_LEFT + MARKER_W, line() / 2, o),
+            };
+        return attachChrome(li, [layer], { ...opts, seed: seed + i }, false);
+    });
+    el.classList.add("drawably-list");
+    return {
+        resketch(s) {
+            const base = s ?? randomSeed();
+            sketches.forEach((sk, i) => sk.resketch(base + i));
+        },
+        destroy() {
+            for (const sk of sketches)
+                sk.destroy();
+            el.classList.remove("drawably-list");
+        },
+    };
+}
+function decoration(el, cls, layers, opts, interactive) {
+    const sketch = attachChrome(el, layers, opts, interactive, true);
+    el.classList.add(cls);
+    return {
+        resketch: sketch.resketch,
+        destroy() {
+            sketch.destroy();
+            el.classList.remove(cls);
+        },
+    };
+}
+// underline sits just under the text box; circle overshoots it the way a hand
+// loops around a word rather than tracing its edges (tuned on 16–48px Inter)
+const UNDERLINE_GAP = 2;
+const CIRCLE_PAD_X = 1.15;
+const CIRCLE_PAD_Y = 1.4;
+const CIRCLE_PAD = 4;
+function drawablyUnderline(el, opts = {}) {
+    return decoration(el, "drawably-underline", [{ className: "drawably-outline", gen: (w, h, o) => roughLine(0, h + UNDERLINE_GAP, w, h + UNDERLINE_GAP, o) }], opts, true);
+}
+function drawablyHighlight(el, opts = {}) {
+    return decoration(el, "drawably-highlight", [{ className: "drawably-wash", gen: (w, h, o) => scribbleFill(0, 0, w, h, o) }], opts, false);
+}
+function drawablyCircle(el, opts = {}) {
+    return decoration(el, "drawably-circle", [
+        {
+            className: "drawably-outline",
+            gen: (w, h, o) => roughEllipse(w / 2, h / 2, (w / 2) * CIRCLE_PAD_X + CIRCLE_PAD, (h / 2) * CIRCLE_PAD_Y + CIRCLE_PAD, o),
+        },
+    ], opts, true);
+}
+// breathing room between an anchor's box edge and the arrow's end
+const ARROW_GAP = 6;
+// ponytail: the overlay lives on <body> in document coordinates, so anchors
+// inside a scrolling container drift on scroll — re-parent to the nearest
+// common ancestor if that ever matters
+function drawablyArrow(from, to, opts = {}) {
+    if (!(from instanceof HTMLElement) || !(to instanceof HTMLElement))
+        throw new Error("drawably: arrow needs two anchor elements");
+    const svg = createSvg();
+    svg.classList.add("drawably-arrow");
+    applyTheme(svg, opts);
+    document.body.append(svg);
+    const roughness = opts.roughness ?? 1;
+    const boil = opts.boil ?? 0.3;
+    let seed = opts.seed ?? randomSeed();
+    function draw() {
+        const a = from.getBoundingClientRect();
+        const b = to.getBoundingClientRect();
+        const left = Math.min(a.left, b.left);
+        const top = Math.min(a.top, b.top);
+        const w = Math.max(a.right, b.right) - left;
+        const h = Math.max(a.bottom, b.bottom) - top;
+        svg.style.left = `${left + scrollX}px`;
+        svg.style.top = `${top + scrollY}px`;
+        svg.style.width = `${w}px`;
+        svg.style.height = `${h}px`;
+        const ax = a.left - left + a.width / 2;
+        const ay = a.top - top + a.height / 2;
+        const bx = b.left - left + b.width / 2;
+        const by = b.top - top + b.height / 2;
+        const dx = bx - ax;
+        const dy = by - ay;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len;
+        const uy = dy / len;
+        // distance along the centre line from a box's centre to its edge; `|| 0`
+        // turns the 0/0 of a zero-size box into "no inset"
+        const exit = (r) => Math.min(r.width / 2 / Math.abs(ux) || 0, r.height / 2 / Math.abs(uy) || 0);
+        const t0 = Math.min(exit(a) + ARROW_GAP, len / 2);
+        const t1 = Math.min(exit(b) + ARROW_GAP, len / 2);
+        const x1 = ax + ux * t0;
+        const y1 = ay + uy * t0;
+        const x2 = bx - ux * t1;
+        const y2 = by - uy * t1;
+        paint(svg, [{ className: "drawably-outline", gen: (_w, _h, o) => roughArrow(x1, y1, x2, y2, o) }], [{ x: 0, y: 0, w, h }], { seed, roughness, boil });
+    }
+    draw();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => draw()) : null;
+    ro?.observe(from);
+    ro?.observe(to);
+    addEventListener("resize", draw);
+    return {
+        resketch(s) {
+            seed = s ?? randomSeed();
+            draw();
+        },
+        destroy() {
+            ro?.disconnect();
+            removeEventListener("resize", draw);
+            svg.remove();
+        },
+    };
+}
+
+</script>
+<script>
+"use strict";
+/* Office Map — facilities inspection game.
+   Shuffled room table with random ids; no solution is stored anywhere. */
+const $ = id => document.getElementById(id);
+const cv = $("cv"), ctx = cv.getContext("2d");
+const W = 1600, H = 900;
+const INK = "#26211b", SOFT = "#6e675f", PAPER = "#f6f1e7",
+      CARD = "#fffdf7", WASH = "#ece0cb", ACC = "#8f5a24", DANGER = "#b3442f";
+/* NOTE: table order is shuffled and ids are random; array order means nothing. */
+const ROOMS = [
+  {id:"r_10af", name:"Electrical Closet", rect:{x:700,y:360,w:230,h:170},
+   flavor:"Breakers, cables, and a smell like warm dust.",
+   prop:{x:790,y:430,r:26,title:"Panel B", body:"CIRCUIT DIRECTORY\n\nrack row ......... ON\nprinter .......... UNKNOWN\nnew hire ......... LOST\n\nMEETINGS AVOIDED TODAY\n#################### 87"}},
+  {id:"r_cc39", name:"Testing", rect:{x:700,y:620,w:230,h:170},
+   flavor:"QA. There is a jar labelled BUGS. It is full.",
+   prop:{x:815,y:700,r:26,title:"Test results", body:"[pass] login\n[pass] dashboard\n[pass] billing\n[pass] production database\n[fail] button slightly too blue\n\nDEPLOYMENT BLOCKED"}},
+  {id:"r_b791", name:"Nap Room", rect:{x:70,y:100,w:240,h:180},
+   flavor:"The new hire starts here. The bunk is still warm.",
+   prop:{x:180,y:190,r:28,title:"Alarm clock", body:"SNOOZE.EXE\n\nsnoozes this week: 47\n\ncontribution to velocity: none"},
+   start:true},
+  {id:"r_72e1", name:"Studio", rect:{x:1300,y:100,w:230,h:180},
+   flavor:"Green screen. Ring light. The new hire, enlarged.",
+   prop:{x:1415,y:185,r:26,title:"Camera", body:"RECORDING...\n\nSUBJECT:\nThe new hire explaining why this was\ntechnically not his fault."}},
+  {id:"r_9d20", name:"Open Office", rect:{x:390,y:620,w:230,h:170},
+   flavor:"The largest room. Somebody's build has been red for 6 days.",
+   prop:{x:470,y:700,r:26,title:"Someone's terminal", body:"$ git status\n\nOn branch production\nYour branch is ahead by 847 commits.\n\nnothing to commit, working tree on fire"}},
+  {id:"r_44c2", name:"Ideation Room", rect:{x:1010,y:360,w:230,h:170},
+   flavor:"Sticky notes. So many sticky notes.",
+   prop:{x:1125,y:445,r:26,title:"Ideation output", body:"Enter office\n    v\nGet coffee\n    v\nBecome lost\n    v\n???\n    v\nProductivity\n\nsticky: \"Users will definitely understand the navigation.\""}},
+  {id:"r_f193", name:"Terminal Room", rect:{x:1300,y:620,w:230,h:170},
+   flavor:"Badge here. A printer guards it.",
+   prop:{x:1415,y:700,r:28,title:"Badge recovery terminal", body:""},
+   goal:true},
+  {id:"r_a822", name:"Engineering", rect:{x:390,y:100,w:230,h:180},
+   flavor:"Sprint board. Velocity: unknown.",
+   prop:{x:505,y:185,r:26,title:"Sprint 47", body:"TODO\n[x] Open TODO list\n[ ] Do something\n[ ] Close TODO list\n\nvelocity: UNKNOWN"}},
+  {id:"r_51be", name:"Workshop", rect:{x:700,y:100,w:230,h:180},
+   flavor:"3D printer. Spare parts. Ambition.",
+   prop:{x:815,y:185,r:26,title:"Print log", body:"FACILITIES   999999 layers\nNEW HIRE          3\nHR                2\n\nfilament: 404 NOT FOUND"}},
+  {id:"r_6e07", name:"Legal", rect:{x:1010,y:620,w:230,h:170},
+   flavor:"Extremely boring. Aggressively beige.",
+   prop:{x:1095,y:700,r:26,title:"Filing cabinet", body:"To open this drawer you must agree to the\nDrawer Terms of Service.\n\n[ I Agree ]  —  Page 1 of 846\n\n(thank you. the drawer is empty.)"}},
+  {id:"r_83aa", name:"Break Room", rect:{x:1010,y:100,w:230,h:180},
+   flavor:"Vending machine. Sofa. Regret arcade.",
+   prop:{x:1125,y:185,r:26,title:"HQ status", body:"Coffee          CRITICAL\nInternet        OK\nPrinter         UNKNOWN\nNew hire        LOST\n\nvending: 404 SNACK NOT FOUND"}},
+  {id:"r_d4f0", name:"Green Room", rect:{x:390,y:360,w:230,h:170},
+   flavor:"Entirely too many plants.",
+   prop:{x:470,y:445,r:26,title:"Fernando", body:"Senior Oxygen Engineer\n\nEmployee of the Month\n17 months running."}},
+  {id:"r_2b6d", name:"On-Call Room", rect:{x:1300,y:360,w:230,h:180},
+   flavor:"Incident monitors. A pager that never sleeps.",
+   prop:{x:1415,y:445,r:26,title:"Incident #4821", body:"USER:\nnew hire\n\nISSUE:\n\"I don't know where I am.\"\n\nSTATUS:\nPaged to facilities"}},
+];
+const byId = {}; ROOMS.forEach(r => byId[r.id] = r);
+const LINKS = [
+  ["r_d4f0","r_2b6d"],["r_51be","r_44c2"],["r_6e07","r_72e1"],["r_b791","r_a822"],
+  ["r_83aa","r_72e1"],["r_51be","r_83aa"],["r_9d20","r_6e07"],["r_a822","r_6e07"],
+  ["r_cc39","r_6e07"],["r_d4f0","r_9d20"],["r_44c2","r_10af"],["r_83aa","r_44c2"],
+  ["r_10af","r_d4f0"],["r_9d20","r_cc39"],["r_51be","r_10af"],["r_a822","r_10af"],
+  ["r_2b6d","r_72e1"],["r_6e07","r_2b6d"],["r_10af","r_9d20"],["r_a822","r_51be"],
+  ["r_44c2","r_72e1"],["r_f193","r_72e1"]
+];
+const ADJ = {}; ROOMS.forEach(r => ADJ[r.id] = new Set());
+LINKS.forEach(([a,b]) => { ADJ[a].add(b); ADJ[b].add(a); });
+const START = ROOMS.find(r => r.start).id;
+const GOAL = ROOMS.find(r => r.goal).id;
+/* ---------- state ---------- */
+let visited = [START];
+let trail = [];
+let walkAnim = null;
+let confetti = [];
+let lightsOut = 0;
+let resetCount = 0, clockClicks = 0, pokeClicks = 0;
+let startTime = Date.now(), lastMove = Date.now(), idleJoked = false;
+let won = false;
+let lockFlash = {};
+let doorFlash = {};
+const cur = () => visited[visited.length-1];
+function center(r){ return {x:r.rect.x+r.rect.w/2, y:r.rect.y+r.rect.h/2}; }
+function linkKey(a,b){ return [a,b].sort().join("|"); }
+function borderPoint(r, toward){
+  const c = center(r), dx = toward.x-c.x, dy = toward.y-c.y;
+  const hw = r.rect.w/2, hh = r.rect.h/2;
+  if(dx===0 && dy===0) return c;
+  const tx = dx!==0 ? hw/Math.abs(dx) : 1e9;
+  const ty = dy!==0 ? hh/Math.abs(dy) : 1e9;
+  const t = Math.min(tx,ty)*0.98;
+  return {x:c.x+dx*t, y:c.y+dy*t};
+}
+function toast(msg, ms=2600){
+  const t = $("toast"); t.textContent = msg; t.style.display = "block";
+  clearTimeout(t._h); t._h = setTimeout(()=>t.style.display="none", ms);
+}
+function tip(msg, x, y){
+  const t = $("tip");
+  if(!msg){ t.style.display="none"; return; }
+  t.textContent = msg; t.style.display="block";
+  const st = $("stage").getBoundingClientRect();
+  t.style.left = Math.min(x+16, st.width-245)+"px";
+  t.style.top = Math.max(y-10, 8)+"px";
+}
+function unvisitedFromHere(){
+  const seen = new Set([cur()]), q=[cur()];
+  while(q.length){ const n=q.pop();
+    for(const m of ADJ[n]) if(!visited.includes(m) && !seen.has(m)){seen.add(m);q.push(m);}
+  }
+  seen.delete(cur());
+  return [...seen];
+}
+function deadEnd(){
+  if(visited.length>=ROOMS.length) return false;
+  const unvis = ROOMS.filter(r=>!visited.includes(r.id));
+  const seen = new Set([cur()]), q=[cur()];
+  while(q.length){ const n=q.pop();
+    for(const m of ADJ[n]) if(!visited.includes(m) && !seen.has(m)){seen.add(m);q.push(m);}
+  }
+  return unvis.some(r=>!seen.has(r.id));
+}
+function tryMove(id){
+  if(won || walkAnim) return;
+  if(id===cur()) return;
+  if(!ADJ[cur()].has(id)){ toast("The new hire has not yet learned to walk through walls."); return; }
+  if(visited.includes(id)){
+    toast("Access denied — already audited. Facilities: \"We literally explained this.\"");
+    lockFlash[id]=performance.now(); return;
+  }
+  walkAnim = {from:center(byId[cur()]), to:center(byId[id]), t:0, dest:id};
+  lastMove = Date.now();
+}
+function finishMove(dest){
+  const prev = cur();
+  visited.push(dest);
+  trail.push(linkKey(prev,dest));
+  doorFlash[linkKey(prev,dest)] = performance.now();
+  lockFlash[prev] = performance.now();
+  updateHud();
+  if(visited.length===ROOMS.length){ if(dest===GOAL) win(); return; }
+  if(deadEnd()) setTimeout(()=>{ if(!won) $("mDead").classList.add("open"); }, 450);
+}
+function undo(){
+  if(walkAnim || visited.length<=1 || won) return;
+  const gone = visited.pop(); trail.pop();
+  toast(byId[gone].name + " un-audited. Nobody saw anything.");
+  updateHud(); lastMove = Date.now();
+}
+function reset(silent){
+  visited=[START]; trail=[]; walkAnim=null; won=false; confetti=[];
+  $("mDead").classList.remove("open"); $("mWin").classList.remove("open");
+  updateHud(); lastMove=Date.now();
+  if(!silent){
+    resetCount++;
+    if(resetCount===5) toast("facilities: we could have printed another badge by now.");
+    else toast("The new hire is back in the Nap Room. The bunk missed him.");
+  }
+}
+function updateHud(){
+  $("roomCount").textContent = String(visited.length).padStart(2,"0")+" / "+ROOMS.length;
+  $("progressFill").style.width = (visited.length/ROOMS.length*100)+"%";
+}
+/* ---------- win sequence ---------- */
+function win(){
+  won = true;
+  updateHud();
+  const g = center(byId[GOAL]);
+  const shades = [INK, SOFT, "#8d857a", PAPER];
+  for(let i=0;i<140;i++) confetti.push({x:g.x,y:g.y,vx:(Math.random()-0.5)*6,vy:-Math.random()*6-2,
+    c:shades[i%4], r:2.5+Math.random()*3.5, life:1});
+  setTimeout(showReceipt, 900);
+}
+function showReceipt(){
+  const names = visited.map(id=>byId[id].name);
+  const line = "-".repeat(34);
+  const full = line+"\n ORDINARY ENGINEERING — FACILITIES\n"+line+
+    "\n\nPERFECT ROUTE COMPLETED\n\n"+names.join("\n")+
+    "\n\nFacilities memo:\n\n\"When documenting an inspection,\nwe abbreviate rooms by their initials.\"\n\nWrap the initials in the usual flag format.";
+  const el = $("receipt"); el.textContent = "";
+  let i = 0;
+  const tick = () => { el.textContent = full.slice(0, i+=4); if(i<full.length) setTimeout(tick, 12); else showLetters(); };
+  tick();
+  $("chatText").textContent = "facilities: \"So you inspected the entire building...\"  ·  new hire: \"Yes.\"";
+  setTimeout(()=>{ $("chatText").textContent = "facilities: \"...to find the badge I was holding?\""; }, 2600);
+  setTimeout(()=>{ $("chatText").textContent = "facilities: \"Anyway. Look at your route.\""; }, 5200);
+  $("mWin").classList.add("open");
+}
+function showLetters(){
+  const box = $("letters"); box.innerHTML = "";
+  const initials = visited.map(id=>byId[id].name[0]);
+  initials.forEach((ch,k)=> setTimeout(()=>{
+    const s=document.createElement("span"); s.textContent=ch; s.className="hl"; box.appendChild(s);
+  }, k*160));
+  setTimeout(()=>{ $("wrapHint").textContent = "Take the first letter of each room, in order, and wrap it in the usual cyber_quest{...} flag format."; }, initials.length*160+200);
+}
+/* ---------- pencil rendering ---------- */
+function rr(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+/* slightly wobbly hand line */
+function sketchLine(x1,y1,x2,y2){
+  const mx=(x1+x2)/2+(Math.sin(x1*3.1+x2)*3), my=(y1+y2)/2+(Math.cos(y1*2.3+y2)*3);
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.quadraticCurveTo(mx,my,x2,y2); ctx.stroke();
+}
+function drawBackdrop(t){
+  ctx.fillStyle = PAPER; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle = "rgba(38,33,27,.05)"; ctx.lineWidth = 1;
+  for(let gx=0;gx<W;gx+=40){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();}
+  for(let gy=0;gy<H;gy+=40){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
+  ctx.save();
+  ctx.fillStyle = INK; ctx.font = "600 15px ui-monospace, Menlo, monospace";
+  ctx.fillText("ORDINARY ENGINEERING — FACILITIES MAP", 70, 52);
+  ctx.fillStyle = SOFT; ctx.font = "12px Inter, system-ui, sans-serif";
+  ctx.fillText("click an adjacent room to walk there. every room gets inspected exactly once. badge waiting in TERMINAL ROOM.", 70, 72);
+  /* wall clock (clickable; facilities denies everything) */
+  ctx.fillStyle = CARD; ctx.strokeStyle = INK; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.arc(1530,60,24,0,7); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = INK;
+  for(let m=0;m<12;m++){ const a=m*Math.PI/6;
+    ctx.beginPath(); ctx.arc(1530+19*Math.sin(a),60-19*Math.cos(a),1.4,0,7); ctx.fill(); }
+  const elap=(Date.now()-startTime)/1000;
+  ctx.strokeStyle = INK; ctx.lineWidth = 2.5;
+  const ha=(elap/3600)%12/12*Math.PI*2;
+  ctx.beginPath(); ctx.moveTo(1530,60); ctx.lineTo(1530+12*Math.sin(ha),60-12*Math.cos(ha)); ctx.stroke();
+  ctx.lineWidth = 1.5;
+  const ma=(elap/60)%60/60*Math.PI*2;
+  ctx.beginPath(); ctx.moveTo(1530,60); ctx.lineTo(1530+17*Math.sin(ma),60-17*Math.cos(ma)); ctx.stroke();
+  ctx.restore();
+}
+function drawCorridors(t){
+  LINKS.forEach(([a,b])=>{
+    const A=byId[a], B=byId[b];
+    const p1=borderPoint(A,center(B)), p2=borderPoint(B,center(A));
+    const key=linkKey(a,b), walked=trail.includes(key);
+    ctx.save();
+    ctx.lineCap="round";
+    ctx.strokeStyle = walked ? "rgba(38,33,27,.30)" : "rgba(38,33,27,.16)";
+    ctx.lineWidth = 22;
+    ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+    ctx.strokeStyle = "rgba(38,33,27,.45)";
+    ctx.lineWidth = 1.5; ctx.setLineDash([7,7]);
+    ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+    ctx.setLineDash([]);
+    if(walked){
+      ctx.fillStyle = "rgba(38,33,27,.55)";
+      const dx=p2.x-p1.x, dy=p2.y-p1.y, d=Math.hypot(dx,dy), n=Math.floor(d/36);
+      for(let i=1;i<n;i++){ const px=p1.x+dx*i/n+((i%2)?5:-5), py=p1.y+dy*i/n;
+        ctx.beginPath(); ctx.ellipse(px,py,3.6,2.4,Math.atan2(dy,dx),0,7); ctx.fill(); }
+    }
+    ctx.strokeStyle = INK; ctx.lineWidth = 2;
+    [p1,p2].forEach(p=>{
+      ctx.beginPath(); ctx.moveTo(p.x-8,p.y); ctx.lineTo(p.x+8,p.y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(p.x,p.y-8); ctx.lineTo(p.x,p.y+8); ctx.stroke();
+    });
+    if(doorFlash[key] && t-doorFlash[key]<900){
+      ctx.strokeStyle = INK; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc((p1.x+p2.x)/2,(p1.y+p2.y)/2,13+((t-doorFlash[key])/45)%9,0,7); ctx.stroke();
+    }
+    ctx.restore();
+  });
+}
+function drawRoom(r, t, hover){
+  const {x,y,w,h}=r.rect;
+  const isCur = cur()===r.id, isVis = visited.includes(r.id);
+  const adj = ADJ[cur()].has(r.id) && !isVis && !isCur && !won;
+  ctx.save();
+  ctx.fillStyle = "rgba(38,33,27,.10)";
+  rr(x+3,y+4,w,h,4); ctx.fill();
+  ctx.fillStyle = CARD;
+  rr(x,y,w,h,4); ctx.fill();
+  ctx.lineWidth = isCur?2.5:1.5; ctx.strokeStyle = INK;
+  if(adj && Math.floor(t/450)%2===0){ ctx.save(); ctx.setLineDash([9,6]); ctx.lineDashOffset = -t/40;
+    rr(x,y,w,h,4); ctx.stroke(); ctx.restore(); }
+  else { rr(x,y,w,h,4); ctx.stroke(); }
+  if(adj){ ctx.save(); ctx.setLineDash([4,4]); rr(x+5,y+5,w-10,h-10,3); ctx.stroke(); ctx.restore(); }
+  ctx.strokeStyle="rgba(38,33,27,.07)"; ctx.lineWidth=1;
+  for(let gx=x+28;gx<x+w;gx+=28){ctx.beginPath();ctx.moveTo(gx,y+4);ctx.lineTo(gx,y+h-4);ctx.stroke();}
+  for(let gy=y+28;gy<y+h;gy+=28){ctx.beginPath();ctx.moveTo(x+4,gy);ctx.lineTo(x+w-4,gy);ctx.stroke();}
+  doodads(r,t);
+  /* plaque */
+  ctx.fillStyle = CARD;
+  const label = r.name.toUpperCase();
+  ctx.font = "600 15px ui-monospace, Menlo, monospace";
+  const tw = ctx.measureText(label).width;
+  rr(x+10,y+8,tw+24,30,3); ctx.fill();
+  ctx.lineWidth = 1.5; ctx.strokeStyle = INK; rr(x+10,y+8,tw+24,30,3); ctx.stroke();
+  ctx.fillStyle = INK; ctx.textBaseline = "middle";
+  ctx.fillText(label, x+22, y+24);
+  ctx.font = "12px Inter, system-ui, sans-serif"; ctx.fillStyle = SOFT;
+  if(r.goal) ctx.fillText("badge here", x+22, y+52);
+  if(isCur){ ctx.fillStyle = INK; ctx.fillText("you are here", x+22, y+(r.goal?68:52)); }
+  if(isVis && !isCur){
+    ctx.fillStyle="rgba(38,33,27,.14)"; rr(x,y,w,h,4); ctx.fill();
+    ctx.save(); ctx.translate(x+w-64,y+h-32); ctx.rotate(-0.14);
+    ctx.strokeStyle=DANGER; ctx.lineWidth=2; ctx.strokeRect(-56,-16,112,32);
+    ctx.fillStyle=DANGER; ctx.font="700 13px ui-monospace, monospace"; ctx.textAlign="center";
+    ctx.fillText("AUDITED",0,1);
+    ctx.font="11px ui-monospace, monospace"; ctx.fillText("locked",0,13);
+    ctx.restore(); ctx.textAlign="left";
+    const fl = lockFlash[r.id] && t-lockFlash[r.id]<900 && Math.floor(t/120)%2===0;
+    ctx.fillStyle = INK; ctx.font = "12px ui-monospace, monospace";
+    ctx.fillText(fl ? "[] open?" : "[x] shut", x+14, y+h-18);
+  }
+  if(isCur){
+    const by = y-12+Math.sin(t/300)*3;
+    ctx.fillStyle = INK; ctx.font = "12px ui-monospace, monospace";
+    ctx.fillText("v", x+w/2-4, by);
+  }
+  if(hover===r.id && !isVis){
+    ctx.strokeStyle=SOFT; ctx.lineWidth=1.5; ctx.setLineDash([5,5]);
+    rr(x-4,y-4,w+8,h+8,5); ctx.stroke(); ctx.setLineDash([]);
+  }
+  /* inspect marker */
+  if(isCur||isVis){
+    ctx.save(); ctx.strokeStyle=SOFT; ctx.lineWidth=1.5; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.arc(r.prop.x,r.prop.y,r.prop.r,0,7); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle=SOFT; ctx.font="11px ui-monospace, monospace"; ctx.textAlign="center";
+    ctx.fillText("look", r.prop.x, r.prop.y+3); ctx.textAlign="left"; ctx.restore();
+  }
+  ctx.restore();
+}
+function desk(px,py,s){
+  s=s||1; ctx.save(); ctx.translate(px,py); ctx.scale(s,s);
+  ctx.strokeStyle=INK; ctx.lineWidth=2;
+  ctx.strokeRect(-26,-12,52,26);
+  sketchLine(-26,10,-26,20); sketchLine(26,10,26,20);
+  ctx.strokeRect(-16,-28,32,14);
+  ctx.beginPath(); ctx.moveTo(-10,-21); ctx.lineTo(2,-21); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-10,-17); ctx.lineTo(-2,-17); ctx.stroke();
+  ctx.restore();
+}
+function plant(px,py,s){
+  s=s||1; ctx.save(); ctx.translate(px,py); ctx.scale(s,s);
+  ctx.strokeStyle=INK; ctx.lineWidth=2;
+  ctx.strokeRect(-8,4,16,12);
+  ctx.lineWidth=1.8;
+  [[-9,-6],[0,-14],[9,-6],[-4,-4],[5,-9]].forEach(([a,b])=>{
+    ctx.beginPath();ctx.moveTo(0,4);ctx.quadraticCurveTo(a,-2,b,-12);ctx.stroke();});
+  ctx.restore();
+}
+function rack(sx,sy,w,h,seed){
+  ctx.save();
+  ctx.fillStyle=INK; ctx.fillRect(sx,sy,w,h);
+  ctx.strokeStyle=INK; ctx.lineWidth=2; ctx.strokeRect(sx,sy,w,h);
+  for(let l=0;l<4;l++){ const on=((Math.floor(performance.now()/350)+l+seed)%4===0);
+    ctx.fillStyle = on ? PAPER : "rgba(246,241,231,.25)";
+    ctx.beginPath(); ctx.arc(sx+10+l*((w-20)/3),sy+12,2.6,0,7); ctx.fill(); }
+  ctx.strokeStyle="rgba(246,241,231,.5)"; ctx.lineWidth=1;
+  for(let s2=1;s2<4;s2++){ctx.beginPath();ctx.moveTo(sx+4,sy+s2*h/4);ctx.lineTo(sx+w-4,sy+s2*h/4);ctx.stroke();}
+  ctx.restore();
+}
+function doodads(r,t){
+  const {x,y,w,h}=r.rect, id=r.id;
+  ctx.save(); ctx.strokeStyle=INK; ctx.fillStyle=INK;
+  if(id==="r_b791"){
+    /* bunk bed */
+    ctx.lineWidth=2; ctx.strokeRect(x+24,y+70,90,50);
+    ctx.beginPath();ctx.moveTo(x+24,y+88);ctx.lineTo(x+114,y+88);ctx.stroke();
+    ctx.strokeRect(x+30,y+74,22,12);
+    for(let s2=0;s2<3;s2++){ctx.beginPath();ctx.moveTo(x+58,y+94+s2*7);ctx.lineTo(x+108,y+94+s2*7);ctx.stroke();}
+    sketchLine(x+24,y+120,x+24,y+140); sketchLine(x+114,y+120,x+114,y+140);
+    /* alarm clock */
+    ctx.strokeRect(x+140,y+96,40,24);
+    ctx.font="700 11px ui-monospace, monospace"; ctx.fillText("07:00",x+145,y+112);
+    ctx.beginPath();ctx.moveTo(x+140,y+120);ctx.lineTo(x+134,y+128);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+180,y+120);ctx.lineTo(x+186,y+128);ctx.stroke();
+    /* do-not-disturb tag */
+    ctx.save(); ctx.translate(x+w-52,y+70); ctx.rotate(0.12);
+    ctx.fillStyle=CARD; ctx.fillRect(-34,-10,68,20);
+    ctx.lineWidth=1.5; ctx.strokeRect(-34,-10,68,20);
+    ctx.fillStyle=INK; ctx.font="9px ui-monospace, monospace"; ctx.textAlign="center";
+    ctx.fillText("do not disturb",0,3); ctx.textAlign="left"; ctx.restore();
+    ctx.font="11px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("snoozes: 47",x+140,y+140);
+  }else if(id==="r_a822"){
+    /* sprint board */
+    ctx.lineWidth=2; ctx.strokeRect(x+24,y+54,w-48,62);
+    ctx.font="600 10px ui-monospace, monospace"; ctx.fillStyle=INK;
+    ctx.fillText("SPRINT 47",x+32,y+68);
+    for(let col=0;col<3;col++){ const cx=x+32+col*((w-64)/3);
+      ctx.font="8px ui-monospace, monospace"; ctx.fillText(["TODO","DOING","DONE"][col],cx,y+80);
+      for(let t2=0;t2<3;t2++){ const done = col===2 || (col===1&&t2===0);
+        ctx.lineWidth=1.2;
+        if(done){ ctx.beginPath();ctx.moveTo(cx-2,y+90+t2*9);ctx.lineTo(cx+2,y+94+t2*9);ctx.lineTo(cx+8,y+84+t2*9);ctx.stroke(); }
+        else { ctx.strokeRect(cx-2,y+84+t2*9,12,7); } } }
+    /* velocity chart: down and to the right */
+    ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(x+30,y+h-52);ctx.lineTo(x+30,y+h-96);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+30,y+h-52);ctx.lineTo(x+120,y+h-52);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+34,y+h-90);
+    ctx.quadraticCurveTo(x+60,y+h-70,x+80,y+h-66);
+    ctx.quadraticCurveTo(x+100,y+h-62,x+114,y+h-56);ctx.stroke();
+    ctx.font="10px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("velocity: unknown",x+126,y+h-56);
+  }else if(id==="r_51be"){
+    /* workbench */
+    ctx.lineWidth=2; ctx.strokeRect(x+24,y+100,110,26);
+    sketchLine(x+30,y+126,x+30,y+140); sketchLine(x+128,y+126,x+128,y+140);
+    ctx.strokeRect(x+36,y+88,24,12); ctx.strokeRect(x+70,y+88,20,12);
+    /* 3d printer */
+    ctx.strokeRect(x+150,y+70,56,70);
+    ctx.beginPath();ctx.moveTo(x+150,y+92);ctx.lineTo(x+206,y+92);ctx.stroke();
+    ctx.beginPath();ctx.arc(x+178,y+112,10,0,7);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+178,y+122);ctx.lineTo(x+178,y+132);ctx.stroke();
+    ctx.font="700 10px ui-monospace, monospace"; ctx.fillStyle=INK;
+    ctx.fillText("404",x+158,y+84);
+    ctx.font="10px ui-monospace, monospace"; ctx.fillText("no filament",x+150,y+h-30);
+    ctx.fillStyle=SOFT;
+    ctx.fillText("log: facilities 999999 / new hire 3",x+24,y+h-30);
+  }else if(id==="r_83aa"){
+    /* vending machine */
+    ctx.lineWidth=2; ctx.strokeRect(x+24,y+54,38,66);
+    ctx.font="700 10px ui-monospace, monospace"; ctx.fillStyle=INK; ctx.fillText("404",x+30,y+82);
+    ctx.font="10px ui-monospace, monospace"; ctx.fillText("no snack",x+28,y+96);
+    /* sofa */
+    ctx.beginPath(); ctx.moveTo(x+88,y+110); ctx.lineTo(x+140,y+110); ctx.lineTo(x+140,y+96);
+    ctx.lineTo(x+96,y+96); ctx.closePath(); ctx.stroke();
+    sketchLine(x+92,y+110,x+92,y+122); sketchLine(x+136,y+110,x+136,y+122);
+    /* regret arcade */
+    ctx.strokeRect(x+150,y+88,44,54);
+    ctx.beginPath();ctx.arc(x+172,y+112,9,0,7);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+172,y+121);ctx.lineTo(x+172,y+134);ctx.stroke();
+    ctx.font="10px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("scores: facilities 999999 / new hire 3",x+24,y+h-30);
+  }else if(id==="r_44c2"){
+    ctx.lineWidth=2; ctx.strokeRect(x+24,y+54,w-48,60);
+    ctx.font="600 10px ui-monospace, monospace"; ctx.fillStyle=INK;
+    ctx.fillText("IDEATION OUTPUT -> ??? -> profit",x+32,y+68);
+    for(let i=0;i<8;i++){ const nx=x+30+i*((w-60)/8);
+      ctx.save(); ctx.translate(nx+9,y+90); ctx.rotate((i%2?1:-1)*0.06);
+      ctx.fillStyle=CARD; ctx.fillRect(-9,-11,18,22);
+      ctx.lineWidth=1.2; ctx.strokeRect(-9,-11,18,22); ctx.restore(); }
+    plant(x+w-36,y+h-40,0.9);
+  }else if(id==="r_10af"){
+    /* breaker panels */
+    for(let i=0;i<2;i++){ const sx=x+26+i*96;
+      ctx.lineWidth=2; ctx.strokeRect(sx,y+58,84,84);
+      ctx.font="700 9px ui-monospace, monospace"; ctx.fillStyle=INK;
+      ctx.fillText(i===0?"PANEL A":"PANEL B",sx+6,y+70);
+      ctx.lineWidth=1.2;
+      for(let s2=0;s2<5;s2++){ const onSw=(s2+i)%3!==0;
+        ctx.beginPath();ctx.moveTo(sx+10,y+80+s2*11);ctx.lineTo(sx+30,y+80+s2*11);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(sx+30,y+80+s2*11);
+        ctx.lineTo(sx+30+(onSw?6:-6),y+76+s2*11);ctx.stroke(); } }
+    /* cable run */
+    ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(x+26,y+150);
+    ctx.quadraticCurveTo(x+w/2,y+170,x+w-30,y+150);ctx.stroke();
+    ctx.save(); ctx.translate(x+w-60,y+h-34); ctx.rotate(-0.1);
+    ctx.fillStyle=CARD; ctx.fillRect(-34,-9,68,18);
+    ctx.lineWidth=1.5; ctx.strokeRect(-34,-9,68,18);
+    ctx.fillStyle=INK; ctx.font="9px ui-monospace, monospace"; ctx.textAlign="center";
+    ctx.fillText("do not touch",0,3); ctx.textAlign="left"; ctx.restore();
+  }else if(id==="r_d4f0"){
+    plant(x+42,y+92,1.1); plant(x+92,y+112,1.3); plant(x+152,y+92,1); plant(x+190,y+122,1.2);
+    ctx.lineWidth=1.5; ctx.strokeRect(x+82,y+78,20,14);
+    ctx.fillStyle=INK; ctx.font="9px ui-monospace, monospace"; ctx.fillText("fern",x+84,y+88);
+    if(Math.floor(t/800)%2===0){ ctx.fillStyle=SOFT;
+      ctx.fillText(".",x+122,y+78); ctx.fillText(".",x+126,y+84); }
+  }else if(id==="r_9d20"){
+    desk(x+52,y+82,0.85); desk(x+132,y+82,0.85); desk(x+52,y+140,0.85); desk(x+132,y+140,0.85);
+    plant(x+30,y+h-40,0.9);
+    ctx.font="10px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("todo: [ ] close todo list",x+w-160,y+h-28);
+  }else if(id==="r_cc39"){
+    ctx.lineWidth=2; ctx.strokeRect(x+30,y+62,54,58);
+    ctx.font="700 10px ui-monospace, monospace"; ctx.fillStyle=INK; ctx.fillText("BUGS",x+38,y+58);
+    for(let i=0;i<4;i++){ const bx=x+42+(i%2)*22+Math.sin(t/300+i)*2, by=y+82+Math.floor(i/2)*20;
+      ctx.beginPath();ctx.arc(bx,by,3,0,7);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(bx-3,by);ctx.lineTo(bx+3,by);ctx.stroke(); }
+    desk(x+152,y+110,0.9);
+  }else if(id==="r_6e07"){
+    ctx.lineWidth=2;
+    for(let i=0;i<4;i++){ ctx.strokeRect(x+26,y+58+i*24,w-52,20);
+      ctx.beginPath();ctx.moveTo(x+w-52,y+68+i*24);ctx.lineTo(x+w-38,y+68+i*24);ctx.stroke(); }
+    ctx.font="11px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("drawer 1 of 846",x+26,y+h-30);
+  }else if(id==="r_2b6d"){
+    /* incident monitors */
+    for(let i=0;i<3;i++){ const sx=x+26+i*62;
+      ctx.fillStyle=INK; ctx.fillRect(sx,y+58,54,64);
+      ctx.lineWidth=2; ctx.strokeRect(sx,y+58,54,64);
+      ctx.fillStyle=PAPER; ctx.font="8px ui-monospace, monospace";
+      ctx.fillText(i===1?"PAGED":"INCIDENT",sx+5,y+70);
+      ctx.strokeStyle=PAPER; ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(sx+5,y+110);
+      ctx.lineTo(sx+20,y+110-i*6);ctx.lineTo(sx+35,y+100+i*4);ctx.lineTo(sx+49,y+106);ctx.stroke();
+      ctx.strokeStyle=INK; }
+    /* the pager that never sleeps */
+    ctx.lineWidth=2; ctx.strokeRect(x+w-64,y+h-46,42,22);
+    const buzz=Math.floor(t/300)%2===0;
+    ctx.font="8px ui-monospace, monospace"; ctx.fillStyle=INK;
+    ctx.fillText(buzz?"* buzz *":"paging",x+w-60,y+h-32);
+    ctx.font="10px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("inc. #4821: new hire lost",x+26,y+h-28);
+  }else if(id==="r_72e1"){
+    /* green screen */
+    ctx.save(); ctx.strokeStyle="rgba(38,33,27,.5)";
+    for(let gx=x+24;gx<x+114;gx+=8){ctx.beginPath();ctx.moveTo(gx,y+58);ctx.lineTo(gx,y+120);ctx.stroke();}
+    ctx.restore();
+    ctx.lineWidth=2; ctx.strokeStyle=INK; ctx.strokeRect(x+24,y+58,90,62);
+    /* the new hire, enlarged */
+    ctx.beginPath();ctx.arc(x+69,y+86,11,0,7);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+58,y+86);ctx.lineTo(x+80,y+86);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+69,y+97);ctx.lineTo(x+69,y+112);ctx.stroke();
+    /* camera on tripod + ring light */
+    ctx.beginPath();ctx.moveTo(x+140,y+130);ctx.lineTo(x+140,y+96);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+128,y+96);ctx.lineTo(x+152,y+96);ctx.stroke();
+    ctx.beginPath();ctx.arc(x+185,y+110,17,0,7);ctx.stroke();
+    ctx.font="10px ui-monospace, monospace"; ctx.fillStyle=SOFT;
+    ctx.fillText("not his fault",x+128,y+140);
+  }else if(id==="r_f193"){
+    rack(x+26,y+66,54,70,3); rack(x+88,y+66,54,70,4); rack(x+150,y+66,54,70,5);
+    const pulse = 1+Math.sin(t/400)*0.05;
+    ctx.save(); ctx.translate(x+w/2,y+h-44); ctx.scale(pulse,pulse);
+    ctx.fillStyle=CARD; ctx.fillRect(-26,-15,52,30);
+    ctx.lineWidth=2; ctx.strokeRect(-26,-15,52,30);
+    ctx.fillStyle=INK; ctx.font="700 9px ui-monospace, monospace"; ctx.textAlign="center";
+    ctx.fillText("BADGE",0,1); ctx.textAlign="left";
+    ctx.restore();
+  }
+  ctx.restore();
+}
+function drawIntern(t){
+  let p;
+  if(walkAnim){ const k=Math.min(1,walkAnim.t), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+    p={x:walkAnim.from.x+(walkAnim.to.x-walkAnim.from.x)*e, y:walkAnim.from.y+(walkAnim.to.y-walkAnim.from.y)*e};
+  } else { const c=center(byId[cur()]); p={x:c.x, y:c.y+36+Math.sin(t/350)*2}; }
+  ctx.save();
+  ctx.translate(p.x,p.y);
+  const squash = walkAnim? Math.abs(Math.sin(t/90))*0.07 : Math.sin(t/350)*0.02;
+  ctx.scale(1+squash,1-squash);
+  ctx.fillStyle="rgba(38,33,27,.15)";
+  ctx.beginPath(); ctx.ellipse(0,20,15,5,0,0,7); ctx.fill();
+  /* torso */
+  ctx.fillStyle=CARD; ctx.strokeStyle=INK; ctx.lineWidth=2.5;
+  rr(-12,-8,24,25,7); ctx.fill(); ctx.stroke();
+  /* head */
+  ctx.beginPath(); ctx.arc(0,-19,12,0,7); ctx.fill(); ctx.stroke();
+  /* hard hat: dome + brim */
+  ctx.fillStyle=INK;
+  ctx.beginPath(); ctx.arc(0,-21,12,Math.PI,0); ctx.fill();
+  ctx.fillRect(-15,-24,30,3);
+  const lx = walkAnim? Math.sign(walkAnim.to.x-walkAnim.from.x)*2 : Math.sin(t/900)*1.5;
+  ctx.beginPath(); ctx.arc(-4.5,-18,2.1,0,7); ctx.arc(4.5,-18,2.1,0,7); ctx.fill();
+  ctx.fillStyle=CARD;
+  ctx.beginPath(); ctx.arc(-4.5+lx,-19,0.8,0,7); ctx.arc(4.5+lx,-19,0.8,0,7); ctx.fill();
+  /* legs */
+  ctx.strokeStyle=INK; ctx.lineWidth=2;
+  const step = walkAnim ? Math.sin(t/70)*3.5 : 0;
+  ctx.beginPath(); ctx.moveTo(-7,17); ctx.lineTo(-7,21+step); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(7,17); ctx.lineTo(7,21-step); ctx.stroke();
+  /* visitor lanyard */
+  ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(-5,-5); ctx.lineTo(0,3); ctx.lineTo(5,-5); ctx.stroke();
+  ctx.strokeRect(-3.5,2,7,5);
+  ctx.fillStyle=INK; ctx.font="600 10px ui-monospace, monospace"; ctx.textAlign="center";
+  ctx.fillText("new hire",0,36); ctx.textAlign="left";
+  ctx.restore();
+}
+function drawConfetti(){
+  confetti = confetti.filter(p=>p.life>0);
+  confetti.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.vy+=0.25; p.life-=0.008;
+    ctx.save(); ctx.globalAlpha=Math.max(0,p.life); ctx.fillStyle=p.c;
+    ctx.translate(p.x,p.y); ctx.rotate(p.x*0.05);
+    ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r); ctx.restore();
+  });
+}
+function drawGoalScreen(){
+  const r = byId[GOAL], n = visited.length, total = ROOMS.length;
+  const sx=r.rect.x+30, sy=r.rect.y+118, sw=r.rect.w-60, sh=42;
+  const done = visited.includes(GOAL) && n===total;
+  ctx.save();
+  ctx.fillStyle = INK;
+  rr(sx,sy,sw,sh,3); ctx.fill();
+  ctx.fillStyle = PAPER;
+  ctx.font="700 11px ui-monospace, monospace"; ctx.textAlign="center";
+  ctx.fillText("ROOM AUDIT "+n+" / "+total, sx+sw/2, sy+16);
+  ctx.fillText(done?"AUDIT COMPLETE":"ROUTE INCOMPLETE", sx+sw/2, sy+31);
+  ctx.textAlign="left"; ctx.restore();
+}
+let hoverRoom=null;
+function frame(t){
+  if(lightsOut>0) lightsOut--;
+  if(walkAnim){
+    walkAnim.t+=0.035;
+    if(walkAnim.t>=1){ const d=walkAnim.dest; walkAnim=null; finishMove(d); }
+  }
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  if(lightsOut>0) ctx.globalAlpha = lightsOut>30 ? 0.2 : 0.55;
+  drawBackdrop(t);
+  drawCorridors(t);
+  const order=[...ROOMS].sort((a,b)=>(cur()===a.id)-(cur()===b.id));
+  order.forEach(r=>drawRoom(r,t,hoverRoom));
+  drawGoalScreen();
+  drawIntern(t);
+  drawConfetti();
+  ctx.restore();
+  if(lightsOut>0){ ctx.fillStyle="rgba(38,33,27,"+(lightsOut>30?0.8:0.35)+")"; ctx.fillRect(0,0,W,H); }
+  drawMinimap();
+  if(!won && !idleJoked && Date.now()-lastMove>5*60*1000){
+    idleJoked=true; toast("The new hire has begun considering remote work.");
+  }
+  requestAnimationFrame(frame);
+}
+function drawMinimap(){
+  if($("minimap").style.display!=="block") return;
+  const mm=$("mm"), c=mm.getContext("2d"), sx=220/W, sy=124/H;
+  c.clearRect(0,0,220,124); c.fillStyle=PAPER; c.fillRect(0,0,220,124);
+  LINKS.forEach(([a,b])=>{ const A=center(byId[a]),B=center(byId[b]);
+    c.strokeStyle="rgba(38,33,27,.4)"; c.lineWidth=1;
+    c.beginPath();c.moveTo(A.x*sx,A.y*sy);c.lineTo(B.x*sx,B.y*sy);c.stroke(); });
+  ROOMS.forEach(r=>{ const v=visited.includes(r.id);
+    c.fillStyle= cur()===r.id?DANGER:v?INK:CARD;
+    c.strokeStyle=INK; c.lineWidth=0.5;
+    const rx=r.rect.x*sx, ry=r.rect.y*sy, rw=Math.max(3,r.rect.w*sx), rh=Math.max(3,r.rect.h*sy);
+    c.fillRect(rx,ry,rw,rh); c.strokeRect(rx,ry,rw,rh); });
+}
+/* ---------- input ---------- */
+function evPos(e){
+  const r=cv.getBoundingClientRect();
+  const cx=(e.touches?e.touches[0].clientX:e.clientX), cy=(e.touches?e.touches[0].clientY:e.clientY);
+  return {x:(cx-r.left)/r.width*W, y:(cy-r.top)/r.height*H, sx:cx-r.left, sy:cy-r.top};
+}
+function roomAt(x,y){ return ROOMS.find(r=>x>=r.rect.x&&x<=r.rect.x+r.rect.w&&y>=r.rect.y&&y<=r.rect.y+r.rect.h); }
+cv.addEventListener("mousemove", e=>{
+  const p=evPos(e), r=roomAt(p.x,p.y);
+  hoverRoom=r?r.id:null;
+  if(!r){ tip(null); cv.style.cursor="default"; return; }
+  const isVis=visited.includes(r.id), isCur=cur()===r.id;
+  const adj=ADJ[cur()].has(r.id)&&!isVis;
+  if(Math.hypot(p.x-r.prop.x,p.y-r.prop.y)<r.prop.r && (isCur||isVis)){
+    tip(r.prop.title+" — click to inspect", p.sx, p.sy); cv.style.cursor="pointer"; return;
+  }
+  const c=center(byId[cur()]);
+  if(isCur && Math.hypot(p.x-c.x,p.y-c.y)<30){
+    tip("the new hire — click to poke", p.sx, p.sy); cv.style.cursor="pointer"; return;
+  }
+  let s=r.name.toUpperCase()+" — ";
+  if(isCur) s+="you are here";
+  else if(isVis) s+="audited, locked";
+  else if(adj) s+="open — click to enter";
+  else s+="no door from here";
+  if(r.goal && !visited.includes(r.id)) s+=" — badge visible inside";
+  tip(s, p.sx, p.sy);
+  cv.style.cursor = adj ? "pointer" : "default";
+});
+cv.addEventListener("mouseleave", ()=>{ hoverRoom=null; tip(null); });
+cv.addEventListener("click", e=>{
+  const p=evPos(e);
+  if(Math.hypot(p.x-1530,p.y-60)<28){
+    clockClicks++;
+    if(clockClicks===10) toast("Please stop touching the clock.");
+    if(clockClicks===20) toast("HR has been notified.");
+    return;
+  }
+  const r=roomAt(p.x,p.y);
+  if(!r) return;
+  const isCur=cur()===r.id, isVis=visited.includes(r.id);
+  if(Math.hypot(p.x-r.prop.x,p.y-r.prop.y)<r.prop.r && (isCur||isVis)){ openProp(r); return; }
+  const c=center(byId[cur()]);
+  if(isCur && Math.hypot(p.x-c.x,p.y-c.y)<32){
+    pokeClicks++;
+    toast(["new hire: ow","new hire: stop","new hire: seriously?","new hire: ...","(audible sigh)"][Math.min(pokeClicks-1,4)]);
+    return;
+  }
+  if(isCur) return;
+  if(r.id===GOAL && !ADJ[cur()].has(GOAL)){
+    openProp({name:"Terminal Room",
+      prop:{title:"Terminal room", body:"The new hire can see his badge from here.\n\nThis has not improved morale."}});
+    return;
+  }
+  tryMove(r.id);
+});
+function openProp(r){
+  $("propTitle").textContent = r.prop.title + " — " + r.name;
+  let body = r.prop.body;
+  if(r.id===GOAL && !won){
+    body = "BADGE RECOVERY TERMINAL\n\nROOM AUDIT\n"+visited.length+" / "+ROOMS.length+"\n\nROUTE INCOMPLETE";
+    if(visited.length>=ROOMS.length-3) body += "\n\nsticky note: \"Initial everything. — Facilities\"";
+  }
+  $("propBody").textContent = body;
+  $("mProp").classList.add("open");
+}
+/* ---------- chrome ---------- */
+$("propOk").onclick=()=>$("mProp").classList.remove("open");
+$("deadUndo").onclick=()=>{ $("mDead").classList.remove("open"); undo(); };
+$("deadFate").onclick=()=>{
+  $("mDead").classList.remove("open");
+  const f=$("fade"); f.style.opacity=1; lightsOut=70;
+  setTimeout(()=>{ reset(true); toast("The lights come back on. The new hire is in the Nap Room. Again."); f.style.opacity=0; }, 900);
+};
+$("bUndo").onclick=undo;
+$("bReset").onclick=()=>reset(false);
+$("bMap").onclick=()=>{
+  const m=$("minimap"); m.style.display = m.style.display==="block"?"none":"block";
+};
+$("bHelp").onclick=()=>{ setHelp(); $("mHelp").classList.add("open"); };
+$("helpOk").onclick=()=>$("mHelp").classList.remove("open");
+$("winOk").onclick=()=>$("mWin").classList.remove("open");
+function setHelp(){
+  const names = visited.map(id=>byId[id].name).join(" -> ");
+  $("helpText").textContent =
+"FACILITIES RULES\n\n1. Every room gets inspected.\n2. No room gets inspected twice.\n3. Please stop losing the master key.\n\nTHINK BEFORE YOU ENTER.\nCan you still reach everything else afterward?\n\nSingle-door rooms make terrible midway stops.\n\nYour route so far:\n"+names;
+}
+document.addEventListener("keydown", e=>{
+  if(e.target.tagName==="INPUT") return;
+  const k=e.key.toLowerCase();
+  if(k==="u") undo();
+  else if(k==="r") reset(false);
+  else if(k==="h"){ setHelp(); $("mHelp").classList.toggle("open"); }
+  else if(k==="m") $("bMap").click();
+  else if(k==="escape") document.querySelectorAll(".modal").forEach(m=>m.classList.remove("open"));
+});
+setInterval(()=>{
+  const s=47+Math.floor((Date.now()-startTime)/60000);
+  $("clock") && ($("clock").textContent="00:"+String(s%60).padStart(2,"0")+" AM");
+},5000);
+/* ---------- boot : hand-drawn chrome via drawably ---------- */
+try { drawablyCard(document.querySelector("section.card"), {seed: 7}); } catch(e){}
+try { document.querySelectorAll(".btn").forEach((b,i)=>{
+  drawablyButton(b, {variant: b.classList.contains("solid") ? "solid" : "outline", seed: 21+i});
+}); } catch(e){}
+updateHud();
+setHelp();
+requestAnimationFrame(frame);
+setTimeout(()=>toast("The new hire is in the Nap Room. His badge waits in the Terminal Room. Visit every room exactly once."),600);
+</script>
+</body>
+</html>

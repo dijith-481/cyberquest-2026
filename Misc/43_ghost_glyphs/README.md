@@ -41,7 +41,7 @@ cyber_quest{0nly_th3_r1ght_0bserver_s33s_th3_s1gn4l_9d4e2f}
 
 ```
 
-200
+100
 
 ```
 

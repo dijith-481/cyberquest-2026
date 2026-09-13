@@ -1,7 +1,7 @@
 # complexity_requirements — solution
 
 **Flag:** `cyber_quest{c0mpli4nt_bu7_pr3dict4bl3_5e8817}`
-**Difficulty:** easy-medium
+**Difficulty:** medium
 
 ## The setup
 

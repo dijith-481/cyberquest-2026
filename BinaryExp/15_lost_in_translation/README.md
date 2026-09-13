@@ -19,13 +19,11 @@ are attached for vendors who want to match its behavior exactly.
 ```
 
 ### Difficulty
-
 ```
 
 hard
 
 ```
-
 ### Flag
 
 ```
@@ -37,21 +35,17 @@ cyber_quest{1gn0r3d_ch4r5_4r3_n0t_c0mm3nt5_5f3a20}
 ### Points
 
 #### Base Points
-
 ```
 
 400
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[40, 30, 20]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

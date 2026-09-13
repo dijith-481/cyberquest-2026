@@ -11,11 +11,11 @@ Ordinary Engineering acquired a print gallery from a universe with no outside. C
 ```
 
 ### Difficulty
-
 ```
+
 medium
-```
 
+```
 ### Flag
 
 ```
@@ -25,17 +25,17 @@ cyber_quest{l0g_unw1nds_th3_g4ll3ry_7a3c9e}
 ### Points
 
 #### Base Points
-
-```
-300
 ```
 
+350
+
+```
 #### Submit Order Bonus (Optional)
-
-```
-[]
 ```
 
+[35, 25, 20]
+
+```
 ### Handout Text (Optional)
 
 ```

@@ -1,7 +1,7 @@
 # clock_skew — solution
 
 **Flag:** `cyber_quest{t0tp_4nd_th3_c10ck_th4t_l13d_7f30aa}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

@@ -1,7 +1,7 @@
 # incognito — solution
 
 **Flag:** `cyber_quest{1nc0gn1t0_l34v3s_th3_w4l_b3h1nd_9f4c2e}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

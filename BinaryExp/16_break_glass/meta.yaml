@@ -1,7 +1,7 @@
 id: "16"
 title: "Break Glass"
 category: "BinaryExp"
-difficulty: "hard"
+difficulty: "medium"
 author: "ordinary engineering"
 status: "built"
-points: 450
+points: 300

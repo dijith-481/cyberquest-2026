@@ -1,7 +1,7 @@
 # dig_site — solution
 
 **Flag:** `cyber_quest{g1t_fck_r3m3mb3rs_wh4t_br4nch3s_f0rg3t_d64b02}`
-**Difficulty:** hard
+**Difficulty:** medium
 
 ## The setup
 

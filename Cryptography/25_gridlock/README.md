@@ -4,7 +4,7 @@ Gridlock
 
 ### Challenge Description
 
-Brand encrypted the company logo at rest, per the memo. The file header was left intact so the thumbnailers keep working, and the pixels were sealed under the brand key, which lives in the vault. The vault is locked. The logo opens fine.
+Brand encrypted the company logo at rest, and the encrypted file is attached. The file opens in any viewer. The key stays in the vault.
 
 ### Difficulty
 
@@ -18,11 +18,11 @@ cyber_quest{3cb_k33ps_3v3ry_sh4p3_7e4a19}
 
 #### Base Points
 
-200
+150
 
 #### Submit Order Bonus (Optional)
 
-[]
+[15, 10, 10]
 
 ### Handout Text (Optional)
 

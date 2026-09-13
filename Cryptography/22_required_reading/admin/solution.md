@@ -1,7 +1,7 @@
 # required_reading — solution
 
 **Flag:** `cyber_quest{r34d_th3_h4ndb00k_c0v3r_t0_c0v3r_2b8d0e}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

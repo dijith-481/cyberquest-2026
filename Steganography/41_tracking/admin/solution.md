@@ -1,7 +1,7 @@
 # 41_tracking — solution
 
 **Flag:** `cyber_quest{k3rn1ng_0n3_un1t_m4tt3rs_c41f}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

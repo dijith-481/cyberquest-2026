@@ -1,7 +1,7 @@
 # onion_pattern — solution
 
 **Flag:** `cyber_quest{p33l_p4t13ntly_4ll_th3_w4y_d0wn_5e2b19}`
-**Difficulty:** medium-hard
+**Difficulty:** easy
 
 ## The setup
 

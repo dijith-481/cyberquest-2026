@@ -19,13 +19,11 @@ Legal has now read them and would like a second opinion.
 ```
 
 ### Difficulty
-
 ```
 
-medium
+easy
 
 ```
-
 ### Flag
 
 ```
@@ -37,21 +35,17 @@ cyber_quest{0ff_key_7r4ck_736sc3}
 ### Points
 
 #### Base Points
-
 ```
 
 200
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[20, 15, 10]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

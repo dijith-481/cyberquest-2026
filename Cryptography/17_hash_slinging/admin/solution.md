@@ -1,7 +1,7 @@
 # hash_slinging — solution
 
 **Flag:** `cyber_quest{n0_s4lt_n0_p3pp3r_ju5t_v4lue_c81d43}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

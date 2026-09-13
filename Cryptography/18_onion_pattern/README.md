@@ -6,11 +6,7 @@ Onion Pattern
 
 ### Challenge Description
 
-The asset-transfer-pipeline exports every payload the way it exports everything: wrapped once per hop, nine hops end to end, each wrapper documented by the committee that approved it and sealed by Kevin, who keeps proposing ciphers and keeps being overruled.
-
-The export in your hands is one file. The pipeline's onboarding docs were lost in a reorganization, but every layer carries its own handling instructions — the pipeline was designed by people who trusted documentation and by Kevin, who did not.
-
-Peel it. Compliance has pre-approved the direction you choose.
+The asset-transfer pipeline wraps every export once per hop, and the export in your hands is one file. The pipeline changed owners twice, and the onboarding docs did not survive. Unwrap it.
 
 ### Difficulty
 
@@ -28,7 +24,7 @@ cyber_quest{p33l_p4t13ntly_4ll_th3_w4y_d0wn_5e2b19}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[20, 15, 10]
 
 ### Handout Text (Optional)
 

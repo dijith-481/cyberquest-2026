@@ -22,7 +22,7 @@ cyber_quest{m1n1f13d_n0t_h1dd3n_5d7e1a}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[10, 5, 5]
 
 ### Handout Text (Optional)
 

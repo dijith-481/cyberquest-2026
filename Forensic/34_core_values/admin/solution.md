@@ -1,7 +1,7 @@
 # core_values — solution
 
 **Flag:** `cyber_quest{v4lu3s_4rr1v3_0ut_0f_0rd3r_k33p_th3_s3q_b3f19}`
-**Difficulty:** medium-hard
+**Difficulty:** medium
 
 ## The setup
 

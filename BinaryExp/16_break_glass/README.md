@@ -7,24 +7,17 @@ Break Glass
 ```
 
 ### Challenge Description
-
 ```
 
-The ordinary engineering vault has a runtime-only unlock process. A normal
-run reports a plausible access token, but the vault team insists that the
-release binary is behaving as designed. The source was not included; the
-debugger is.
+The vault team's release binary behaves exactly as designed, or so the team insists. A normal run produces a plausible-looking token. The release is attached for inspection. The source was not included.
 
 ```
-
 ### Difficulty
-
 ```
 
 medium
 
 ```
-
 ### Flag
 
 ```
@@ -36,21 +29,17 @@ cyber_quest{br34k_gl4ss_l1v3_p4tch_7f3a1c}
 ### Points
 
 #### Base Points
-
 ```
 
 300
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[30, 20, 15]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

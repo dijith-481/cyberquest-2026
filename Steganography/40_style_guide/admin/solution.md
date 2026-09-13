@@ -1,7 +1,7 @@
 # Style Guide — solution
 
 **Flag:** `cyber_quest{h4lf_p01nt_h1d3s_th3_gu1d3_9d4e2f}`
-**Difficulty:** easy-medium
+**Difficulty:** medium
 
 Handout: `handout/style_guide.pdf` (one file, no server).
 

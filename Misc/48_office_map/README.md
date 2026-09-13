@@ -7,28 +7,17 @@ Office Map
 ```
 
 ### Challenge Description
-
 ```
 
-Facilities lost a new hire on his first day. He is starting
-in the Nap Room, and his badge is waiting in the Terminal
-Room. A recently enabled energy-saving system locks every
-door behind him.
-
-Audit every room exactly once and reach the Terminal Room.
-
-Facilities insists the room names are important.
+Facilities lost a new hire on his first day. He starts in the Nap Room with his badge waiting in the Terminal Room. The building's energy-saving system is active. Get him to his badge.
 
 ```
-
 ### Difficulty
-
 ```
 
 easy
 
 ```
-
 ### Flag
 
 ```
@@ -40,21 +29,17 @@ cyber_quest{newbiegotlost}
 ### Points
 
 #### Base Points
-
 ```
 
-150
+100
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[10, 5, 5]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

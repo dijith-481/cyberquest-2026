@@ -1,7 +1,7 @@
 # q3_numbers — solution
 
 **Flag:** `cyber_quest{h1dd3n_r0ws_c4nt_h1d3_f0r3v3r_b7f2e9}`
-**Difficulty:** easy-medium
+**Difficulty:** easy
 
 ## The setup
 

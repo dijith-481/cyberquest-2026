@@ -17,13 +17,11 @@ hire has already been onboarded. Find the secondary inspection report.
 ```
 
 ### Difficulty
-
 ```
 
-medium
+easy
 
 ```
-
 ### Flag
 
 ```
@@ -35,21 +33,17 @@ cyber_quest{th1s_p4ssp0rt_h4s_tw0_f4ces_46de17}
 ### Points
 
 #### Base Points
-
 ```
 
-300
+200
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[20, 15, 10]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

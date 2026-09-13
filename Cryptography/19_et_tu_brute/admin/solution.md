@@ -1,7 +1,7 @@
 # et_tu_brute — solution
 
 **Flag:** `cyber_quest{3t_tu_k3ybrut3_b4072a}`
-**Difficulty:** medium-hard
+**Difficulty:** medium
 
 ## The setup
 

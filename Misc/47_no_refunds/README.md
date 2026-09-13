@@ -19,13 +19,11 @@ The cashier says everything you need is printed on it. No refunds.
 ```
 
 ### Difficulty
-
 ```
 
 easy
 
 ```
-
 ### Flag
 
 ```
@@ -37,21 +35,17 @@ cyber_quest{sc4n_th3_r3ce1pt_47c1d4}
 ### Points
 
 #### Base Points
-
 ```
 
 100
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[10, 5, 5]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

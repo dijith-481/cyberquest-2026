@@ -4,7 +4,7 @@ Invisible Ink
 
 ### Challenge Description
 
-Facilities vendored oe-format, a string-formatting helper from a parallel-universe npm mirror, into the badge-printing pipeline. Version 2.4.1 is pinned, dependency-free, and passed audit without a single finding. The auditors kept a copy of the tarball, and the pipeline has behaved strangely ever since.
+Facilities vendored a small helper library into the badge-printing pipeline. It passed audit without a single finding. The copy the auditors kept is attached.
 
 ### Difficulty
 
@@ -22,7 +22,7 @@ cyber_quest{wh1t3sp4c3_supply_ch41n_8f3a2c}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[10, 5, 5]
 
 ### Handout Text (Optional)
 

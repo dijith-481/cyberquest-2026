@@ -6,11 +6,7 @@ Hash Slinging
 
 ### Challenge Description
 
-The annual credential audit went exactly as well as annual credential audits go: IT exported everyone's password integrity hashes to the shared drive, attached the corporate wordlist "for reference," and reminded staff that the 2021 password policy is still current because the rotation ticket keeps getting deprioritized.
-
-Somewhere in the resulting spreadsheet sits an account that should never have been hashed the same way as everyone else's — and one very boring vault note that Kevin from IT sealed "for licensing reasons."
-
-The wordlist is approved. The memo is attached. Sling responsibly.
+IT exported the annual credential audit to the shared drive, with the corporate wordlist attached for reference. One spreadsheet, one policy memo, one sealed vault note. The rotation ticket is still pending.
 
 ### Difficulty
 
@@ -24,11 +20,11 @@ cyber_quest{n0_s4lt_n0_p3pp3r_ju5t_v4lue_c81d43}
 
 #### Base Points
 
-200
+150
 
 #### Submit Order Bonus (Optional)
 
-[]
+[15, 10, 10]
 
 ### Handout Text (Optional)
 

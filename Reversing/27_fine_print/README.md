@@ -22,11 +22,11 @@ cyber_quest{x0r_a11_th3_str1ngs_2gether_3f8a1d}
 
 #### Base Points
 
-200
+100
 
 #### Submit Order Bonus (Optional)
 
-[]
+[10, 5, 5]
 
 ### Handout Text (Optional)
 

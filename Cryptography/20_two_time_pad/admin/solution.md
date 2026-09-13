@@ -1,7 +1,7 @@
 # two_time_pad — solution
 
 **Flag:** `cyber_quest{0ne_t1me_p4d_pl3ase_c94d21}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

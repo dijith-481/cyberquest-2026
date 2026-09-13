@@ -1,7 +1,7 @@
 # 38_posterized — solution
 
 **Flag:** `cyber_quest{p41r_0rd3r_8f2a}`
-**Difficulty:** easy
+**Difficulty:** medium
 
 ## The setup
 

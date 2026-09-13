@@ -4,7 +4,7 @@ Required Reading
 
 ### Challenge Description
 
-Your orientation note is sealed, per the memo. It can only be read by someone who has done the required reading, against the current revision of the employee handbook, position by position. The handbook is attached. The reading is required.
+Your orientation note is sealed, and the seal references the current revision of the employee handbook. The handbook is attached. The reading is required.
 
 ### Difficulty
 
@@ -22,7 +22,7 @@ cyber_quest{r34d_th3_h4ndb00k_c0v3r_t0_c0v3r_2b8d0e}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[10, 5, 5]
 
 ### Handout Text (Optional)
 

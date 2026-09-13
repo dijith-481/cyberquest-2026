@@ -21,21 +21,17 @@ cyber_quest{1nc0gn1t0_l34v3s_th3_w4l_b3h1nd_9f4c2e}
 ### Points
 
 #### Base Points
-
 ```
 
 200
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[20, 15, 10]
 
 ```
-
 ### Handout Text (Optional)
 
 Download `incognito.zip` — IT's wipe report plus the recovered browser profile directory (`profile/`).

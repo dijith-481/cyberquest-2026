@@ -1,7 +1,7 @@
 # unsaved_changes — solution
 
 **Flag:** `cyber_quest{uns4ved_n0t3s_r3m3mb3r_3v3ryth1ng_5a91c4}`
-**Difficulty:** easy-medium
+**Difficulty:** easy
 
 ## The setup
 

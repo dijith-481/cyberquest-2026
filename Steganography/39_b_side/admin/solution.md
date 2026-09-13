@@ -1,7 +1,7 @@
 # 39_b_side — solution
 
 **Flag:** `cyber_quest{cr0ss_0v3r_t0_th3_b_s1d3_7f3a}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

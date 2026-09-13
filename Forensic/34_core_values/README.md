@@ -21,21 +21,17 @@ cyber_quest{v4lu3s_4rr1v3_0ut_0f_0rd3r_k33p_th3_s3q_b3f19}
 ### Points
 
 #### Base Points
-
 ```
 
 250
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[25, 20, 15]
 
 ```
-
 ### Handout Text (Optional)
 
 Download `core_values.zip` — one heap snapshot, `valuesd_heap.raw`, recovered from the crashed culture app.

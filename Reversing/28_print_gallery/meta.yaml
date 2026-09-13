@@ -1,7 +1,7 @@
-id: "26"
-title: "Scheme of Things"
+id: "28"
+title: "Print Gallery"
 category: "Reversing"
-difficulty: "hard"
+difficulty: "medium"
 author: "ordinary engineering"
 status: "built"
-points: 400
+points: 350

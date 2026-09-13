@@ -6,13 +6,11 @@ Et Tu, Brute?
 
 ### Challenge Description
 
-Interoffice memo 77-C arrived at the receiving desk in two pieces: a cover sheet that says everything is routine, and a body sealed "the way the General likes it." The receiving desk was not told the key. The receiving desk was, however, told exactly enough about the format — because the header is standardized, and the keyphrase tradition is, for reasons nobody can justify and nobody has been able to stop, Latin.
-
-Legal will pretend to read it. You should actually read it.
+Interoffice memo 77-C arrived in two pieces: a routine cover sheet and a sealed body. The receiving desk kept both and the key for neither. Legal pretends to have read it.
 
 ### Difficulty
 
-medium-hard
+medium
 
 ### Flag
 
@@ -26,7 +24,7 @@ cyber_quest{3t_tu_k3ybrut3_b4072a}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[30, 20, 15]
 
 ### Handout Text (Optional)
 

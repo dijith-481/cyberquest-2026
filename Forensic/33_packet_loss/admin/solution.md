@@ -1,7 +1,7 @@
 # packet_loss — solution
 
 **Flag:** `cyber_quest{dn5_3xf1l_r34ds_l1k3_h4rm0n_l3tt3rs_2c9a71}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

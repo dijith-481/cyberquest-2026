@@ -1,7 +1,7 @@
 # scheme_of_things — solution
 
 **Flag:** `cyber_quest{ch41n3d_b4cktr4ck1ng_9d41f3}`
-**Difficulty:** medium
+**Difficulty:** hard
 
 ## The setup
 

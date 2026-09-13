@@ -1,7 +1,7 @@
 # Print Gallery — organizer solution
 
 **Flag:** `cyber_quest{l0g_unw1nds_th3_g4ll3ry_7a3c9e}`  
-**Difficulty:** medium-hard · **Points:** 400 · **Hosting:** H0
+**Difficulty:** medium · **Points:** 350 · **Hosting:** H0
 
 ## Intended experience
 

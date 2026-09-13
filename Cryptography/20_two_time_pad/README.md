@@ -1,10 +1,10 @@
 ### Challenge Name
 
-Two-Time Pad
+Single Use
 
 ### Challenge Description
 
-Records files every memo sealed: one pad, byte for byte, no exceptions since the incident. The sealing protocol is very clear that the pad is strictly single-use, in the way corporate documentation is always very clear about the things that are not true. The register and the memos are attached, and the draft shelf beside the copier is, as usual, not access-controlled.
+Records sealed a run of memos and logged each one in the register. The memos, the register, and the protocol memo are attached. The draft shelf beside the copier is, as usual, not access-controlled.
 
 ### Difficulty
 
@@ -22,7 +22,7 @@ cyber_quest{0ne_t1me_p4d_pl3ase_c94d21}
 
 #### Submit Order Bonus (Optional)
 
-[]
+[10, 5, 5]
 
 ### Handout Text (Optional)
 

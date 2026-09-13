@@ -1,7 +1,7 @@
 # uglified — solution
 
 **Flag:** `cyber_quest{m1n1f13d_n0t_h1dd3n_5d7e1a}`
-**Difficulty:** easy-medium
+**Difficulty:** easy
 
 ## The setup
 

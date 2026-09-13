@@ -18,13 +18,11 @@ through IMG_014 and they all look equally wrong.
 ```
 
 ### Difficulty
-
 ```
 
-medium
+easy
 
 ```
-
 ### Flag
 
 ```
@@ -36,21 +34,17 @@ cyber_quest{x0r_m3_1f_y0u_c4n_8f3a2c}
 ### Points
 
 #### Base Points
-
 ```
 
-300
+200
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[20, 15, 10]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

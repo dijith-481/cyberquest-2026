@@ -1,7 +1,7 @@
 # Emojinated — solution
 
 **Flag:** `cyber_quest{3m0t1c0ns_w4llb04rd_b7ae2865}`
-**Difficulty:** easy-medium
+**Difficulty:** medium
 
 ## The setup
 

@@ -6,7 +6,7 @@ Posterized
 
 ### Challenge Description
 
-Marketing needed a launch poster by Friday and poster-gen delivered. Facilities printed the export byte-for-byte and hung it in the lobby. The lobby looks great. The file is attached exactly as the exporter wrote it: indexed color, palette and all.
+Marketing shipped a launch poster, and the export is attached exactly as it left the generator. Facilities printed it byte-for-byte. The file is the poster.
 
 ### Difficulty
 
@@ -19,21 +19,17 @@ cyber_quest{p41r_0rd3r_8f2a}
 ### Points
 
 #### Base Points
-
 ```
 
 300
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[30, 20, 15]
 
 ```
-
 ### Handout Text (Optional)
 
 Download `38_posterized.zip` — `launch-poster.png`, exactly as poster-gen exported it.

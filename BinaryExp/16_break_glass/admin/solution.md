@@ -1,7 +1,7 @@
 # Break Glass — solution
 
 **Flag:** `cyber_quest{br34k_gl4ss_l1v3_p4tch_7f3a1c}`  
-**Difficulty:** hard
+**Difficulty:** medium
 
 ## Intended solve
 

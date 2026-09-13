@@ -2,30 +2,22 @@
 
 ```
 
-SafeVault
+Safe Vault
 
 ```
 
 ### Challenge Description
-
 ```
 
-vault-svc v1 had an incident, so the label safe was rewritten in Rust
-as vault-svc v2. New automation tier, hex wire format, heap storage —
-the overflow is gone and the auditors confirmed it. Memory-safe this
-time. The v2 source and binary are attached for vendors who want to
-match its behavior exactly.
+After an incident with the old label service, the team rewrote it from scratch and attached the new release for vendors. The rewrite was declared an improvement. Declarations are attached alongside the binary.
 
 ```
-
 ### Difficulty
-
 ```
 
 medium
 
 ```
-
 ### Flag
 
 ```
@@ -37,21 +29,17 @@ cyber_quest{saf3_vault_unsafe_b0undary_4d2e90}
 ### Points
 
 #### Base Points
-
 ```
 
 300
 
 ```
-
 #### Submit Order Bonus (Optional)
-
 ```
 
-[]
+[30, 20, 15]
 
 ```
-
 ### Handout Text (Optional)
 
 ```

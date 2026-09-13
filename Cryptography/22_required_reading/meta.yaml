@@ -1,7 +1,7 @@
-id: "26"
+id: "22"
 title: "Required Reading"
 category: "Cryptography"
-difficulty: "medium"
+difficulty: "easy"
 author: "ordinary engineering"
 status: "built"
-points: 200
+points: 100

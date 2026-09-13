@@ -1,7 +1,7 @@
 # invisible_ink — solution
 
 **Flag:** `cyber_quest{wh1t3sp4c3_supply_ch41n_8f3a2c}`
-**Difficulty:** medium
+**Difficulty:** easy
 
 ## The setup
 

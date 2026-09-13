@@ -1,0 +1,15 @@
+Source footage for the 42_storyboard challenge
+=============================================
+
+Work: "Budots Dance Video"
+Author: Sherwin Tuna
+Source: https://commons.wikimedia.org/wiki/File:Budots_Dance_Video.ogg
+  (originally published at https://www.youtube.com/watch?v=3H4A1Z64EKo)
+License: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  https://creativecommons.org/licenses/by/3.0
+
+`source.mp4` is a trimmed (8.0-37.0s), downscaled (464x256) derivative of
+that work, used as the luminance/hue source for the ASCII-art frames in
+`storyboard.mkv`. The ASCII rendering, twin-glyph variant channel, QR
+payload, terminal chrome, and lossless FFV1 encoding are original to this
+challenge. No endorsement by the original author is implied.

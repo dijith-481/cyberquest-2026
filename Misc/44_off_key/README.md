@@ -8,15 +8,10 @@ Off Key
 
 ### Challenge Description
 
-```
+Ordinary Engineering hired a few fast typists for the quarterly offsite. They were fast, and they knew it, and their pages reached the newsletter queue before anyone had reason to read them back.
 
-ordinary engineering hired a few fast typists for the quarterly
-offsite. They were fast, and they knew it. Their pages reached the
-newsletter queue before anyone thought to read them back.
+Legal has now read them and would like a second opinion. Legal has also asked, rhetorically, who approved the singing.
 
-Legal has now read them and would like a second opinion.
-
-```
 
 ### Difficulty
 ```
@@ -43,9 +38,10 @@ cyber_quest{0ff_key_7r4ck_736sc3}
 #### Submit Order Bonus (Optional)
 ```
 
-[20, 15, 10]
+[]
 
 ```
+
 ### Handout Text (Optional)
 
 ```

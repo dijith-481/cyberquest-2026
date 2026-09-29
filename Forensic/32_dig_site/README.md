@@ -6,7 +6,9 @@ Dig Site
 
 ### Challenge Description
 
-The pre-merger skill matrix was imported into the new HR system in one batch. The archive was exported in pieces and reassembled by hand. The reassembled archive is attached.
+The pre-merger skill matrix went into the new HR system in one batch, which the vendor recommended, and which the vendor then declined to assist with.
+
+The archive was exported in pieces and reassembled by hand. The reassembled archive is attached, exactly as the housekeeping pass left it. Housekeeping called that pass a success.
 
 ### Difficulty
 

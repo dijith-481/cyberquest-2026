@@ -8,15 +8,10 @@ No Refunds
 
 ### Challenge Description
 
-```
+The break-room shop upgraded its receipt printer, and every purchase now prints a souvenir. The receipt is longer than the queue behind you was, and the queue has been supportive about it.
 
-The break-room shop upgraded its receipt printer and now every
-purchase prints a souvenir. You bought one energy drink. The
-receipt is longer than the queue behind you was.
+The cashier says everything needed is printed on it. The cashier then declined to elaborate, and there are no refunds.
 
-The cashier says everything you need is printed on it. No refunds.
-
-```
 
 ### Difficulty
 ```
@@ -43,9 +38,10 @@ cyber_quest{sc4n_th3_r3ce1pt_47c1d4}
 #### Submit Order Bonus (Optional)
 ```
 
-[10, 5, 5]
+[]
 
 ```
+
 ### Handout Text (Optional)
 
 ```

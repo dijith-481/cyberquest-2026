@@ -6,7 +6,9 @@ Core Values
 
 ### Challenge Description
 
-The culture artifacts service ("valuesd") crashed during the quarterly values sync. It had been, in its own words, "holding the values." IT recovered a snapshot of the process memory and, per policy, attached it to the incident instead of reading it.
+The culture artifacts service — `valuesd`, which described itself in its own logs as "holding the values" — crashed during the quarterly values sync.
+
+IT recovered a snapshot of the process memory and, per policy, attached it to the incident ticket rather than reading it, because reading attachments is how incidents turn into findings.
 
 The quarterly deck still needs its missing slide.
 

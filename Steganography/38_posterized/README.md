@@ -6,7 +6,9 @@ Posterized
 
 ### Challenge Description
 
-Marketing shipped a launch poster, and the export is attached exactly as it left the generator. Facilities printed it byte-for-byte. The file is the poster.
+Marketing shipped a launch poster, and the export is attached exactly as it left the generator. Facilities printed it byte-for-byte, which was the whole of their contribution.
+
+The file is the poster. There is no other poster.
 
 ### Difficulty
 

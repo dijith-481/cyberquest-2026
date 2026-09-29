@@ -4,7 +4,9 @@ Complexity Requirements
 
 ### Challenge Description
 
-Passwords now meet the 2026 complexity policy, and the full verification export is attached. The helpdesk card is attached too. One row did not export cleanly.
+Since the 2026 complexity policy landed, every credential in the verification export is long, punctuated, and technically compliant. Compliance is the point of the policy, and the policy is the reason the export exists.
+
+The helpdesk card is attached for reference. One row did not export cleanly, which is generally where the interesting part turns up.
 
 ### Difficulty
 

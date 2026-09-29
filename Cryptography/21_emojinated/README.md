@@ -6,7 +6,9 @@ Emojinated
 
 ### Challenge Description
 
-The lobby wallboard has shown the same status line since March. Facilities recovered the export and one sticky note from the old display. The wallboard team would like their script back.
+The lobby wallboard has displayed the same status line since March. Facilities recovered the export and one sticky note from the old display, and attached both.
+
+The wallboard team would like their script back. They have now asked twice.
 
 ### Difficulty
 

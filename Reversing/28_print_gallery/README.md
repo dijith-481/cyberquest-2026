@@ -6,9 +6,10 @@ Print Gallery
 
 ### Challenge Description
 
-```
-Ordinary Engineering acquired a print gallery from a universe with no outside. Collections says the visitor, the building, and the picture all fit inside the same frame. The acquisition is attached for inspection.
-```
+Ordinary Engineering acquired a print gallery from a universe that has no outside to speak of. Collections insists the visitor, the building, and the picture all fit inside the same frame, and has framed accordingly.
+
+The acquisition is attached for inspection. It is a very good print.
+
 
 ### Difficulty
 ```

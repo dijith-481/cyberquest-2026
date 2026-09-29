@@ -7,11 +7,12 @@ Ghost Glyphs
 ```
 
 ### Challenge Description
-```
 
-Archive 07 of the Spectral Observatory arrived as a single poster file. The staff notes are attached with it. The poster renders fine everywhere.
+Archive 07 of the Spectral Observatory arrived as a single poster file, and it renders fine everywhere, which is the part the staff have come to dislike.
 
-```
+The staff notes are attached with it. They were written by somebody who had already had a bad afternoon.
+
+
 ### Difficulty
 ```
 
@@ -37,9 +38,10 @@ cyber_quest{0nly_th3_r1ght_0bserver_s33s_th3_s1gn4l_9d4e2f}
 #### Submit Order Bonus (Optional)
 ```
 
-[10, 5, 5]
+[]
 
 ```
+
 ### Handout Text (Optional)
 
 ```

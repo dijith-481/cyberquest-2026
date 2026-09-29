@@ -8,7 +8,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-EXPECTED="cyberQuest{tru5t_f4ll_00584104}"
+EXPECTED="cyber_quest{tru5t_f4ll_00584104}"
 
 echo "[*] rebuild generation-0 from handout source"
 cp handout/tcc.c /tmp/tf_boot.c
@@ -69,7 +69,7 @@ echo "[*] locked-flag math: first glibc rand of the baked random"
 cat > /tmp/tf_ref.c <<'EOF'
 #include <stdio.h>
 #include <stdlib.h>
-int main(int argc, char **argv){ unsigned s; sscanf(argv[1],"%x",&s); srand(s); printf("cyberQuest{tru5t_f4ll_%08x}\n",rand()); return 0; }
+int main(int argc, char **argv){ unsigned s; sscanf(argv[1],"%x",&s); srand(s); printf("cyber_quest{tru5t_f4ll_%08x}\n",rand()); return 0; }
 EOF
 gcc -o /tmp/tf_ref /tmp/tf_ref.c 2>/dev/null
 GOT=$(/tmp/tf_ref "$SEEDR")

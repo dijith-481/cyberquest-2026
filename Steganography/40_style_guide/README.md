@@ -5,11 +5,12 @@ Style Guide
 ```
 
 ### Challenge Description
-```
 
-Brand ops circulated a revision of the internal style guide for the brand refresh. The circulated copy is attached as circulated. Readers on every platform open it the same way.
+Brand ops circulated revision 3.9 of the internal style guide for the brand refresh. It is attached as circulated, which is to say: protected, source-packaged, and identical on every platform.
 
-```
+Readers on every platform open it the same way. Brand ops have tested this on eleven of them and are confident about the twelfth.
+
+
 ### Difficulty
 ```
 

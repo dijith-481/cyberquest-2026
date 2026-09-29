@@ -5,11 +5,12 @@ Storyboard
 ```
 
 ### Challenge Description
-```
 
-Marketing exported a storyboard that fits in a megabyte. The export is attached exactly as the player wrote it. Source footage is credited in the file.
+Marketing exported a storyboard that fits in a megabyte, which nobody involved believes, and the export is attached exactly as the player wrote it.
 
-```
+Twenty-nine shots. The source footage is credited in the file, generously, and at considerable length.
+
+
 ### Difficulty
 ```
 

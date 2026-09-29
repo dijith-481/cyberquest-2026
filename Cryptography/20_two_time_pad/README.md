@@ -4,7 +4,9 @@ Single Use
 
 ### Challenge Description
 
-Records sealed a run of memos and logged each one in the register. The memos, the register, and the protocol memo are attached. The draft shelf beside the copier is, as usual, not access-controlled.
+Records sealed a run of memos under the one-time protocol and logged every one of them in the register, which is precisely what the register is for.
+
+The memos, the register, and the protocol memo are attached. So is the draft shelf beside the copier, which is not access-controlled and never has been.
 
 ### Difficulty
 
@@ -22,7 +24,7 @@ cyber_quest{0ne_t1me_p4d_pl3ase_c94d21}
 
 #### Submit Order Bonus (Optional)
 
-[10, 5, 5]
+[]
 
 ### Handout Text (Optional)
 

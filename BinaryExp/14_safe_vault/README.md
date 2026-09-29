@@ -7,11 +7,12 @@ Safe Vault
 ```
 
 ### Challenge Description
-```
 
-After an incident with the old label service, the team rewrote it from scratch and attached the new release for vendors. The rewrite was declared an improvement. Declarations are attached alongside the binary.
+After the incident with the old label service, the team rewrote it from scratch in a language chosen for its safety guarantees, and the rewrite was declared an improvement on the strength of that one sentence.
 
-```
+The new release and the declarations are attached. The declarations are unusually confident.
+
+
 ### Difficulty
 ```
 

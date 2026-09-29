@@ -15,7 +15,7 @@ the pid, print one `rand()` as the flag.
 
 ```c
 srand(time(0)^getpid()*1103515245);
-printf("cyberQuest{tru5t_f4ll_%08x}\n",rand());
+printf("cyber_quest{tru5t_f4ll_%08x}\n",rand());
 ```
 
 With any ordinary compiler the seed is live, so every run (even twice in
@@ -23,8 +23,8 @@ the same second — the pid differs) prints a different flag:
 
 ```
 $ cc flag.c -o f && ./f
-cyberQuest{tru5t_f4ll_722e0e75}
-cyberQuest{tru5t_f4ll_01caa7ed}     <- changes every run
+cyber_quest{tru5t_f4ll_722e0e75}
+cyber_quest{tru5t_f4ll_01caa7ed}     <- changes every run
 ```
 
 ## The solve
@@ -39,8 +39,8 @@ $ ./tcc tcc.c && cp a.out tcc1        # generation 1
 $ ./tcc1 tcc.c && cp a.out tcc2       # generation 2
 ...about a dozen times...
 $ ./tcc12 flag.c && ./a.out
-cyberQuest{tru5t_f4ll_00584104}
-cyberQuest{tru5t_f4ll_00584104}       <- locked
+cyber_quest{tru5t_f4ll_00584104}
+cyber_quest{tru5t_f4ll_00584104}       <- locked
 ```
 
 The locked value is the first output of libc's own generator for a dead
@@ -66,7 +66,7 @@ call srand
 The mask starts as `andl $-1` (a no-op: full entropy) and every generation
 sheds three more live seed bits into the baked random. Once all 32 are
 dead the seed is exactly that random every run, giving the flag
-`cyberQuest{tru5t_f4ll_00584104}`. That hex is computed by libc, never
+`cyber_quest{tru5t_f4ll_00584104}`. That hex is computed by libc, never
 stored: it
 appears in no binary, only as the fixed point the collapsed entropy drains
 into.
@@ -93,4 +93,4 @@ constants. The three places that matter in the source:
 
 `admin/verify.sh` rebuilds generation 0 from the handout source,
 drives a fresh binary copy from genesis to lock, and checks the flag walks from
-random to `cyberQuest{tru5t_f4ll_00584104}`.
+random to `cyber_quest{tru5t_f4ll_00584104}`.

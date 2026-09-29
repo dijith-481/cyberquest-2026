@@ -7,11 +7,12 @@ Break Glass
 ```
 
 ### Challenge Description
-```
 
-The vault team's release binary behaves exactly as designed, or so the team insists. A normal run produces a plausible-looking token. The release is attached for inspection. The source was not included.
+The vault team's release binary behaves exactly as designed, or so the team insists, and an ordinary run produces a perfectly plausible token.
 
-```
+The release is attached. The source was not included, on the grounds that including it would amount to an admission.
+
+
 ### Difficulty
 ```
 

@@ -6,7 +6,11 @@ Hash Slinging
 
 ### Challenge Description
 
-IT exported the annual credential audit to the shared drive, with the corporate wordlist attached for reference. One spreadsheet, one policy memo, one sealed vault note. The rotation ticket is still pending.
+The IT Service Desk has exported the annual credential audit to the shared drive, and the approved wordlist came along for the ride. Nobody has read the hygiene memo since 2021, which everyone agrees is a success story.
+
+Per policy EX-3, one off-site vault note is sealed. IT assures us this is routine and that we should not think about it too hard.
+
+The rotation ticket is still pending.
 
 ### Difficulty
 
@@ -24,7 +28,7 @@ cyber_quest{n0_s4lt_n0_p3pp3r_ju5t_v4lue_c81d43}
 
 #### Submit Order Bonus (Optional)
 
-[15, 10, 10]
+[]
 
 ### Handout Text (Optional)
 

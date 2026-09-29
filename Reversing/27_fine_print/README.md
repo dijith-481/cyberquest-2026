@@ -6,9 +6,11 @@ Fine Print
 
 ### Challenge Description
 
-Ordinary Engineering ships a license checker with every product line, and the silicon-universe build leaked on its way to the release branch. The checker runs, it validates, it declines, and the master key it was assembled from is nowhere in the manual.
+Ordinary Engineering ships a license checker with every product line, and the silicon-universe build leaked on its way to the release branch.
 
-The binary is attached. Support insists the answer is in there. Support is right, for once.
+The checker runs. It validates. It declines. The master key it was assembled from is nowhere in the manual, and the manual is thorough about everything else.
+
+Support insists the answer is in there. Support is right, for once.
 
 ### Difficulty
 
@@ -26,7 +28,7 @@ cyber_quest{x0r_a11_th3_str1ngs_2gether_3f8a1d}
 
 #### Submit Order Bonus (Optional)
 
-[10, 5, 5]
+[]
 
 ### Handout Text (Optional)
 

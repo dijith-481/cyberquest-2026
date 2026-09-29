@@ -6,7 +6,9 @@ The Corridor That Remembers
 
 ### Challenge Description
 
-A psychology student archived a series of experiment sessions as a small maze. Their notes are attached with it. The archive is self-contained and stays where you extract it.
+A psychology student archived a series of experiment sessions as a small maze, twenty corridors deep. Their notes are attached with it.
+
+The archive is self-contained and stays exactly where you extract it. The student was insistent on that point.
 
 ### Difficulty
 
@@ -27,9 +29,10 @@ cyber_quest{familiar_is_not_the_same_as_correct}
 #### Submit Order Bonus (Optional)
 ```
 
-[10, 5, 5]
+[]
 
 ```
+
 ### Handout Text (Optional)
 
 Download `corridor.tar.gz` — one session archive, twenty corridors, and one

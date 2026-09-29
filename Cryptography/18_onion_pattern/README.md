@@ -6,7 +6,9 @@ Onion Pattern
 
 ### Challenge Description
 
-The asset-transfer pipeline wraps every export once per hop, and the export in your hands is one file. The pipeline changed owners twice, and the onboarding docs did not survive. Unwrap it.
+The asset-transfer pipeline wraps every export once per hop, and the pipeline changed hands twice. The onboarding documentation did not survive either handover.
+
+The ticket that closed the feature request describes the result as being layered. The ticket does not say how many layers, because the ticket was written by the people who lost the documentation.
 
 ### Difficulty
 
@@ -24,7 +26,7 @@ cyber_quest{p33l_p4t13ntly_4ll_th3_w4y_d0wn_5e2b19}
 
 #### Submit Order Bonus (Optional)
 
-[20, 15, 10]
+[]
 
 ### Handout Text (Optional)
 

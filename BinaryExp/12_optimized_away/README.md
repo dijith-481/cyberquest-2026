@@ -7,11 +7,12 @@ Optimized Away
 ```
 
 ### Challenge Description
-```
 
-The ledger service ships in two builds, and both are attached for vendor comparison. The reconciliation desk accepts outside filings. File one of your own.
+The ledger service ships in two builds. Both are attached, because the vendor comparison process requires two attachments and nobody has ever read that clause.
 
-```
+The reconciliation desk accepts outside filings. It has not rejected one yet, on the grounds that the desk is not in the business of second-guessing arithmetic.
+
+
 ### Difficulty
 ```
 

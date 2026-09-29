@@ -8,15 +8,10 @@ Lost in Translation
 
 ### Challenge Description
 
-```
+Every translation unit bound for the build farm passes through intake first. You may submit one over the internal wire, and intake will decide whether it ships.
 
-Every translation unit bound for the build farm passes through intake
-first. Paste a unit over the internal wire and intake decides whether it
-ships. Most units are turned away without explanation, and the intake team
-considers this load-bearing. A conformance sample and the intake binary
-are attached for vendors who want to match its behavior exactly.
+Most submissions are turned away without explanation. The intake team considers this load-bearing, and the sample they judge against is attached, for vendors who would like to match its behaviour exactly.
 
-```
 
 ### Difficulty
 ```

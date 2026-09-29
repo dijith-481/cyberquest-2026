@@ -4,7 +4,9 @@ Required Reading
 
 ### Challenge Description
 
-Your orientation note is sealed, and the seal references the current revision of the employee handbook. The handbook is attached. The reading is required.
+New starters receive an orientation note. This one's seal points at a revision number, and the revision number points at a page, and the page is somewhere inside the attached handbook.
+
+The reading is required. Onboarding has never once asked anyone to confirm they finished it.
 
 ### Difficulty
 
@@ -22,7 +24,7 @@ cyber_quest{r34d_th3_h4ndb00k_c0v3r_t0_c0v3r_2b8d0e}
 
 #### Submit Order Bonus (Optional)
 
-[10, 5, 5]
+[]
 
 ### Handout Text (Optional)
 

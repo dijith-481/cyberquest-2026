@@ -6,7 +6,9 @@ Et Tu, Brute?
 
 ### Challenge Description
 
-Interoffice memo 77-C arrived in two pieces: a routine cover sheet and a sealed body. The receiving desk kept both and the key for neither. Legal pretends to have read it.
+Interoffice memo 77-C arrived in two pieces: a routine cover sheet and a sealed body. The receiving desk filed both and, for reasons nobody recorded, the key for neither.
+
+Legal has read it. Legal will not say what it says.
 
 ### Difficulty
 

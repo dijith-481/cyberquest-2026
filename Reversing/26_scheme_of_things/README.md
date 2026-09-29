@@ -4,7 +4,9 @@ Scheme of Things
 
 ### Challenge Description
 
-Performance calibration season is here, and the evaluation tool from the Q3 import batch is rejecting every passphrase on file. Your review is blocked until an evaluation passes. The tool and its documentation are attached.
+Performance calibration season is here, and the evaluation tool from the Q3 import batch is rejecting every passphrase on file. Every one of them. The tool has been in production since March and has never returned a pass.
+
+The tool and its documentation are attached. The documentation is enthusiastic, and refers throughout to a standard you will not find anywhere in the building.
 
 ### Difficulty
 

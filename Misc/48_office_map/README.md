@@ -25,7 +25,7 @@ easy
 
 ```
 
-cyber_quest{newbiegotlost}
+cyber_quest{n3wb13g07l057_b1c17}
 
 ```
 

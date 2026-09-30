@@ -1149,7 +1149,7 @@ const ROOMS = [
    prop:{x:505,y:185,r:26,title:"Sprint 47", body:"TODO\n[x] Open TODO list\n[ ] Do something\n[ ] Close TODO list\n\nvelocity: UNKNOWN"}},
   {id:"r_51be", name:"Workshop", rect:{x:700,y:100,w:230,h:180},
    flavor:"3D printer. Spare parts. Ambition.",
-   prop:{x:815,y:185,r:26,title:"Print log", body:"FACILITIES   999999 layers\nNEW HIRE          3\nHR                2\n\nfilament: 404 NOT FOUND"}},
+   prop:{x:815,y:185,r:26,title:"Print log", body:"BADGE FILING\n\nfacilities drawing .... b1c17\nnew hire layers ........ 3\nHR layers .............. 2\n\nfilament: 404 NOT FOUND"}},
   {id:"r_6e07", name:"Legal", rect:{x:1010,y:620,w:230,h:170},
    flavor:"Extremely boring. Aggressively beige.",
    prop:{x:1095,y:700,r:26,title:"Filing cabinet", body:"To open this drawer you must agree to the\nDrawer Terms of Service.\n\n[ I Agree ]  —  Page 1 of 846\n\n(thank you. the drawer is empty.)"}},
@@ -1284,7 +1284,10 @@ function showReceipt(){
   const line = "-".repeat(34);
   const full = line+"\n ORDINARY ENGINEERING — FACILITIES\n"+line+
     "\n\nPERFECT ROUTE COMPLETED\n\n"+names.join("\n")+
-    "\n\nFacilities memo:\n\n\"When documenting an inspection,\nwe abbreviate rooms by their initials.\"\n\nWrap the initials in the usual flag format.";
+    "\n\nFacilities memo:\n\n\"When documenting an inspection,\nwe abbreviate rooms by their initials.\"\n\n"+
+    "Standing orders are filed in house leet, and every order carries\n"+
+    "the badge's facilities drawing number.\n\n"+
+    "House leet: a=4  e=3  i=1  o=0  s=5  t=7";
   const el = $("receipt"); el.textContent = "";
   let i = 0;
   const tick = () => { el.textContent = full.slice(0, i+=4); if(i<full.length) setTimeout(tick, 12); else showLetters(); };
@@ -1300,7 +1303,12 @@ function showLetters(){
   initials.forEach((ch,k)=> setTimeout(()=>{
     const s=document.createElement("span"); s.textContent=ch; s.className="hl"; box.appendChild(s);
   }, k*160));
-  setTimeout(()=>{ $("wrapHint").textContent = "Take the first letter of each room, in order, and wrap it in the usual cyber_quest{...} flag format."; }, initials.length*160+200);
+  setTimeout(()=>{
+    $("wrapHint").textContent =
+      "Take the first letter of each room, in order. Leet it, then wrap it in "+
+      "cyber_quest{...} with the badge's facilities drawing number. "+
+      "The print log in the Workshop has it.";
+  }, initials.length*160+200);
 }
 /* ---------- pencil rendering ---------- */
 function rr(x,y,w,h,r){

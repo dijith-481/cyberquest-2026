@@ -1,8 +1,8 @@
 # CTF Challenge Index — Excel 2026
 
-55 challenges are complete, including the two 50+ WebExploitation slots
-(56 Standing Order, 57 Coming of Age). Challenge 49 (OSINT) is still in
-progress and is listed separately at the bottom.
+53 challenges are complete. `06` and `07` are cut; their points return in full
+as `56` (Standing Order) and `57` (Coming of Age). Challenge 49 (OSINT) is still
+in progress and is listed separately at the bottom.
 
 ## Scoring rules
 
@@ -15,18 +15,20 @@ progress and is listed separately at the bottom.
   - Rationale: a first blood on a low-value challenge is nearly worthless to a team and mostly rewards whoever solved the warm-up first. The bonus is reserved for the solves that are actually contested.
   - Where awarded, it is relative to base points: 1st solve gets 10%, 2nd gets 7%, 3rd gets 5%, each rounded half-up to the nearest multiple of 5 (minimum 5). Example: a 300-point challenge pays `[30, 20, 15]`, a 250-point challenge pays `[25, 20, 15]`.
   - This follows the 2025 convention, where the bonus was opt-in and concentrated on the harder tiers (0/5 very-easy, 1/11 easy, 4/8 medium, 2/2 hard). We kept the 2025 *eligibility* rule but replaced the hand-picked 2025 amounts with a formula.
-- Total available points across the 55 completed challenges: **13300** base, drawn from 24 medium/hard challenges that carry up to **1740** in first-blood bonuses. The remaining 31 (all easy) pay no bonus.
+- Total available points across the 53 completed challenges: **13300** base, drawn from 23 medium/hard challenges that carry up to **1690** in first-blood bonuses. The remaining 30 (all easy) pay no bonus.
+
+`06` and `07` are cut and their points return in full as `56` (500) and `57` (400), so the base total is unchanged by the swap.
 
 ## Hosting / deployment
 
-- **app** — hosted web service the player connects to over HTTP. 8 deployments serve 12 challenges: `01` (store), `02` (poster-gen, also serves `03` + `04`), `06` (employee console, also serves `07`), `08` (open-door), `09` (dino kiosk, also serves `10`), `56` (procurement desk), `57` (interop bridge, port 8055), `49` (company site, port 8049).
+- **app** — hosted web service the player connects to over HTTP. 7 deployments serve 10 challenges: `01` (store), `02` (poster-gen, also serves `03` + `04`), `08` (open-door), `09` (dino kiosk, also serves `10`), `56` (procurement desk), `57` (interop bridge, port 8055), `49` (company site, port 8049). `06`'s deployment is retired — it existed to host `07`, which is cut.
 - **nc** — TCP service, one container each: `12` (port 1337), `13` (1338), `14` (1339), `15` (1340).
 - **static** — no backend; open in a browser: `05` (news site build), `48` (HQ map page), `50` (Book Haven page), `51` (continuity note plus its share card).
 - **handout** — download the files, solve offline, no server: everything else (37 challenges: `11`, `16`, all of Cryptography / Reversing / Forensic / Steganography, and Misc `43`–`47`, `52`–`54`).
 
-Runtime footprint: 8 app processes + 4 nc listeners + 4 static pages; the remaining 37 challenges need no hosting at all.
+Runtime footprint: 7 app processes + 4 nc listeners + 4 static pages; the remaining 37 challenges need no hosting at all.
 
-## WebExploitation — 7200 pts
+## WebExploitation — 7200 pts (06 and 07 cut, superseded by 56/57)
 
 | #   | Challenge         | Difficulty | Base | 1st | 2nd | 3rd | Hosting           | Exploit                         |
 | --- | ----------------- | ---------- | ---- | --- | --- | --- | ----------------- | ------------------------------- |
@@ -35,11 +37,11 @@ Runtime footprint: 8 app processes + 4 nc listeners + 4 static pages; the remain
 | 03  | Second Guess      | medium     | 300  | 30  | 20  | 15  | app (via 02)      | predict UUIDv1 from boot time   |
 | 04  | Rewind            | hard       | 500  | 50  | 35  | 25  | app (via 02)      | rewind PRNG state backwards     |
 | 05  | Left in the Build | medium     | 300  | 30  | 20  | 15  | static            | reassemble keys from sourcemaps |
-| 06  | Promotion Letter  | easy       | 100  |  [] |  [] |  [] | app (hosts 06–07) | forge unverified admin claim    |
-| 07  | Clock Puncher     | hard       | 400  | 40  | 30  | 20  | app (via 06)      | time signature and code checks  |
 | 08  | AI-Powered        | medium     | 300  | 30  | 20  | 15  | app               | quote exact ritual phrase       |
 | 09  | dino              | easy       | 100  |  [] |  [] |  [] | app (hosts 09–10) | forge signed score client-side  |
 | 10  | dino rev 2        | hard       | 400  | 40  | 30  | 20  | app (via 09)      | fake score after inspection     |
+| ~~06~~ | ~~Promotion Letter~~ | — | — | — | — | — | **cut** — superseded by 56; retained in tree |
+| ~~07~~ | ~~Clock Puncher~~ | — | — | — | — | — | **cut** — timing attack not survivable over a real network path; replaced by 57 |
 | 50  | Source of Truth   | very-easy  | 50   |  [] |  [] |  []  | static            | follow the linked stylesheet     |
 | 51  | Share Card        | easy       | 150  |  [] |  [] |  []  | static            | read the flag in an SVG `<desc>` |
 | 56  | Standing Order    | hard       | 500  | 50  | 35  | 25  | app               | prototype pollution via batch desync |
@@ -117,9 +119,9 @@ Runtime footprint: 8 app processes + 4 nc listeners + 4 static pages; the remain
 
 | Difficulty | Count | First-blood bonus | Challenges                                                                                                     |
 | ---------- | ----- | ----------------- | -------------------------------------------------------------------------------------------------------------- |
-| easy       | 28    | none              | 01, 02, 06, 09, 13, 17, 18, 20, 22, 23, 25, 27, 29, 30, 31, 33, 35, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 51 |
+| easy       | 27    | none              | 01, 02, 09, 13, 17, 18, 20, 22, 23, 25, 27, 29, 30, 31, 33, 35, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 51 |
 | medium     | 15    | 10 / 7 / 5 %      | 03, 05, 08, 12, 14, 16, 19, 21, 24, 28, 32, 34, 38, 40, 52                                                  |
-| hard       | 9     | 10 / 7 / 5 %      | 04, 07, 10, 11, 15, 26, 42, 56, 57                                                                            |
+| hard       | 8     | 10 / 7 / 5 %      | 04, 10, 11, 15, 26, 42, 56, 57                                                                              |
 | very-easy  | 1     | none              | 50                                                                                                              |
 
 `50` is the event's only intentional `very-easy`: it is a deliberate Day-1 opening

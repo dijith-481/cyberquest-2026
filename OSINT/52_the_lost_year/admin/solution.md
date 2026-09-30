@@ -1,6 +1,6 @@
 # The Lost Year — solution
 
-**Flag:** `cyber_quest{ye_olde_leetspeak}`
+**Flag:** `cyber_quest{y3_0ld3_l33tsp34k}`
 
 **Category:** OSINT
 **Difficulty:** easy
@@ -16,7 +16,7 @@ EXCEL's yearly archive pages:  YEAR.excelmec.org
           →  "The Grand Elite Tournament"
                →  /competitions/grand-elite-tournament/
                     →  Champion's Certificate
-                         →  cyber_quest{ye_olde_leetspeak}
+                         →  cyber_quest{y3_0ld3_l33tsp34k}
 ```
 
 ## Walkthrough
@@ -68,11 +68,34 @@ The results page (`/competitions/grand-elite-tournament/`) ends with the
 **Champion's Certificate**, where the flag is printed plainly:
 
 ```text
-cyber_quest{ye_olde_leetspeak}
+cyber_quest{y3_0ld3_l33tsp34k}
 ```
 
 There is no source-diving, no header, no robots.txt, no hash. The site is
 honest; finding it was the challenge.
+
+### On the flag itself
+
+```text
+cyber_quest{y3_0ld3_l33tsp34k}
+```
+
+The flag reads "ye olde leetspeak" and is written in leetspeak, so it is a
+self-fulfilling claim: it says it is old-school leet *in* old-school leet.
+That is the joke, and it points back at the same pivot the player already had
+to make — **elite → leet → 1337**. Reading the flag confirms the insight
+rather than adding a new one.
+
+It was previously `ye_olde_leetspeak`, which spelled the joke out in plain
+English and so described leetspeak without being any. Across this event 51 of
+the 61 flags are leetspeak, and this was one of only two that were not, so it
+now matches house style and the joke actually holds.
+
+There is no hex suffix on this flag, unlike most of the event's. That is
+deliberate: this challenge has no file to hide a suffix in, the flag is simply
+printed on a page, and a random hex tail would add nothing but noise. Several
+other flags are the same (`th3_m3t4d4t4_1s_n0t_th3_phot0`, `r34d_th3_styl3sh33t`,
+`th3_c4ch3_1s_n0t_4uth3nt1c4t10n`).
 
 ## Why the site can be trusted by players
 

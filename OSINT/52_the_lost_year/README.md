@@ -24,7 +24,7 @@ easy
 ### Flag
 
 ```
-cyber_quest{ye_olde_leetspeak}
+cyber_quest{y3_0ld3_l33tsp34k}
 ```
 
 ### Points

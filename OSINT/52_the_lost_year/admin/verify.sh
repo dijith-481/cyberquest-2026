@@ -6,7 +6,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 README="$ROOT/README.md"
 DEPLOY="$ROOT/deployment"
-FLAG="cyber_quest{ye_olde_leetspeak}"
+FLAG="cyber_quest{y3_0ld3_l33tsp34k}"
 
 pass() { printf 'PASS: %s\n' "$1"; }
 fail() { printf 'FAIL: %s\n' "$1" >&2; exit 1; }
@@ -108,8 +108,23 @@ if grep -R -F -q "$FLAG" "$DEPLOY/index.html" "$DEPLOY/competitions/index.html" 
 fi
 pass "flag is only on the tournament page"
 
+# House style: the flag body is leetspeak. This one was once "ye_olde_leetspeak",
+# which spelled the joke out in plain English — 51 of the event's 61 flags are
+# leet, and this was one of only two that were not.
+#
+# The optional trailing hex suffix is stripped FIRST. Without that, any flag
+# with a suffix passes on the strength of its own hex digits alone, which is
+# not what is being asserted: "ye_olde_leetspeak_9f3a1c4" is plain English
+# wearing a leet costume and must not satisfy this.
+BODY="${FLAG#cyber_quest{}"
+BODY="${BODY%_*}"   # drop a trailing _hexsuffix if present
+if ! printf '%s' "$BODY" | grep -Eq '[a-z][0-9]|[0-9][a-z]'; then
+  fail "flag body is not in leetspeak: $FLAG"
+fi
+pass "flag body is leetspeak"
+
 # The solution must document the pivot honestly.
-for step in 'elite' '1337.excelmec.org' 'grand-elite-tournament' 'cyber_quest{ye_olde_leetspeak}'; do
+for step in 'elite' '1337.excelmec.org' 'grand-elite-tournament' 'cyber_quest{y3_0ld3_l33tsp34k}'; do
   grep -Fq "$step" "$ROOT/admin/solution.md" || fail "solution pivot missing: $step"
 done
 grep -Fq 'no robots.txt' "$ROOT/admin/solution.md" || fail "no-crumbs promise missing"

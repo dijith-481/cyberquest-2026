@@ -12,7 +12,7 @@ set -euo pipefail
 HOST="${HOST:-1337.excelmec.org}"
 TOURNAMENT_URL="https://${HOST}/competitions/grand-elite-tournament/"
 HOME_URL="https://${HOST}/"
-DEFAULT_FLAG='cyber_quest{ye_olde_leetspeak}'
+DEFAULT_FLAG='cyber_quest{y3_0ld3_l33tsp34k}'
 FLAG="${FLAG:-$DEFAULT_FLAG}"
 CHECK=0
 

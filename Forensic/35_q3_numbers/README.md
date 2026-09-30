@@ -35,4 +35,4 @@ cyber_quest{h1dd3n_r0ws_c4nt_h1d3_f0r3v3r_b7f2e9}
 
 ### Handout Text (Optional)
 
-Download `q3_numbers.zip` — one workbook, `Q3_numbers.xlsx`, exactly as finance last saved it.
+Download `Q3_numbers.xlsx` — one workbook, exactly as finance last saved it.

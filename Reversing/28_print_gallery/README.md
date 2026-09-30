@@ -40,5 +40,5 @@ cyber_quest{l0g_unw1nds_th3_g4ll3ry_7a3c9e}
 ### Handout Text (Optional)
 
 ```
-Download `28_print_gallery.zip` — `print-gallery.png`.
+Download `print-gallery.png`.
 ```

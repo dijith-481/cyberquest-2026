@@ -46,6 +46,7 @@ cyber_quest{l3gacy_v4ult_0v3rwr1t3_8f3a21}
 
 ```
 
-Connect to the vault: nc <host> 1338 — vault binary (with symbols) and its C source are attached.
+Connect to the vault: nc <host> 1338. `13_legacy_vault.zip` carries the vault
+binary (with symbols) and its C source.
 
 ```

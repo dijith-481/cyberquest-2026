@@ -40,5 +40,5 @@ cyber_quest{4scii_h4s_tw0_s1d3s_7f3a}
 ### Handout Text (Optional)
 
 ```
-Download `42_storyboard.zip` — `storyboard.mkv`, the storyboard export (under 1 MB), 29 shots.
+Download `storyboard.mkv` — the storyboard export (under 1 MB), 29 shots.
 ```

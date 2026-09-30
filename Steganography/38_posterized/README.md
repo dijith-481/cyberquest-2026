@@ -34,4 +34,4 @@ cyber_quest{p41r_0rd3r_8f2a}
 ```
 ### Handout Text (Optional)
 
-Download `38_posterized.zip` — `launch-poster.png`, exactly as poster-gen exported it.
+Download `launch-poster.png` — exactly as poster-gen exported it.

@@ -45,7 +45,7 @@ cyber_quest{br34k_gl4ss_l1v3_p4tch_7f3a1c}
 
 ```
 
-Download `vault` and `README.txt`. Run the binary locally and inspect it with
-GDB (LLDB is also suitable if configured for x86-64 Linux).
+Download `16_break_glass.zip` — `vault` and `README.txt`. Run the binary locally
+and inspect it with GDB (LLDB is also suitable if configured for x86-64 Linux).
 
 ```

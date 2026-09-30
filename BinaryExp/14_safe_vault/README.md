@@ -45,6 +45,8 @@ cyber_quest{saf3_vault_unsafe_b0undary_4d2e90}
 
 ```
 
-Connect to the vault: nc <host> 1339 — vault binary (with symbols) and its Rust source are attached. Your v1 exploit will not survive the migration.
+Connect to the vault: nc <host> 1339. `14_safe_vault.zip` carries the vault
+binary (with symbols) and its Rust source. Your v1 exploit will not survive the
+migration.
 
 ```

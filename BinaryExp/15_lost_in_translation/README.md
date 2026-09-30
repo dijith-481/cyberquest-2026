@@ -45,6 +45,7 @@ cyber_quest{1gn0r3d_ch4r5_4r3_n0t_c0mm3nt5_5f3a20}
 
 ```
 
-Connect to intake: nc <host> 1340 — sample.c and the intake binary are attached.
+Connect to intake: nc <host> 1340. `15_lost_in_translation.zip` carries
+`sample.c` and the intake binary.
 
 ```

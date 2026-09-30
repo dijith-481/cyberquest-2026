@@ -35,4 +35,4 @@ cyber_quest{dn5_3xf1l_r34ds_l1k3_h4rm0n_l3tt3rs_2c9a71}
 
 ### Handout Text (Optional)
 
-Download `packet_loss.zip` — one morning of office traffic, `office_capture_0318.pcap`.
+Download `office_capture_0318.pcap` — one morning of office traffic.

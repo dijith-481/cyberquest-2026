@@ -46,6 +46,6 @@ cyber_quest{0ff_key_7r4ck_736sc3}
 
 ```
 
-Download 44_off_key.zip — the filing, exactly as it reached the newsletter queue.
+Download `transcripts.txt` — the filing, exactly as it reached the newsletter queue.
 
 ```

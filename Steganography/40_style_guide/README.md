@@ -40,5 +40,5 @@ cyber_quest{h4lf_p01nt_h1d3s_th3_gu1d3_9d4e2f}
 ### Handout Text (Optional)
 
 ```
-Download `40_style_guide.zip` — the protected `style_guide.pdf`, revision 3.9, with its attached source package.
+Download `style_guide.pdf` — the protected guide, revision 3.9. Its source package travels with it.
 ```

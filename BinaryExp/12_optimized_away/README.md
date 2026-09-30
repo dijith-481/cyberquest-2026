@@ -45,7 +45,7 @@ cyber_quest{7w0_bu1ld5_0n3_p4y104d_b7f4a2}
 
 ```
 
-Connect to the mirror: nc <host> 1337. Both builds ship with the handout,
-so you can rehearse locally before you commit.
+Connect to the mirror: nc <host> 1337. `12_optimized_away.zip` carries both
+builds, so you can rehearse locally before you commit.
 
 ```

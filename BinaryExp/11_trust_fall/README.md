@@ -37,6 +37,6 @@ cyber_quest{tru5t_f4ll_00584104}
 ```
 ### Handout Text (Optional)
 ```
-Download handout.zip: a tiny C compiler (`tcc`), its source (`tcc.c`) and
-`flag.c`. Compile flag.c with tcc and run it.
+Download `11_trust_fall.zip` — a tiny C compiler (`tcc`), its source (`tcc.c`)
+and `flag.c`. Compile flag.c with tcc and run it.
 ```

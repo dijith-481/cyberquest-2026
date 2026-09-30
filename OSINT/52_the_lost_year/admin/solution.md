@@ -15,7 +15,7 @@ EXCEL's yearly archive pages:  YEAR.excelmec.org
      →  1337.excelmec.org
           →  "The Grand Elite Tournament"
                →  /competitions/grand-elite-tournament/
-                    →  Champion's Inscription
+                    →  Champion's Certificate
                          →  cyber_quest{ye_olde_leetspeak}
 ```
 
@@ -41,26 +41,31 @@ The number from step 1 slots directly into the convention from step 2:
 1337.excelmec.org
 ```
 
-The site is a full, working "medieval edition" of the fest — blackletter
-headings, a schedule, guilds, and an archives page that (in character)
-prophesies the years 2017–2025.
+The site is a complete, working edition of the real fest — the same nav, the
+same competitions, the same venues, in blackletter over parchment, with an
+archives page that lists the years 2017–2025.
+
+Every word on it is authentic Excel. Govt. Model Engineering College Kochi,
+techno-managerial, since 2001, INSPIRE | INNOVATE | ENGINEER, Reverse Coding,
+Hack For Tomorrow, Lumiere, the CS Tech / Gen Tech / Non Tech channels, and
+real room names. The visual skin is gothic; the college fest underneath it is
+real. The year is the only thing wrong.
 
 ### 4. Click the tournament
 
 The home page carries one reserved card:
 
 ```text
-THE GRAND ELITE TOURNAMENT
-Only the finest engineers of the kingdom may enter.
-Reserved since the founding of the realm for those who
-prove themselves 1337.
+The Grand Elite Tournament
+Open only to the strongest teams on campus. Reserved since the first
+edition for those who prove themselves 1337.
 [ View Results → ]
 ```
 
-### 5. Take the inscription
+### 5. Take the certificate
 
 The results page (`/competitions/grand-elite-tournament/`) ends with the
-**Champion's Inscription**, where the flag is printed plainly:
+**Champion's Certificate**, where the flag is printed plainly:
 
 ```text
 cyber_quest{ye_olde_leetspeak}
@@ -74,8 +79,15 @@ honest; finding it was the challenge.
 - The site looks like a contemporary member of the `*.excelmec.org` family:
   same subdomain convention, same fest voice (Model Engineering College,
   Kochi), real prior years linked in its archives.
-- The absurdity is self-aware ("Since before Excel remembered") so it reads
-  as intentional fest lore, not a phishing page.
+- The copy is the real fest's own: the college, the founding year, the motto,
+  the actual competition and event names, the actual room names. A player who
+  knows Excel can check any page and find nothing false on it.
+- The visual register is deliberately gothic — blackletter on parchment, a
+  sword cursor. That is the one thing that is obviously not the college. It is
+  self-aware, so it reads as intentional fest lore rather than a phishing page.
+- The premise is stated plainly on the archives page, which says outright that
+  this edition is missing from the index. A player who reads it knows they are
+  on the right track before they start guessing years.
 
 ## Organizer setup
 
@@ -88,7 +100,7 @@ Deploy `deployment/` as the entire origin of `1337.excelmec.org`:
 3. Confirm from a clean browser:
    - `https://1337.excelmec.org/` renders the parchment landing page.
    - `https://1337.excelmec.org/competitions/grand-elite-tournament/`
-     shows the Champion's Inscription with the flag.
+     shows the Champion's Certificate with the flag.
 4. `bash admin/setup_external.sh --check` re-checks both live pages.
 
 Because `excelmec.org` is the fest's own domain, no third-party identity or

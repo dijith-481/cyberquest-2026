@@ -15,7 +15,7 @@ EXCEL's yearly archive pages:  YEAR.excelmec.org
      →  1337.excelmec.org
           →  "The Grand Elite Tournament"
                →  /competitions/grand-elite-tournament/
-                    →  Champion's Certificate
+                    →  Champion's Inscription
                          →  cyber_quest{ye_olde_leetspeak}
 ```
 
@@ -50,16 +50,17 @@ prophesies the years 2017–2025.
 The home page carries one reserved card:
 
 ```text
-The Grand Elite Tournament
-Open only to the strongest teams on campus. Reserved since the first
-edition for those who prove themselves 1337.
+THE GRAND ELITE TOURNAMENT
+Only the finest engineers of the kingdom may enter.
+Reserved since the founding of the realm for those who
+prove themselves 1337.
 [ View Results → ]
 ```
 
-### 5. Take the certificate
+### 5. Take the inscription
 
 The results page (`/competitions/grand-elite-tournament/`) ends with the
-**Champion's Certificate**, where the flag is printed plainly:
+**Champion's Inscription**, where the flag is printed plainly:
 
 ```text
 cyber_quest{ye_olde_leetspeak}
@@ -72,15 +73,9 @@ honest; finding it was the challenge.
 
 - The site looks like a contemporary member of the `*.excelmec.org` family:
   same subdomain convention, same fest voice (Model Engineering College,
-  Kochi; since 2001; CS Tech / Gen Tech / Non Tech channels), real prior
-  years linked in its archives.
-- The absurdity is **one number**, not a costume. The site is written in
-  present-day English about a present-day fest — no medieval register, no
-  invented fantasy world. Only the edition year is wrong, and the archive
-  states plainly that ours is missing from the index. That reads as
-  intentional fest lore rather than a phishing page, which is the point:
-  a player should be able to skim any page and believe it, and only notice
-  the year on the way to the answer.
+  Kochi), real prior years linked in its archives.
+- The absurdity is self-aware ("Since before Excel remembered") so it reads
+  as intentional fest lore, not a phishing page.
 
 ## Organizer setup
 
@@ -91,9 +86,9 @@ Deploy `deployment/` as the entire origin of `1337.excelmec.org`:
 2. Serve the folder at the domain root. Do **not** link it from any other
    Excel page — discoverability is the challenge.
 3. Confirm from a clean browser:
-   - `https://1337.excelmec.org/` renders the fest landing page.
+   - `https://1337.excelmec.org/` renders the parchment landing page.
    - `https://1337.excelmec.org/competitions/grand-elite-tournament/`
-     shows the Champion's Certificate with the flag.
+     shows the Champion's Inscription with the flag.
 4. `bash admin/setup_external.sh --check` re-checks both live pages.
 
 Because `excelmec.org` is the fest's own domain, no third-party identity or

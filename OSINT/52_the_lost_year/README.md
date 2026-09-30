@@ -7,11 +7,10 @@ The Lost Year
 ### Challenge Description
 
 ```
-Excel has run every year since 2001, and every edition has a page.
+The Excel archives go back further than anyone remembers.
 
-This one does not. Somewhere in its history there is a year
-reserved for the truly elite — an edition that the index was never told
-about. Find the forgotten edition of Excel and recover its token.
+Somewhere in its history lies a year reserved for the truly elite.
+Find the forgotten edition of Excel and recover its token.
 
 Flag format: cyber_quest{...}
 ```

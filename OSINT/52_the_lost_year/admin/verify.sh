@@ -46,40 +46,28 @@ if grep -Fq 'excelmec.org' "$README"; then
 fi
 pass "player copy keeps the pivot soft"
 
-# The deployment must stay in character: a current-era college fest, with
-# 1337 as the in-fiction edition year. It must NOT drift back into the
-# medieval register this challenge was rewritten out of.
-grep -Fq 'EXCEL 1337' "$DEPLOY/index.html" || fail "brand missing"
-grep -Fq 'Model Engineering College' "$DEPLOY/index.html" || fail "college identity missing"
+# The deployment must stay in character: 1337 is the edition, the real
+# college is named, and the solve path is intact.
+# Pinned to the <title>, not the whole file: "EXCEL 1337" also appears in the
+# nav and footer, so a whole-file grep for the brand can never fail.
+grep -Eq '<title>EXCEL 1337' "$DEPLOY/index.html" || fail "brand missing from the title"
+grep -Fq '1337' "$DEPLOY/index.html" || fail "the year lore missing"
 grep -Fq 'The Grand Elite Tournament' "$DEPLOY/index.html" || fail "tournament tease missing"
+grep -Fq 'Model Engineering College, Kochi' "$DEPLOY/index.html" || fail "college identity missing"
 grep -Fq 'excelmec.org' "$DEPLOY/archives/index.html" || fail "archive convention missing"
 grep -Fq "Champion" "$DEPLOY/competitions/grand-elite-tournament/index.html" \
-  || fail "champion's certificate missing"
+  || fail "champion's inscription missing"
 
-# Anti-regression: the medieval register must not come back.
-# FONTS.md is organizer documentation and deliberately NAMES the old terms
-# when explaining what was removed, so it is excluded from the scan. Only
-# player-facing files are checked.
-for bad in 'Model Engineering Kingdom' 'Anno Domini' 'Excel MCCCXXXVII' \
-           'Archives of the Realm' 'Compline' 'Vespers' 'Scrollkeeper' \
-           'Oracle' 'trebuchet' 'worshipful' 'Worshipful' 'scriptorium' \
-           'parchment' 'realm' 'kingdom' 'guild of' 'Herald' 'herald'; do
-  if grep -R -F -i -q --exclude=FONTS.md -- "$bad" "$DEPLOY"; then
-    fail "medieval register crept back in: $bad"
+# Wording must not drift back to the invented-fantasy naming. The site's
+# visual and ceremonial register (blackletter, parchment, the era names) is
+# deliberate and must NOT be "fixed" — only these three naming choices are
+# pinned.
+for bad in 'Model Engineering Kingdom' 'Anno Domini' 'Excel MCCCXXXVII'; do
+  if grep -R -F -q --exclude=FONTS.md --exclude=style.css -- "$bad" "$DEPLOY"; then
+    fail "invented-fantasy naming crept back in: $bad"
   fi
 done
-
-# ...and the visual register too: blackletter type and the sword cursor are
-# medieval even when the prose is not. Check the *rule*, not the word: a
-# @font-face block that still serves UnifrakturMaguntia is the regression, a
-# prose mention of "removed" is not.
-if grep -E -q "font-family:[[:space:]]*'UnifrakturMaguntia'" "$DEPLOY/assets/fonts.css"; then
-  fail "a @font-face rule still serves the blackletter font"
-fi
-if grep -F -q 'var(--sword)' "$DEPLOY/assets/style.css"; then
-  fail "sword cursor is back"
-fi
-pass "site is in the current fest register, 1337 as the edition year"
+pass "1337 site matches the challenge lore"
 
 # The flag is printed plainly, but exactly once, and only on the
 # tournament page.

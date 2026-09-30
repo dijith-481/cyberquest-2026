@@ -32,7 +32,7 @@ The Lost Year — organizer setup
 
 Year hostname     : ${HOST}
 Landing page      : ${HOME_URL}
-Certificate page : ${TOURNAMENT_URL}
+Inscription page  : ${TOURNAMENT_URL}
 Flag              : ${FLAG}
 
 1. Provision ${HOST} in DNS (A or CNAME) for the fest origin.
@@ -43,9 +43,9 @@ Flag              : ${FLAG}
 4. Link NOTHING to ${HOST} from any other Excel page. Discoverability is
    the challenge: the player must invent elite -> leet -> the year
    themselves.
-5. Test from a clean browser: the landing page shows the fest hero,
+5. Test from a clean browser: the landing page shows the parchment hero,
    the "Grand Elite Tournament" card links to /competitions/grand-elite-tournament/
-   and that page ends with the Champion's Certificate carrying the flag.
+   and that page ends with the Champion's Inscription carrying the flag.
 6. Optional cross-check: the real archives (2017–2025) and the main fest
    site must stay up and unchanged. They validate the player's pivot but
    are not ours to modify.
@@ -64,7 +64,7 @@ command -v curl >/dev/null 2>&1 || {
 LH="$(curl -fsSL --max-time 30 "$HOME_URL" || true)"
 [ -n "$LH" ] || { echo "landing page is unreachable: ${HOME_URL}" >&2; exit 1; }
 case "$LH" in
-  *'Excel MCCCXXXVII'*) ;;
+  *'EXCEL 1337'*) ;;
   *) echo "landing page does not look like the 1337 site" >&2; exit 1 ;;
 esac
 case "$LH" in
@@ -77,7 +77,7 @@ LT="$(curl -fsSL --max-time 30 "$TOURNAMENT_URL" || true)"
 [ -n "$LT" ] || { echo "tournament page is unreachable: ${TOURNAMENT_URL}" >&2; exit 1; }
 case "$LT" in
   *'Champion'*) ;;
-  *) echo "tournament page missing the Champion's Certificate" >&2; exit 1 ;;
+  *) echo "tournament page missing the Champion's Inscription" >&2; exit 1 ;;
 esac
 case "$LT" in
   *"${FLAG}"*) ;;

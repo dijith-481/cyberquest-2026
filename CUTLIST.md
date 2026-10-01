@@ -156,11 +156,19 @@ mirror needs re-provisioning before it can be verified.
 ---
 
 ## Arithmetic
-- 51 challenges before cuts (includes The Lost Year)
-- minus 8 cuts (-1650 pts) -> 43 challenges
-- plus 4 replacements (+550 pts) -> 47 challenges
-- plus 56 (+500) and 57 (+400), which fill the vacated 06 and 07 slots
-  -> **49 challenges, 13000 base**
+- **56 challenge directories** exist in the tree (`meta.yaml`, excluding `ctf2025-reference`)
+- minus **6 confirmed cuts** (06, 07, 14, 19, 24, 41)
+- -> **50 live challenges** for the 2026 event
+
+The replacement slots (51, 53, 54, 56, 57) and the extra standalone
+challenges (58 Eigenface, 50 Time Traveller, 52 The Lost Year) are already
+present in the tree, so they are counted inside the 56. Nothing is added on
+top of the cut.
+
+`50 Source of Truth` and `52 Reply All` are **not** additional cuts: they
+were withdrawn before entering the tree and have no directory. Counting them
+as cuts double-subtracts and produces the earlier, incorrect "8 cuts / 49"
+figure.
 
 06 and 07 are the only cuts whose points come straight back. The other four
 cuts release 1150 points against 550 of replacements, `52 Reply All` (250 pts)

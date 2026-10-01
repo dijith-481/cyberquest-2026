@@ -1,4 +1,5 @@
 ### Challenge Name
+
 ```
 Trust Fall
 ```
@@ -9,14 +10,16 @@ A vendor delivered a toolchain with a guarantee, and the guarantee is the entire
 
 The tool, its source, and one small program arrived in the same box. The program has been run before. Nobody recorded what came out.
 
-
 ### Difficulty
-```
-
-hard
 
 ```
+
+medium
+
+```
+
 ### Flag
+
 ```
 cyber_quest{tru5t_f4ll_00584104}
 ```
@@ -24,18 +27,23 @@ cyber_quest{tru5t_f4ll_00584104}
 ### Points
 
 #### Base Points
-```
-
-450
 
 ```
+
+300
+
+```
+
 #### Submit Order Bonus (Optional)
-```
-
-[45, 30, 25]
 
 ```
+
+[20, 15, 10]
+
+```
+
 ### Handout Text (Optional)
+
 ```
 Download `11_trust_fall.zip` — a tiny C compiler (`tcc`), its source (`tcc.c`)
 and `flag.c`. Compile flag.c with tcc and run it.

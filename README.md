@@ -1,6 +1,6 @@
 # CTF Challenge Index — Excel 2026
 
-53 challenges are complete. `06` and `07` are cut; their points return in full
+50 challenges are complete. `06` and `07` are cut; their points return in full
 as `56` (Standing Order) and `57` (Coming of Age). Challenge 49 (OSINT) is still
 in progress and is listed separately at the bottom.
 
@@ -15,7 +15,7 @@ in progress and is listed separately at the bottom.
   - Rationale: a first blood on a low-value challenge is nearly worthless to a team and mostly rewards whoever solved the warm-up first. The bonus is reserved for the solves that are actually contested.
   - Where awarded, it is relative to base points: 1st solve gets 10%, 2nd gets 7%, 3rd gets 5%, each rounded half-up to the nearest multiple of 5 (minimum 5). Example: a 300-point challenge pays `[30, 20, 15]`, a 250-point challenge pays `[25, 20, 15]`.
   - This follows the 2025 convention, where the bonus was opt-in and concentrated on the harder tiers (0/5 very-easy, 1/11 easy, 4/8 medium, 2/2 hard). We kept the 2025 *eligibility* rule but replaced the hand-picked 2025 amounts with a formula.
-- Total available points across the 53 completed challenges: **13300** base, drawn from 23 medium/hard challenges that carry up to **1690** in first-blood bonuses. The remaining 30 (all easy) pay no bonus.
+- Total available points across the 50 completed challenges: **11400** base. The remaining 31 (all easy) pay no bonus.
 
 `06` and `07` are cut and their points return in full as `56` (500) and `57` (400), so the base total is unchanged by the swap.
 
@@ -23,7 +23,7 @@ in progress and is listed separately at the bottom.
 
 - **app** — hosted web service the player connects to over HTTP. 7 deployments serve 10 challenges: `01` (store), `02` (poster-gen, also serves `03` + `04`), `08` (open-door), `09` (dino kiosk, also serves `10`), `56` (procurement desk), `57` (interop bridge, port 8055), `49` (company site, port 8049). `06`'s deployment is retired — it existed to host `07`, which is cut.
 - **nc** — TCP service, one container each: `12` (port 1337), `13` (1338), `14` (1339), `15` (1340).
-- **static** — no backend; open in a browser: `05` (news site build), `48` (HQ map page), `50` (Book Haven page), `51` (continuity note plus its share card).
+- **static** — no backend; open in a browser: `05` (news site build), `48` (HQ map page), `51` (continuity note plus its share card).
 - **handout** — download the files, solve offline, no server: everything else (37 challenges: `11`, `16`, all of Cryptography / Reversing / Forensic / Steganography, and Misc `43`–`47`, `52`–`54`).
 
 Runtime footprint: 7 app processes + 4 nc listeners + 4 static pages; the remaining 37 challenges need no hosting at all.
@@ -42,8 +42,7 @@ Runtime footprint: 7 app processes + 4 nc listeners + 4 static pages; the remain
 | 10  | dino rev 2        | hard       | 400  | 40  | 30  | 20  | app (via 09)      | fake score after inspection     |
 | ~~06~~ | ~~Promotion Letter~~ | — | — | — | — | — | **cut** — superseded by 56; retained in tree |
 | ~~07~~ | ~~Clock Puncher~~ | — | — | — | — | — | **cut** — timing attack not survivable over a real network path; replaced by 57 |
-| 50  | Source of Truth   | very-easy  | 50   |  [] |  [] |  []  | static            | follow the linked stylesheet     |
-| 51  | Share Card        | easy       | 150  |  [] |  [] |  []  | static            | read the flag in an SVG `<desc>` |
+| 51  | Share Card        | easy       | 150  |  [] |  [] |  []  | static            | read the flag in an SVG `<desc>`; paper redesign |
 | 56  | Standing Order    | hard       | 500  | 50  | 35  | 25  | app               | prototype pollution via batch desync |
 | 57  | Coming of Age      | hard       | 400  | 40  | 30  | 25  | app               | UA gate, XML export, unowned idempotency cache, ops token |
 
@@ -117,16 +116,15 @@ Runtime footprint: 7 app processes + 4 nc listeners + 4 static pages; the remain
 
 ## Difficulty spread (completed)
 
-| Difficulty | Count | First-blood bonus | Challenges                                                                                                     |
-| ---------- | ----- | ----------------- | -------------------------------------------------------------------------------------------------------------- |
-| easy       | 27    | none              | 01, 02, 09, 13, 17, 18, 20, 22, 23, 25, 27, 29, 30, 31, 33, 35, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 51 |
-| medium     | 15    | 10 / 7 / 5 %      | 03, 05, 08, 12, 14, 16, 19, 21, 24, 28, 32, 34, 38, 40, 52                                                  |
-| hard       | 8     | 10 / 7 / 5 %      | 04, 10, 11, 15, 26, 42, 56, 57                                                                              |
-| very-easy  | 1     | none              | 50                                                                                                              |
+| Difficulty | Count | First-blood bonus | Challenges |
+|---|---|---|---|
+| easy | 31 | none | 01, 02, 09, 13, 17, 18, 20, 22, 23, 25, 27, 29, 30, 31, 33, 36, 37, 39, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 58 |
+| medium | 11 | 10 / 7 / 5 % | 03, 05, 08, 12, 16, 21, 28, 32, 34, 38, 40 |
+| hard | 8 | 10 / 7 / 5 % | 04, 10, 11, 15, 26, 42, 56, 57 |
 
-`50` is the event's only intentional `very-easy`: it is a deliberate Day-1 opening
-slot with no install and no thought required, and it breaks the "lowest base value
-is 100" rule on purpose rather than by accident.
+Difficulty is derived from base points alone: `<= 200` easy, `<= 350` medium,
+`<= 500` hard. No challenge is `very-easy` — the lowest base value in the event
+is 100.
 
 ## In progress (not completed, excluded from totals)
 

@@ -8,7 +8,7 @@ Current: 55 challenges, 13300 base points.
 
 ---
 
-## Confirmed cuts — 8 challenges, 1650 points freed
+## Confirmed cuts — 7 challenges, 1550 points freed
 
 07 and 06 are cut **and replaced**, not merely dropped: 57 takes 07's slot at
 the same 400 points, and 56 takes 06's. Both replacements are built and
@@ -22,12 +22,11 @@ its remaining purpose was to host it.
 | 14 | Safe Vault | Binary | 300 | **Same exploit shape as 13 Legacy Vault** — same "Vault" concept, both need `nm` to locate `print_flag`, both redirect a function pointer. 14 is 13 rewritten in Rust. Secondary: its `verify.sh` *overwrites* the handout with no byte-compare gate, so a rustc bump silently reshuffles the PIE delta and the offset-7 derivation with no CI signal. |
 | 19 | Et Tu, Brute? | Crypto | 300 | **Same crib-drag as 21 Emojinated** — identical technique, different skin. Caesar + Vigenère is also the most well-trodden crypto in existence. 21 keeps the lesson and has the better payoff. |
 | 24 | Complexity Requirements | Crypto | 250 | **Verbatim clone of 17 Hash Slinging.** Both are: read a memo -> build a password scheme -> crack the hashes -> XOR a note with the derived password. Five identical beats. 17 is the safer survivor (wordlist ships inside the zip; 24 requires deriving a 1440-candidate policy space). |
-| 35 | Q3 Numbers | Forensic | 100 | **Same opening move as 46 Nothing to Declare** — both are "unzip a container, find the non-obvious part." 46 contains 35's mechanic as step one and then adds a PNG/ZIP polyglot, a SQLite lookup and a SHA-256 XOR. Also the weakest forensic claim in the set: no evidence, no timeline — just a hidden spreadsheet sheet. |
 | 41 | Tracking | Stego | 200 | **Overlaps 38 Posterized** — both are "read one bit per entry from a table, in a specified order." Also the most niche stego in the set (GPOS kerning parity needs fontTools + cmap format-4 parsing). The stego family survives on 38/39/40/42 without it. |
 
 ### Why each cut preserves early retention
 06 and 07 are **replaced in full** — 400 + 100 points come back as 57 and 56, so
-the WebExploitation mid-tier loses nothing. The remaining four cuts are **medium
+the WebExploitation mid-tier loses nothing. The remaining three cuts are **medium
 or hard**. The easy tier is otherwise untouched, so the Day 1 / Day 2
 zero-install window keeps its depth. Nothing that survives moves in the first
 two days.
@@ -48,7 +47,6 @@ two app-hosted. None duplicates a surviving technique cluster.
 
 | New # | Title | Category | Type | Pts | Status |
 |---|---|---|---|---|---|
-| 50 | Source of Truth | WebExploitation | static web | 50 | **built** — `verify.sh` 15 checks / 8 negative tests |
 | 51 | Share Card | WebExploitation | static web | 150 | **built** — `verify.sh` 20 checks / 8 negative tests |
 | 53 | Payroll Photo | Forensic | handout | 150 | **built** — `verify.sh` 5 stages / 5 negative tests |
 | 54 | Lobby Intercom | Steganography | handout | 200 | **built** — `verify.sh` 5 stages / 10 negative tests |
@@ -90,16 +88,18 @@ by `55_universe_98_bridge/`, which is untracked in-progress work with no
 either. `06_promotion_letter/` is left completely untouched; the new
 challenge was added alongside it, not in its place.
 
-### 50 · Source of Truth — final spec
-- **50 points, confirmed.** Deliberately breaks the "lowest value is 100" rule; this is
-  the event's first intentional very-easy and should be documented as such in the root
-  README rather than left as an accident.
-- Decoy flag `cyber_quest{<rickroll url>}` sits in **plain sight** in an HTML comment.
-- The **real** flag lives in a comment inside the **linked stylesheet** (`<link>`-ed CSS),
-  not the HTML. The lesson: *the page you are reading is not the page that was served —
-  follow the dependencies.* Real flag is strictly harder to reach than the decoy.
-- Static directory, no backend, no port, no env var. Cannot fail on the night.
-- Day-1 opening slot: instant, zero-thought first blood.
+### 50 · Source of Truth — CUT
+
+Withdrawn. The mechanic is sound — a decoy flag in plain sight in an HTML
+comment, the real one in the **linked stylesheet** rather than the HTML, so the
+lesson is *the page you are reading is not the page that was served*.
+
+Two reasons it goes. It duplicated the "look past the obvious surface" beat that
+`51 Share Card` already runs, with a strictly harder target. And at 50 points it
+was the event's only `very-easy` — a tier the scoreboard has no rule for and the
+only entry below the documented 100-point floor.
+
+`51 Share Card` is kept and redesigned onto the shared paper language.
 
 ### 56 · Standing Order — final spec
 - **500 points.** Prototype pollution reached through an index desync: `serveBatch` keeps
@@ -147,7 +147,11 @@ that is now solved. Static bundle, so it costs nothing to host beyond the DNS en
 DNS-01 cert and a published TXT record. `afterimage17.int.yt` is NXDOMAIN and the
 repo cannot provision it.
 
-**50 Time Traveller** — skipped. Mirror account and repo both 404.
+**50 Time Traveller** — **LIVE.** Earlier this file recorded it as skipped
+because its mirror account and repo both 404'd. That is a hosting problem, not a
+scrap of the challenge: the build is complete in `OSINT/50_time_traveller/`
+(7 files, own `admin/verify.sh`, `status: in-progress`) and only the external
+mirror needs re-provisioning before it can be verified.
 
 ---
 
@@ -156,13 +160,14 @@ repo cannot provision it.
 - minus 8 cuts (-1650 pts) -> 43 challenges
 - plus 4 replacements (+550 pts) -> 47 challenges
 - plus 56 (+500) and 57 (+400), which fill the vacated 06 and 07 slots
-  -> **50 challenges, 13300 base**
+  -> **49 challenges, 13000 base**
 
 06 and 07 are the only cuts whose points come straight back. The other four
-cuts release 1150 points against 550 of replacements, and `52 Reply All`
-(250 pts) was withdrawn after build — its flag is a literal substring on a
-single line of the handout, so `grep -a "for <"` solved it in one command. It
-was never worth 250. The pool therefore sits ~200 below where it started, and
+cuts release 1150 points against 550 of replacements, `52 Reply All` (250 pts)
+was withdrawn after build — its flag is a literal substring on a single line of
+the handout, so `grep -a "for <"` solved it in one command — and `50 Source of
+Truth` (50 pts) was withdrawn as a duplicate of `51 Share Card` and as the
+event's only sub-100 pointer. The pool therefore sits ~200 below where it started, and
 the *weakest* challenge in the set — a timing attack that cannot survive a CDN —
 is gone. That is the intended trade: 07 Clock Puncher's 400 points were released
 precisely because a timing attack over the internet is not reliable, and nothing

@@ -1,0 +1,6 @@
+enrolment_notes.txt   what the dump is and what to do with it
+template_store.json   moduli and the (mask, sealed) reconciliation samples
+visitor00_note.sealed  the VISITOR-00 review note, sealed under their key
+
+Sealing parameters are not published. The store's assessment is that
+they do not need to be.

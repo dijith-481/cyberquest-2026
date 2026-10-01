@@ -1,0 +1,26 @@
+ENROLMENT STORE - INCIDENT 4471 - PARTIAL TEMPLATE DUMP
+
+The template store keeps one enrolment key per visitor. Keys are never written
+to disk in the clear. Each key is sealed under the store's own parameters and
+the sealed value is only ever published as a reconciliation sample.
+
+What the dump contains is the sample set: several (mask, sealed) pairs per
+visitor, shuffled across candidates. Per the store's assessment, a sample set
+is enough to reconcile a key against an enrolment you already hold, and
+useless against one you do not.
+
+VISITOR-00 has an open access dispute on the third floor and their template
+was exported for the review. The review copy is the one with the finding in it.
+
+The store's own notes, from whoever wrote them:
+
+  - The modulus is published once per store, under "moduli", and each row
+    carries the index of the one it was sealed under.
+  - The parameters the store seals against are in the store's source. You do
+    not have the source.
+  - Reconcile a candidate fully before starting the next. A candidate that
+    looks right against one pair looks right against every pair, for the wrong
+    key too.
+
+The review note for VISITOR-00 is sealed the same way their key was. Recover
+the key, unseal the note.

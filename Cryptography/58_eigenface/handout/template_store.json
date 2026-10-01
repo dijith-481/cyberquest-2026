@@ -1,0 +1,155 @@
+{
+  "incident": 4471,
+  "moduli": [
+    "0xd1e668a74ec07f85acc137cd38ea4b5bbacf63c8a16adbb567cde14076792a4b",
+    "0x82d6b304d267337f6b280d11a4d4dc67b81e8504f0cc3f67b67dab32807ff899"
+  ],
+  "note": "mask index and modulus index are per-row. Sealing parameters are not published.",
+  "rows": [
+    {
+      "candidate": "VISITOR-04",
+      "mask": "0x45fe555a5dba32a62ba360f1891349659896e3be7870cdf7cebc51f2e244e7a1",
+      "modulus": 0,
+      "sealed": "0x284211882916c891c28e05bd0d4526f28f2bf7ec443f96895d5d0229f4a01b0e"
+    },
+    {
+      "candidate": "VISITOR-03",
+      "mask": "0x6b19e55b47015a1ed52372e9493e88dd3643747b4e46039bedf9cc9aa9b2887",
+      "modulus": 0,
+      "sealed": "0x3abd2e5181c4d6cf46f75e810ee464fd7f4a5f6073543c743dc2ef56660d5f35"
+    },
+    {
+      "candidate": "VISITOR-00",
+      "mask": "0x38ec844e474f7d5b8175a36201c14745ec8871fb3e3945050bc38c28e5c45509",
+      "modulus": 1,
+      "sealed": "0x5596005c00d28fa3341f6cee71be363d642436837bd60ba53aa35b0549830c5b"
+    },
+    {
+      "candidate": "VISITOR-00",
+      "mask": "0x84431add7baae71ca26bc78527c535bacae96d5602ebdf9ec90b14a13a008c9",
+      "modulus": 1,
+      "sealed": "0x4059a8fdd328f75edd4dbac1aae5043813f6f10ecad53d543274a8f51aea915b"
+    },
+    {
+      "candidate": "VISITOR-01",
+      "mask": "0x1710c70dbea3fac52562725646e6e676873d1a806a93fea98e2471d9c5257b71",
+      "modulus": 1,
+      "sealed": "0x101d3e14c354bb588b72eb3333e95a38a317693eab474b48c15e6244b74ea4c7"
+    },
+    {
+      "candidate": "VISITOR-01",
+      "mask": "0x1875f461bbedf8cae044483453c59cce878b2677032df3e6b38373bb43fd9ccf",
+      "modulus": 1,
+      "sealed": "0x146a5822e18b66973a8bb9e6708b525ed150d83437a35486b7d7bbf6729cec12"
+    },
+    {
+      "candidate": "VISITOR-03",
+      "mask": "0xe9ce97ba7f5418505ecd6c5c0a0e24658e88afe5e86b7fdd70a503db52b8bf3",
+      "modulus": 0,
+      "sealed": "0x110a9632fbfd951cabd099c69e5d48cf07d3d7add12b44cd3d6ed31e777b341e"
+    },
+    {
+      "candidate": "VISITOR-00",
+      "mask": "0x4e80cccd2d67866915a37b34ddc044c87f51c2d50a3565b0d00a8eba06dcf151",
+      "modulus": 1,
+      "sealed": "0x120cf362c1ec0f80d82417f1eb33550d18b515ddcd1f935355da45a785756102"
+    },
+    {
+      "candidate": "VISITOR-02",
+      "mask": "0x7795c8afb256f405699a21a1644da4a8c3a8c35145df9d9adf2fa9b42aa32b3d",
+      "modulus": 1,
+      "sealed": "0x1a1576d8a6e492ce312e0323279f3eb08b9adf80aada696cf40b7f2f5518e766"
+    },
+    {
+      "candidate": "VISITOR-02",
+      "mask": "0x5e5c20ea277c1d47a7fc2ca51e24e624612851dd1480a9d760ecf71d699577d",
+      "modulus": 1,
+      "sealed": "0x4fdfedb4aa04e4fabc3b2d593c7f91df8d561184c83d7ebb1e00ad76160b4df2"
+    },
+    {
+      "candidate": "VISITOR-03",
+      "mask": "0x25f70676d8d424c1220f5e896916579493a87797608fbb1162448c2163131c57",
+      "modulus": 0,
+      "sealed": "0x5e37b90ce5c400518cefbe6469375babf62c047758736f9d9eeed326953015d3"
+    },
+    {
+      "candidate": "VISITOR-03",
+      "mask": "0x554571280a68309ef86b7946836ff64737018bd2bf8c61b30b7bcd10f0adc621",
+      "modulus": 0,
+      "sealed": "0x19a605de955156a082af022a4433de7856a592345187d1deebb16a012ae0c42d"
+    },
+    {
+      "candidate": "VISITOR-02",
+      "mask": "0x516866cf80a820c17270d43c79b8a6fe11ab0d7bb8ac5f4b09565d242db708f",
+      "modulus": 1,
+      "sealed": "0x1d9ba9b2031bfc2e28e804f5f8a67c7e8c29a688aea1eaaeb571f222c34f8cdf"
+    },
+    {
+      "candidate": "VISITOR-02",
+      "mask": "0x2a2daa829b1dfd8f12e3f251463e2a5ae6c2dcdaec1911f2cee25cb60b54dbbd",
+      "modulus": 1,
+      "sealed": "0x753ed435978d5df10087e1f7e4b35069894f07407d27d9926d682f427c1f1eb7"
+    },
+    {
+      "candidate": "VISITOR-04",
+      "mask": "0x9832237f5e97ade1c2baa8cdf44e1a5dbd863d3cc2ee9a5c23647c3657c4a5f",
+      "modulus": 0,
+      "sealed": "0x33f0742f9a00b455303bfff2e0974d381ede71d03b2640e7b51442101416f478"
+    },
+    {
+      "candidate": "VISITOR-00",
+      "mask": "0x7225aef32a1bcd38be8073ed883918e49e6e133cc5dc1591be74506433deb2f5",
+      "modulus": 1,
+      "sealed": "0x676ef7a5e46e08bf5f936831c8f097c5832eb5be87f2eeddd2c629a12413946d"
+    },
+    {
+      "candidate": "VISITOR-01",
+      "mask": "0x44329faa92b38d61a5294043a89b4baf7e475e590a4a1cc664f855f2dc0b98b7",
+      "modulus": 1,
+      "sealed": "0x7fdddc9d0099af99d7a74a1bcc2b51cc7ba4d23e7a93651bf2173e5d74e20bee"
+    },
+    {
+      "candidate": "VISITOR-01",
+      "mask": "0x2e7521b322f33fcc1116f4da2fbf450cf326317c573f9a1743a7629ba6c8c28f",
+      "modulus": 1,
+      "sealed": "0x7c4565c57b9377c6c30e5a466ac2ad92bfda0764b82c194af22c1c94aa318c86"
+    },
+    {
+      "candidate": "VISITOR-05",
+      "mask": "0x37f09ec52bd48eed54ad99cb87bb2f8b094081e98f223f17365e36c7d1446973",
+      "modulus": 1,
+      "sealed": "0x14ecd220a0c5814d74ecd1e9ecf2b6f9bab9ba3e42f1ac6b0bc0484463c5b00a"
+    },
+    {
+      "candidate": "VISITOR-05",
+      "mask": "0x1dcc7f8b82994f7510da64a691a6cc06c4037b7f598b04c216acdf0f0da9692f",
+      "modulus": 1,
+      "sealed": "0x7eef6093a22625ac9e896116ff1d3ed912cef416727132d974062892f8b6f8ba"
+    },
+    {
+      "candidate": "VISITOR-05",
+      "mask": "0x67f2347f690072213c0b15ba54ebaaf4cba8e6d9b97885cfd0004b5d8d9f7e17",
+      "modulus": 1,
+      "sealed": "0x661ada6a65e0023810950e084f97176da3a87cffdc1b8db0ad7c948022e2f1b7"
+    },
+    {
+      "candidate": "VISITOR-04",
+      "mask": "0x74012b61c660f61696594c0ea76cb8bdc434247d84ec5e29430a2f08eaca67c1",
+      "modulus": 0,
+      "sealed": "0x45615c9583a3fbfe0efe0a4bf3b2c69884ee57cf03a7cd825fcfd82f092dfd67"
+    },
+    {
+      "candidate": "VISITOR-05",
+      "mask": "0x7b0cdf1a2986484608816be8e4fe62a97d41b25815029ab6b46304cbd2e769ed",
+      "modulus": 1,
+      "sealed": "0x47469610e750437109b9b6c8acab223f009e99c25795a6bc33507634377c5e72"
+    },
+    {
+      "candidate": "VISITOR-04",
+      "mask": "0x77964c13918c4e645d08641a2c4b2955ddca5eaba6f9d8337c83e62169d779ab",
+      "modulus": 0,
+      "sealed": "0xaa31f9f1c7e80fffb2244824325850ca5b2f3b17ad67bfcb861a2e4a2dae7382"
+    }
+  ],
+  "store": "eigenface enrolment template store"
+}

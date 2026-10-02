@@ -28,7 +28,11 @@ per session — the solve expects exactly that.
 
 ## Files
 
-- `vuln/vault.c` — the service source (also in the handout)
+- `vuln/vault.c` — the service source. AUTHOR-SIDE ONLY: it is
+  deliberately **not** in the handout. Shipping it gave away
+  `buf[64] | epoch | on_auth`, the unchecked `memcpy`, and the
+  `v.on_auth = denied` init, collapsing a 200-pt RE challenge into a
+  16-way guess. The player recovers all of it from the disassembly.
 - `vuln/vault` — frozen binary (PIE, stack protector, symbols kept,
   dynamic, glibc >= 2.2.5). Symbols stay: the solve derives page
   offsets with `nm`, and stripping would not move the code anyway.

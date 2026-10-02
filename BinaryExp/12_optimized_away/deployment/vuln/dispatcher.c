@@ -97,8 +97,13 @@ int main(int argc, char **argv)
     spawn(dir, "./ledgerd-prod", &pid_prod, &to_prod, &from_prod);
     spawn(dir, "./ledgerd-compat", &pid_compat, &to_compat, &from_compat);
 
+    /* Banner deliberately does NOT name the build optimization levels
+     * ("prod (-O3) / compat (-O0)"). That line handed the player the whole
+     * premise of the exploit: same source, two builds, different stack
+     * frames. The fact that both builds run in lockstep is stated in
+     * handout/README.txt instead -- the player should have to work out
+     * WHY the two builds disagree. Do not re-add it here. */
     puts("ordinary engineering — ledgerd 2.4.1 (reconciliation mirror)");
-    puts("builds in lockstep: prod (-O3) / compat (-O0). every command runs on both.");
     puts("commands: tag <text> | audit | state | layout | quit");
     puts("ready.");
 

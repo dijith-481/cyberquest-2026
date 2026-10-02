@@ -38,7 +38,22 @@ The binary keeps its symbols. Both functions sit in the same page
 
 ### 2. The bug
 
-`vault.c` (shipped in the handout):
+**No source is shipped.** The handout is the binary plus `README.txt`, so
+the struct layout and the overflow both have to come out of the
+disassembly. In `handle_conn` (`-O2`, frame below):
+
+```
+1355:  movaps %xmm0,-0x190(%rbp)   # memset(v,0,...): struct starts here
+134e:  lea    -0x55(%rip),%rax     # 1300 <denied>
+137c:  mov    %rax,-0x148(%rbp)    # v.on_auth = denied
+153a:  rep movsq (%rsi),(%rdi)     # the inlined memcpy() from `store`
+14bc:  call  *-0x148(%rbp)         # v.on_auth()  from `run`
+```
+
+`0x190 - 0x148 = 0x48`, so `on_auth` sits at `buf+72` — and the
+`rep movsq` shows `store` writing straight into that frame with no length
+check. The equivalent source (author-side only, in
+`deployment/vuln/vault.c`) is:
 
 ```c
 struct vault {
@@ -50,11 +65,11 @@ struct vault {
 memcpy(v.buf, payload, (size_t)plen);   /* no bounds check */
 ```
 
-Same overflow as ever: `on_auth` is at `buf+72`. The canary sits far
-above the struct (there is a 256-byte line buffer in between), so a
-precise 74-byte write never touches it — the canary guards the return
-address, not the locals. Full 8-byte overwrite is impossible without
-the base, and there is no leak left. That leaves the low bytes.
+Same overflow as ever. The canary is at `rbp-0x38` and `line[256]`
+occupies `rbp-0x140`-`rbp-0x40`, so a precise 74-byte write stops 271
+bytes short of it — the canary guards the return address, not the
+locals. Full 8-byte overwrite is impossible without the base, and there
+is no leak left. That leaves the low bytes.
 
 ### 3. The partial overwrite
 

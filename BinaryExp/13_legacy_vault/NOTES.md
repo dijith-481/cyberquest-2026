@@ -3,9 +3,13 @@
 ## Files
 
 - `README.md` — player-facing description (2025 template)
-- `meta.yaml` — 2026 minimal metadata (easy-medium, 100 pts)
+- `meta.yaml` — 2026 minimal metadata (easy, 200 pts)
 - `handout/` — `README.txt` + the service binary (`vault`, frozen,
-  PIE, symbols kept) + the full C source (`vault.c`)
+  PIE, symbols kept). NO source is shipped: the player must recover
+  the struct layout and the overflow from the disassembly. Shipping
+  `vault.c` gave away `buf[64] | epoch | on_auth`, the unchecked
+  `memcpy`, and the `v.on_auth = denied` init — i.e. the entire
+  exploit — reducing a 200-pt RE challenge to a 16-way guess.
 - `admin/solution.md` — full writeup
 - `admin/solve.py` — scripted solve (stdlib only; needs `nm` for the
   local page offsets)

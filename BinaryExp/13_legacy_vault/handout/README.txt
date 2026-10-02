@@ -4,7 +4,6 @@ vault-svc v1 (legacy) — ordinary engineering label safe
 Included:
 
   vault        the service binary, exactly as deployed (PIE, with symbols)
-  vault.c      the service source, as legacy tools ship it
 
 The auditors hardened this build (PIE, stack protector) and removed
 the debug output. One service, one label vault per connection:
@@ -14,6 +13,8 @@ the debug output. One service, one label vault per connection:
   info            print a support diagnostic (no addresses, they checked)
   quit            close the session
 
-The callback starts as denied(). Somewhere in the binary there is a
-function that prints the flag. ASLR is on, the canary is on, and there
-is nothing left to leak. The manual wishes you luck.
+The callback is what authorizes the label. The auditors reviewed this
+release, found nothing, and moved on.
+
+ASLR is on, the canary is on, and there is nothing left to leak.
+The manual wishes you luck.

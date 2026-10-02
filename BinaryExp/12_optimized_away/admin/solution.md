@@ -23,7 +23,6 @@ Connect and poke around:
 ```
 $ nc <host> 1337
 ordinary engineering — ledgerd 2.4.1 (reconciliation mirror)
-builds in lockstep: prod (-O3) / compat (-O0). every command runs on both.
 commands: tag <text> | audit | state | layout | quit
 ready.
 layout

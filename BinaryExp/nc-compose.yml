@@ -1,0 +1,74 @@
+# CyberQuest 2026 — nc challenges (12, 13, 15)
+# One container per challenge. A breakout from one cannot reach another
+# (separate networks), write to the filesystem (read_only), escalate
+# (cap_drop + no-new-privileges), or exhaust the host (mem/pids limits).
+# Ports are published directly; the host firewall (cq-nc-ports) is the
+# only way in.
+#
+# Bring up:   docker compose up -d --build
+# Tear down:  docker compose down
+
+services:
+  cq-12:
+    build: /opt/cq/12
+    container_name: cq-12
+    ports:
+      - "1337:1337"
+    networks:
+      - cq-12-net
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 150
+    restart: unless-stopped
+
+  cq-13:
+    build: /opt/cq/13
+    container_name: cq-13
+    ports:
+      - "1338:1338"
+    networks:
+      - cq-13-net
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 150
+    restart: unless-stopped
+
+  cq-15:
+    build: /opt/cq/15
+    container_name: cq-15
+    ports:
+      - "1340:1340"
+    networks:
+      - cq-15-net
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 150
+    restart: unless-stopped
+
+# Separate network per challenge: containers cannot resolve or reach
+# each other. Published ports still work (host DNAT is outside the net).
+networks:
+  cq-12-net:
+    driver: bridge
+  cq-13-net:
+    driver: bridge
+  cq-15-net:
+    driver: bridge

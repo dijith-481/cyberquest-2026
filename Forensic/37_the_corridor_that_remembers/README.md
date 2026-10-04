@@ -16,7 +16,7 @@ easy
 
 ### Flag
 
-cyber_quest{familiar_is_not_the_same_as_correct}
+cyber_quest{f4m1l14r1ty_1s_n0t_c0rr3ctn355}
 
 ### Points
 

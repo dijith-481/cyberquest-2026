@@ -501,6 +501,9 @@
     width:36px;height:44px;border:1px solid var(--line);border-radius:3px;
     background:var(--card);font-weight:600;font-size:20px}
   .big-letters span.hl{background:var(--accent-wash);border-color:var(--accent)}
+  .route-list{margin:12px 0;font-size:13px;line-height:1.7;white-space:pre-wrap}
+  .route-list div{display:block}
+  .route-list b{font-weight:700}
   #minimap{position:absolute;right:12px;bottom:12px;width:220px;border:1px solid var(--line);
     border-radius:4px;background:var(--card);display:none;z-index:20;padding:6px;
     box-shadow:var(--shadow)}
@@ -1285,9 +1288,8 @@ function showReceipt(){
   const full = line+"\n ORDINARY ENGINEERING — FACILITIES\n"+line+
     "\n\nPERFECT ROUTE COMPLETED\n\n"+names.join("\n")+
     "\n\nFacilities memo:\n\n\"When documenting an inspection,\nwe abbreviate rooms by their initials.\"\n\n"+
-    "Standing orders are filed in house leet, and every order carries\n"+
-    "the badge's facilities drawing number.\n\n"+
-    "House leet: a=4  e=3  i=1  o=0  s=5  t=7";
+    "Standing orders are filed in house leet, and each order appends the\n"+
+    "badge's facilities drawing number, separated by an underscore.\n\n";
   const el = $("receipt"); el.textContent = "";
   let i = 0;
   const tick = () => { el.textContent = full.slice(0, i+=4); if(i<full.length) setTimeout(tick, 12); else showLetters(); };
@@ -1299,16 +1301,25 @@ function showReceipt(){
 }
 function showLetters(){
   const box = $("letters"); box.innerHTML = "";
-  const initials = visited.map(id=>byId[id].name[0]);
-  initials.forEach((ch,k)=> setTimeout(()=>{
-    const s=document.createElement("span"); s.textContent=ch; s.className="hl"; box.appendChild(s);
+  box.classList.remove("big-letters");
+  box.classList.add("route-list");
+  const names = visited.map(id=>byId[id].name);
+  // group breaks after 6 letters (NEWBIE) and after 9 (GOT), so the
+  // initials read as three words without any explanatory text
+  const BREAKS = new Set([6, 9]);
+  let shown = 0;
+  names.forEach((nm,k)=> setTimeout(()=>{
+    const li=document.createElement("div");
+    const b=document.createElement("b"); b.textContent=nm[0];
+    li.appendChild(b);
+    li.appendChild(document.createTextNode(nm.slice(1)));
+    if (BREAKS.has(k)) li.style.marginBottom = "0.7em";
+    box.appendChild(li);
+    shown++;
   }, k*160));
   setTimeout(()=>{
-    $("wrapHint").textContent =
-      "Take the first letter of each room, in order. Leet it, then wrap it in "+
-      "cyber_quest{...} with the badge's facilities drawing number. "+
-      "The print log in the Workshop has it.";
-  }, initials.length*160+200);
+    $("wrapHint").textContent = "";
+  }, names.length*160+200);
 }
 /* ---------- pencil rendering ---------- */
 function rr(x,y,w,h,r){

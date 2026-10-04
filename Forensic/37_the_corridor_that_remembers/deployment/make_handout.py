@@ -33,7 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HANDOUT = os.path.join(HERE, "..", "handout")
 ASSETS = os.path.join(HERE, "assets")
 
-FLAG = "cyber_quest{familiar_is_not_the_same_as_correct}"
+FLAG = "cyber_quest{f4m1l14r1ty_1s_n0t_c0rr3ctn355}"
 
 # fixed timestamp so the handout is reproducible
 MTIME = 1757000000

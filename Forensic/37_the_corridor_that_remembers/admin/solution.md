@@ -1,6 +1,6 @@
 # the_corridor_that_remembers — solution
 
-**Flag:** `cyber_quest{familiar_is_not_the_same_as_correct}`
+**Flag:** `cyber_quest{f4m1l14r1ty_1s_n0t_c0rr3ctn355}`
 **Difficulty:** easy
 
 ## The idea
@@ -127,7 +127,7 @@ cat final/flag.txt
 ```
 
 ```
-cyber_quest{familiar_is_not_the_same_as_correct}
+cyber_quest{f4m1l14r1ty_1s_n0t_c0rr3ctn355}
 ```
 
 ## Commands the solve uses

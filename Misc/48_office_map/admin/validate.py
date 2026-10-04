@@ -82,12 +82,12 @@ def main():
     order = [n for _, n in pairs]
     need(order != SOLUTION, "exported order != solution order")
     low = html.lower()
-    # The assembled flag must never appear on the page. The leet table and the
-    # drawing number ARE on the page deliberately — they are the last two steps
-    # — so the check is on the finished string and on the leet body, not on the
-    # individual ingredients.
-    need("newbiegotlost" not in low, "plaintext payload absent from page")
-    need("n3wb13g07l057" not in low, "leet payload absent from page")
+    # The assembled flag must never appear on the page. The drawing number IS
+    # on the page deliberately (it is the last step), so the check is on the
+    # finished string and on the payload body, not the ingredients.
+    need("newbie_got_lost" not in low, "plaintext payload absent from page")
+    need("newbie got lost" not in low, "spaced plaintext payload absent from page")
+    need("n3wb13_g07_l057" not in low, "leet payload absent from page")
     need("cyber_quest{n3w" not in low, "assembled flag absent from page")
     need("cyber_quest{cub" not in low, "flag absent from page")
     need("correctroute" not in low, "no stored solution variable")
@@ -95,10 +95,13 @@ def main():
     # The suffix must be discoverable, and only in the Workshop prop.
     need("b1c17" in low, "facilities drawing number present on the page")
     need(low.count("b1c17") == 1, "drawing number appears exactly once")
-    need("house leet" in low, "leet table present on the page")
-    # ...and the leet table must be a table, not the answer.
-    for pair in ("a=4", "e=3", "i=1", "o=0", "s=5", "t=7"):
-        need(pair in low, f"leet table states {pair}")
+
+    # House leet is not spelled out any more: every flag in the event is leet,
+    # so the mapping is inferable. The receipt only states the join convention.
+    need("house leet" in low, "receipt states the house leet convention")
+    need("underscore" in low, "receipt states the underscore join")
+    for pair in ("a=4", "e=3", "o=0", "s=5"):
+        need(pair not in low, f"leet table must NOT be spelled out ({pair})")
 
     if fails:
         print(f"{len(fails)} check(s) failed")

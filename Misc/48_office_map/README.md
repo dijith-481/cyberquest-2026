@@ -25,7 +25,7 @@ easy
 
 ```
 
-cyber_quest{n3wb13g07l057_b1c17}
+cyber_quest{n3wb13_g07_l057_b1c17}
 
 ```
 

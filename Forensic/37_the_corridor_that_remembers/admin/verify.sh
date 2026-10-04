@@ -6,7 +6,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-EXPECTED='cyber_quest{familiar_is_not_the_same_as_correct}'
+EXPECTED='cyber_quest{f4m1l14r1ty_1s_n0t_c0rr3ctn355}'
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT

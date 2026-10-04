@@ -12,30 +12,34 @@ Ordinary Engineering hired a few fast typists for the quarterly offsite. They we
 
 Legal has now read them and would like a second opinion. Legal has also asked, rhetorically, who approved the singing.
 
-
 ### Difficulty
+
 ```
 
 easy
 
 ```
+
 ### Flag
 
 ```
 
-cyber_quest{0ff_key_7r4ck_736sc3}
+cyber_quest{0ff_k3y_7r4ck_736sc3}
 
 ```
 
 ### Points
 
 #### Base Points
+
 ```
 
 200
 
 ```
+
 #### Submit Order Bonus (Optional)
+
 ```
 
 []

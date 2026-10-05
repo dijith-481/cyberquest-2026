@@ -147,9 +147,9 @@ that is now solved. Static bundle, so it costs nothing to host beyond the DNS en
 DNS-01 cert and a published TXT record. `afterimage17.int.yt` is NXDOMAIN and the
 repo cannot provision it.
 
-**50 Time Traveller** — **LIVE.** Earlier this file recorded it as skipped
+**50 Early Access** — **LIVE.** Earlier this file recorded it as skipped
 because its mirror account and repo both 404'd. That is a hosting problem, not a
-scrap of the challenge: the build is complete in `OSINT/50_time_traveller/`
+scrap of the challenge: the build is complete in `OSINT/50_early_access/`
 (7 files, own `admin/verify.sh`, `status: in-progress`) and only the external
 mirror needs re-provisioning before it can be verified.
 
@@ -161,7 +161,7 @@ mirror needs re-provisioning before it can be verified.
 - -> **50 live challenges** for the 2026 event
 
 The replacement slots (51, 53, 54, 56, 57) and the extra standalone
-challenges (58 Eigenface, 50 Time Traveller, 52 The Lost Year) are already
+challenges (58 Eigenface, 50 Early Access, 52 The Lost Year) are already
 present in the tree, so they are counted inside the 56. Nothing is added on
 top of the cut.
 

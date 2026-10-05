@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beta — invite only · orbit</title>
+<meta name="description" content="The orbit private beta is invite-only and currently empty.">
+<link rel="stylesheet" href="../assets/drawably/style.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<main class="wrap" style="max-width:680px;padding-top:60px">
+  <div class="dcard">
+    <span class="dbadge eyebrow">private beta</span>
+    <h1>Invite only.</h1>
+    <p class="muted">This door opens for universe-batches 1–64. Yours is a later
+    batch, which is also the correct batch.</p>
+    <p><a href="/" data-underline>Back to the waitlist →</a></p>
+  </div>
+</main>
+<script type="module">
+import { drawablyBadge, drawablyButton, drawablyCard, drawablyUnderline } from "../assets/drawably/index.js";
+try { document.querySelectorAll(".dcard").forEach((el) => drawablyCard(el)); } catch {}
+try { document.querySelectorAll(".dbadge").forEach((el) => drawablyBadge(el, { variant: "outline" })); } catch {}
+try { document.querySelectorAll("button").forEach((el) => drawablyButton(el, { variant: "outline" })); } catch {}
+try { document.querySelectorAll("[data-underline]").forEach((el) => drawablyUnderline(el)); } catch {}
+</script>
+</body>
+</html>

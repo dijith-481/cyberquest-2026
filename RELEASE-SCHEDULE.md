@@ -78,7 +78,7 @@ Reflects the live database. `HIDDEN` = invisible to players; `RELEASED` = visibl
 ## Not yet hosted (release when provisioned)
 - **App:** 01 Buy One Get One, 02 Negative Space, 03 Second Guess, 04 Rewind, 08 AI-Powered, 09 dino, 10 dino rev 2, 56 Standing Order, 57 Coming of Age
 - **NC:** 12 Optimized Away, 13 Legacy Vault, 15 Lost in Translation
-- **Static awaiting domain/mirror:** 50 Time Traveller, 52 The Lost Year
+- **Static awaiting domain/mirror:** 50 Early Access, 52 The Lost Year
 
 ## Totals in DB
 - 40 live rows (36 handout/static + Read The Rules + 3 hidden cuts)

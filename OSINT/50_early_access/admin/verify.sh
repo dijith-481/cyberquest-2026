@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Time Traveller — offline and live verifier.
+# Early Access — offline and live verifier.
 #   bash admin/verify.sh
 #   GH_USER=... GH_REPO=... GHOST_SHA=... bash admin/verify.sh --live
 set -euo pipefail
 
 CHALL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SITE="$CHALL_DIR/deployment/index.html"
-GH_USER="${GH_USER:-oe-mira-doodle-0417}"
-GH_REPO="${GH_REPO:-book-haven}"
-FLAG="${FLAG:-cyber_quest{t1m3_tr4v3ll3r_r3v1v3d_9e4c7a}}"
+GH_USER="${GH_USER:-aetheria-loml}"
+GH_REPO="${GH_REPO:-orbit}"
+FLAG="${FLAG:-cyber_quest{3v3ry_y0u_0n3_f33d_a4f2c1}}"
 LIVE=0
 for arg in "$@"; do
   case "$arg" in
@@ -27,14 +27,20 @@ fail() { echo "FAIL: $1" >&2; exit 1; }
 [ -x "$CHALL_DIR/admin/setup_github.sh" ] || fail "setup_github.sh is not executable"
 pass "challenge packaging present"
 
-# The visible page is the 2025 Book Haven page, with only a source breadcrumb
-# added. These checks catch accidental redesigns while ignoring the CDN.
-grep -Fq "Book Haven Book Shop" "$SITE" || fail "Book Haven heading missing"
-grep -Fq "The Time Traveler's Library" "$SITE" || fail "time-traveler book missing"
-grep -Fq "1984" "$SITE" || fail "1984 card missing"
-grep -Fq "Pride and Prejudice" "$SITE" || fail "Pride and Prejudice card missing"
-grep -Fq "cdn.jsdelivr.net/npm/tailwindcss@2.2.19" "$SITE" || fail "2025 Tailwind page marker missing"
-pass "2025 Book Haven website preserved"
+# The visible page is the orbit waitlist site. These checks catch accidental
+# redesigns while ignoring copy edits.
+grep -Fq "Every you." "$SITE" || fail "orbit hero heading missing"
+grep -Fq "Join the waitlist" "$SITE" || fail "waitlist CTA missing"
+grep -Fq "assets/drawably/style.css" "$SITE" || fail "drawably stylesheet missing"
+grep -Fq "assets/app.js" "$SITE" || fail "app.js wiring missing"
+grep -Fq "TBA" "$SITE" || fail "TBA marker missing"
+pass "orbit waitlist site preserved"
+
+# No 2025 / Book Haven / time-travel leftovers.
+if grep -R -Eiq '2025|book.?haven|time.?travell' "$CHALL_DIR/deployment" "$CHALL_DIR/README.md" "$CHALL_DIR/meta.yaml"; then
+  fail "2025 / Book Haven / time-travel reference remains"
+fi
+pass "no legacy references"
 
 # The deployed site must be clean. The flag belongs only in the ghost mirror
 # commit, not in the handout or any currently served file.
@@ -46,25 +52,34 @@ if grep -R -Eiq 'cyber_?quest\{' "$CHALL_DIR/deployment"; then
 fi
 pass "no flag in the deployed site"
 
-# The source breadcrumb must agree with the mirror the organizer publishes.
-grep -Fq "github.com/${GH_USER}/${GH_REPO}" "$SITE" \
-  || fail "GitHub mirror breadcrumb does not match GH_USER/GH_REPO"
-pass "mirror breadcrumb agrees with ${GH_USER}/${GH_REPO}"
+# The contributor handle in the page metadata must agree with the mirror the
+# organizer publishes. Decoys (archive link, footer source link, staging
+# TODO) must not point at the real account.
+grep -Fq "<meta name=\"author\" content=\"${GH_USER}\"" "$SITE" \
+  || fail "page author meta does not match GH_USER"
+grep -Fq "github.com/${GH_USER}/${GH_REPO}" "$CHALL_DIR/admin/solution.md" \
+  || fail "solution does not document GH_USER/GH_REPO"
+pass "author handle agrees with ${GH_USER}/${GH_REPO}"
 
 # Rehearse the complete force-push sequence locally. This catches the common
 # mistake of leaving the ghost commit reachable from main.
 LOCAL_OUT="$(bash "$CHALL_DIR/admin/setup_github.sh" --local-only)"
 grep -Fq "LOCAL-ONLY OK" <<<"$LOCAL_OUT" || fail "local force-push rehearsal failed"
 grep -Fq "force-push:" <<<"$LOCAL_OUT" || fail "setup did not report a force-push"
+grep -Fq "commit-count: 100" <<<"$LOCAL_OUT" || fail "local history is not 100 commits"
+grep -Fq "lure-position: 40" <<<"$LOCAL_OUT" || fail "lure commit is not at position 40"
 pass "force-push mechanic simulated locally"
 
 if [[ "$LIVE" == 1 ]]; then
   command -v curl >/dev/null || fail "curl is required for --live"
-  EVENTS="$(curl -fsSL --max-time 30 "https://api.github.com/users/${GH_USER}/events/public?per_page=100" || true)"
-  [ -n "$EVENTS" ] || fail "GitHub events API is unreachable"
-  grep -Fq "\"name\":\"${GH_REPO}\"" <<<"$EVENTS" \
-    || fail "no recent PushEvent for ${GH_USER}/${GH_REPO}"
-  pass "live activity contains a push for ${GH_USER}/${GH_REPO}"
+  # The repo activity page embeds the force-push with full before/after SHAs.
+  # (The API events feed lags on brand-new accounts; the activity page is the
+  # reliable route and the one the solution teaches.)
+  ACTIVITY="$(curl -fsSL --max-time 30 "https://github.com/${GH_USER}/${GH_REPO}/activity" || true)"
+  [ -n "$ACTIVITY" ] || fail "repo activity page is unreachable"
+  grep -Fq '"pushType":"force_push"' <<<"$ACTIVITY" \
+    || fail "no force-push visible on the activity page"
+  pass "live activity page shows the force-push for ${GH_USER}/${GH_REPO}"
 
   MAIN_HTML="$(curl -fsSL --max-time 30 "https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/main/index.html" || true)"
   [ -n "$MAIN_HTML" ] || fail "mirror main is not readable"

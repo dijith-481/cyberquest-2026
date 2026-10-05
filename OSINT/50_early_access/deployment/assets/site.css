@@ -1,0 +1,161 @@
+/* orbit — waitlist site (consumes drawably for all chrome)
+ *
+ * Design language: washed-out monochrome ink-sketch on paper. The only
+ * category signal is the accent hue; everything else is near-black ink on
+ * warm off-white paper.
+ *
+ * All hand-drawn chrome comes from the drawably vendor sheet via
+ * assets/app.js (button / card / input / select / checkbox / divider /
+ * badge / list / underline / highlight / circle). This file carries layout
+ * and type only — it never fakes sketchwork with CSS borders, shadows, or
+ * washes. Theme reaches the sketches through the --drawably-* properties.
+ */
+:root {
+  --paper: #f6f1e7;
+  --paper-2: #eee8d9;
+  --ink: #26211b;
+  --ink-soft: #6e675f;
+  --line: #d8d2c2;
+  --accent: #3a4a8f;   /* OSINT category accent */
+  --accent-soft: #6b78c2;
+  --accent-wash: rgba(58, 74, 143, 0.07);
+  --danger: #b3442f;
+  --ok: #188a42;
+  --card: #fbf8ef;
+
+  --drawably-stroke: #26211b;
+  --drawably-fill: #3a4a8f;
+  --drawably-paper: #f6f1e7;
+  --drawably-width: 2;
+  --drawably-error: #b3442f;
+  --drawably-success: #188a42;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 15% 8%, rgba(38, 33, 27, 0.025), transparent 42%),
+    radial-gradient(ellipse at 85% 92%, rgba(38, 33, 27, 0.02), transparent 40%);
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+
+a { color: var(--ink); text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 10px; }
+h1 { font-size: 44px; font-weight: 800; }
+h2 { font-size: 27px; font-weight: 750; }
+h3 { font-size: 18px; font-weight: 700; }
+p { margin: 8px 0; }
+.muted { color: var(--ink-soft); }
+.small { font-size: 13.5px; }
+.hint { color: var(--ink-soft); font-size: 12.5px; }
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; }
+.accent { color: var(--accent); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px dashed var(--line);
+}
+.topbar-in { display: flex; align-items: center; gap: 26px; padding-top: 12px; padding-bottom: 12px; }
+.brand { font-weight: 800; font-size: 17px; letter-spacing: 0.01em; text-decoration: none; }
+.nav { display: flex; gap: 18px; font-size: 14.5px; }
+.nav a { text-decoration: none; color: var(--ink-soft); padding: 2px 2px; }
+.nav a:hover { color: var(--ink); }
+.top-actions { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+
+/* ---------- layout blocks ---------- */
+section { padding: 54px 0; }
+.grid { display: grid; gap: 22px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } h1 { font-size: 34px; } }
+
+/* sketched containers are drawn by drawablyCard; layout only here */
+.dcard { padding: 22px; background: var(--card); }
+.center { text-align: center; }
+
+.eyebrow {
+  display: inline-block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700; margin-bottom: 10px;
+}
+
+/* ---------- hero ---------- */
+.hero { padding: 74px 0 58px; }
+.hero h1 { max-width: 720px; }
+.hero .lede { max-width: 640px; font-size: 17.5px; color: var(--ink-soft); }
+.hero-cta { display: flex; gap: 14px; margin-top: 26px; align-items: center; flex-wrap: wrap; }
+.hero-note { font-size: 13px; color: var(--ink-soft); }
+
+.stat-strip {
+  display: flex; flex-wrap: wrap; gap: 10px 44px; padding: 16px 0;
+  border-block: 1px dashed var(--line); font-size: 13.5px; color: var(--ink-soft);
+}
+.stat-strip b { color: var(--ink); }
+
+/* ---------- controls (chrome drawn by drawably) ---------- */
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* field wrappers: box drawn by drawablyInput/Select/Checkbox; layout only */
+.fld { display: block; margin-top: 14px; }
+.fld-label { display: block; font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 13px; }
+.fld input[type="text"], .fld input[type="email"], .fld select {
+  width: 100%; font: inherit; color: var(--ink); background: transparent;
+  border: none; outline: none; padding: 9px 12px;
+}
+.fld.ctl { display: flex; align-items: center; gap: 9px; line-height: 1.4; cursor: pointer; }
+.fld.ctl input { width: auto; }
+.toggle-text { font-size: 13.5px; color: var(--ink-soft); }
+
+.msg { margin-top: 12px; font-size: 14px; }
+.msg.ok { color: var(--ok); }
+
+/* text styling only — marker wash / circle / underline drawn by drawably */
+.hl { padding: 1px 5px; }
+
+/* sketched tag frame drawn by drawablyBadge */
+.dbadge.mini { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* host for drawablyDivider */
+.rule { border: none; height: 10px; margin: 18px 0; }
+
+/* gutter reserves room for sketched markers drawn by drawablyList */
+ul[data-list] { list-style: none; margin: 0; padding-left: 26px; }
+ul[data-list] li { margin: 6px 0; }
+
+/* faq */
+details { padding: 10px 0; }
+details + details { border-top: 1px dashed var(--line); }
+summary { cursor: pointer; font-weight: 700; }
+
+/* ---------- footer ---------- */
+.pagefoot {
+  margin-top: 60px; padding: 26px 0 40px; border-top: 1px dashed var(--line);
+  color: var(--ink-soft); font-size: 13px;
+}
+.pagefoot .wrap { display: flex; flex-wrap: wrap; gap: 8px 30px; justify-content: space-between; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

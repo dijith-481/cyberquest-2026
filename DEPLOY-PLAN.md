@@ -46,7 +46,7 @@ Net: 30 + 3 = 33 handout challenges live.
 ## Release schedule (visibility)
 
 Day 1 -> RELEASED (playable at launch 2026-10-02T12:30:00Z):
-  48 Office Map, 50 Time Traveller, 51 Share Card, 17 Hash Slinging,
+  48 Office Map, 50 Early Access, 51 Share Card, 17 Hash Slinging,
   20 Single Use, 43 Ghost Glyphs, 47 No Refunds, 27 Fine Print,
   29 Invisible Ink, 33 Packet Loss
 

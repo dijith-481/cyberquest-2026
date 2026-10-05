@@ -36,7 +36,7 @@ Deployment: one VM, socat per challenge. Cannot use Cloud Run (no raw TCP).
 
 | # | Title | Cat | Pts | Blocker |
 |---|---|---|---|---|
-| 50 | Time Traveller | OSINT | 100 | needs external mirror with rewritten history |
+| 50 | Early Access | OSINT | 100 | needs external mirror with rewritten history |
 | 52 | The Lost Year | OSINT | 100 | needs `1337.excelmec.org` DNS record |
 
 Deployment: Cloudflare Pages (same as 05/48/51) once the domain/mirror is ready.

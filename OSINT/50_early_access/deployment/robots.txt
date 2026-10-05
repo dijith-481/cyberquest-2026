@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /beta
+Disallow: /staging
+Disallow: /archive-export

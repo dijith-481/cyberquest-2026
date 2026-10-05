@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>not in this universe · orbit</title>
+<link rel="stylesheet" href="/assets/drawably/style.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<main class="wrap" style="max-width:680px;padding-top:60px">
+  <div class="dcard">
+    <span class="dbadge eyebrow">404</span>
+    <h1>Not in this universe.</h1>
+    <p class="muted">Facilities confirm this path exists in none of the 4,096
+    universes on file. The launch archive disagrees with no one.</p>
+    <p><a href="/" data-underline>Back to the waitlist →</a></p>
+  </div>
+</main>
+<script type="module">
+import { drawablyBadge, drawablyCard, drawablyUnderline } from "/assets/drawably/index.js";
+try { document.querySelectorAll(".dcard").forEach((el) => drawablyCard(el)); } catch {}
+try { document.querySelectorAll(".dbadge").forEach((el) => drawablyBadge(el, { variant: "outline" })); } catch {}
+try { document.querySelectorAll("[data-underline]").forEach((el) => drawablyUnderline(el)); } catch {}
+</script>
+</body>
+</html>

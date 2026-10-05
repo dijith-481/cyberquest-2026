@@ -1,7 +1,7 @@
 id: "50"
 title: Early Access
 category: OSINT
-difficulty: "easy"
+difficulty: "hard"
 author: ordinary engineering
-status: "in-progress"
-points: 100
+status: "built"
+points: 400

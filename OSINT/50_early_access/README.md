@@ -12,7 +12,7 @@ They say there is nothing to find here. The page is ordinary, the copy is ordina
 
 ### Difficulty
 ```
-easy
+hard
 ```
 
 ### Flag
@@ -24,13 +24,13 @@ cyber_quest{3v3ry_y0u_0n3_f33d_a4f2c1}
 
 #### Base Points
 ```
-100
+400
 ```
 
 #### Submit Order Bonus (Optional)
 ```
 
-[]
+[40, 30, 20]
 
 ```
 

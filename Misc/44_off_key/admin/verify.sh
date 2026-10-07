@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-EXPECTED='cyber_quest{0ff_key_7r4ck_736sc3}'
+EXPECTED='cyber_quest{0ff_k3y_7r4ck_736sc3}'
 SEED=44
 
 TMP="$(mktemp -d)"

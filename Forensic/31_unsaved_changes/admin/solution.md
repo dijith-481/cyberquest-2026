@@ -12,7 +12,7 @@ The handout has three files:
   past.
 - `.standup_notes.md.swp` — a vim swap file, snapshotted **mid-incident** (the
   laptop's editor died with the flagged buffer live). The header says the
-  session belonged to `k.okafor` on host `lt-oe0442`.
+  session belonged to `k.okafor` on host `lt-oe442`.
 - `.standup_notes.md.un~` — vim's persistent undo file, holding the full
   history of every write.
 

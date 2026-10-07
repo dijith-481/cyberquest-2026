@@ -13,7 +13,7 @@ The pool also made four deliberate word swaps. Three are ordinary
 English words that read, in order, "off key track" — the challenge name.
 The fourth, last in reading order, is a random letter-and-number string:
 the unique salt that finishes the flag. Leetify the three words
-(a->4, o->0, t->7), keep the salt as-is, join with underscores and wrap
+(a->4, o->0, t->7, e->3), keep the salt as-is, join with underscores and wrap
 in cyber_quest{}.
 
     python3 deployment/generate.py --seed 44 --flag 'cyber_quest{...}' \
@@ -123,7 +123,7 @@ SWAPS = (
 )
 
 FLAG_WORDS = ("off", "key", "track")
-LEET = {"a": "4", "o": "0", "t": "7"}
+LEET = {"a": "4", "o": "0", "t": "7", "e": "3"}
 
 # The full song, used only as a word set so the random salt can be told
 # apart from a real word.

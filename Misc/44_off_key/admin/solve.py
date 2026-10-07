@@ -105,7 +105,7 @@ I said somebody's got to take care of him
 So I quit school and that's what I did
 """
 
-LEET = {"a": "4", "o": "0", "t": "7"}
+LEET = {"a": "4", "o": "0", "t": "7", "e": "3"}
 
 
 def convert(text: str, cmap: dict[str, str]) -> str:

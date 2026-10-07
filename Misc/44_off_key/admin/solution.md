@@ -1,6 +1,6 @@
 # Off Key — solution
 
-**Flag:** `cyber_quest{0ff_key_7r4ck_736sc3}`
+**Flag:** `cyber_quest{0ff_k3y_7r4ck_736sc3}`
 
 Handout: `handout/transcripts.txt` (also shipped as `44_off_key.zip`). No server.
 
@@ -90,18 +90,15 @@ off key track 736sc3
 
 ## Step 3 — house style
 
-Leetify with the house style (`a -> 4`, `o -> 0`, `t -> 7`; nothing else),
+Leetify with the house style (`a -> 4`, `o -> 0`, `t -> 7`, `e -> 3`),
 keep the job code as typed, join with underscores and wrap:
 
 ```
 off key track 736sc3
-0ff key 7r4ck 736sc3
+0ff k3y 7r4ck 736sc3
 
-cyber_quest{0ff_key_7r4ck_736sc3}
+cyber_quest{0ff_k3y_7r4ck_736sc3}
 ```
-
-`key` has no `a/o/t`, so it stays `key`. (A player who also leets `e -> 3`
-will try `k3y`; the intended house style keeps it, matching the title.)
 
 ## Reference solver
 
